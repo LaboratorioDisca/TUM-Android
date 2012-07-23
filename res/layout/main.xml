@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<iimas.tum.views.CustomMapView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/mapview"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:clickable="true"
+    android:apiKey="0f3XaTLUN3WCqzxXOsj1CgOIn4fj3r25Hm_Nqag"
+/>
+<!--  android:apiKey="0Sp8gbE2A7hswQd5VhvTN6uWTkmwkF_TNtVj_jQ" -->

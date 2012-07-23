@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="hello">Hello World, MueveteXCUActivity!</string>
+    <string name="app_name">MueveteXCU</string>   
+	<string name="menu_routes">Rutas</string>
+    <string name="menu_main">Principal</string>
+    <string name="menu_map">Mapa</string>
+    <string name="routes_section_title">Rutas</string>    
+</resources>

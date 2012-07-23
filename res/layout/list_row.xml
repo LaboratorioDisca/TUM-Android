@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal" >
+
+    <View
+        android:id="@+id/ribbon"
+        android:layout_width="fill_parent"
+        android:layout_height="8dip"
+        android:background="#791F33" >
+    </View>
+
+    <View
+        android:id="@+id/ribbon_shadow"
+        android:layout_width="match_parent"
+        android:layout_height="1sp"
+        android:layout_below="@+id/ribbon"
+        android:background="@drawable/black_white_gradient" >
+    </View>
+
+    <!-- ListRow Left sied -->
+
+    <LinearLayout
+        android:id="@+id/route_number_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="8dip"
+        android:layout_marginRight="25dip"
+        android:padding="3dip" >
+
+        <TextView
+            android:id="@+id/route_number"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dip"
+            android:layout_weight="3.22"
+            android:text="00"
+        	android:textColor="#6D6E6C"
+            android:textSize="50dip"
+            android:textStyle="bold"
+            android:typeface="sans" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/right_terminal"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="100dip"
+        android:layout_marginTop="23dip"
+        android:layout_toRightOf="@+id/route_number"
+        android:text="Left terminal"
+        android:textColor="#6D6E6C"
+        android:textSize="16dip" />
+
+    <TextView
+        android:id="@+id/left_terminal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/right_terminal"
+        android:layout_below="@+id/right_terminal"
+        android:text="Right terminal"
+        android:textColor="#6D6E6C"
+        android:textSize="16dip"
+        android:typeface="sans" />
+
+</RelativeLayout>
