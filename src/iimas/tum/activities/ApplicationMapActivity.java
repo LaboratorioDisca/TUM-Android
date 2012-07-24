@@ -3,9 +3,11 @@ package iimas.tum.activities;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
-
+import org.json.JSONArray;
 import iimas.tum.R;
+import iimas.tum.collections.Vehicles;
 import iimas.tum.models.Route;
+import iimas.tum.utils.ApplicationBase;
 import iimas.tum.views.CustomMapView;
 import iimas.tum.views.RouteOverlay;
 
@@ -14,6 +16,8 @@ import com.google.android.maps.MapActivity;
 import com.google.android.maps.MyLocationOverlay;
 import com.google.android.maps.Overlay;
 
+import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
@@ -30,6 +34,7 @@ public class ApplicationMapActivity extends MapActivity implements LocationListe
 	CustomMapView mapView;
 	private MyLocationOverlay locationOverlay;
 	private LocationManager locationManager;
+	private Activity currentActivity;
 	
     /** Called when the activity is first created. */
     @Override
@@ -53,14 +58,35 @@ public class ApplicationMapActivity extends MapActivity implements LocationListe
 		});
 		
 		this.drawCurrentLocationAndRoutes();
+		
+		currentActivity = this;
+    	Thread thread = new Thread(null, vehicleFetcher, "fetchVehiclesJSON");
+    	thread.start();
     }
+    
+    private Runnable vehicleFetcher = new Runnable(){ 
+		
+		@SuppressLint("UseSparseArrays")
+		@Override 
+		 public void run() {		    
+	       	JSONArray jsonArray = ApplicationBase.fetch("vehicles", currentActivity);
+	       	if(jsonArray != null) {
+	       		Vehicles.getOrBuild(jsonArray);
+	       	}
+		 }
+	};
     
     public void drawCurrentLocationAndRoutes() {
     	locationOverlay.enableMyLocation();
 		locationOverlay.enableCompass();
-		
-    	if(RoutesListActivity.routes != null)
+		this.drawRoutesWithVehiclesInstants();
+    }
+    
+    public void drawRoutesWithVehiclesInstants() {
+    	if(RoutesListActivity.routes != null) {
         	this.drawPaths(RoutesListActivity.routes.values());
+    	}
+    	
     }
     
     public void onLocationChanged(Location location) {

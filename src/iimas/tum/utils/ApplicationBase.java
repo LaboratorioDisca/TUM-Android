@@ -6,7 +6,6 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
@@ -14,7 +13,6 @@ import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.json.JSONArray;
 import org.json.JSONException;
-
 import android.app.Activity;
 import android.util.Log;
 
@@ -37,8 +35,6 @@ public class ApplicationBase {
 	}
 	
 	public static JSONArray fetch(String resource, Activity activity) {
-		 Log.i("Results", "Iniciando ...................");
-
 		 InputStream is = null;
 	     String result = "";
 	     JSONArray json = null;
@@ -62,13 +58,17 @@ public class ApplicationBase {
 	         
 	     } catch(Exception e){}
 
+	     Log.i("MOCHE", result);
 	     try{
+	    	 // Handle empty results arising from errors on network comunication
 	    	 if(result.isEmpty()) {
-	    		 result = readRawTextFile(activity, R.raw.routes);
+	    		 if(resource.equalsIgnoreCase("routes"))
+	    			 result = readRawTextFile(activity, R.raw.routes);
 	    	 }
 	         json = new JSONArray(result);
 	     }catch(JSONException e){}
-	      return json;
+	     
+	     return json;
 	}
 	
 	public static String readRawTextFile(Activity activity, int resId)
