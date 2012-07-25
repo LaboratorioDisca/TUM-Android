@@ -15,17 +15,17 @@ public class Route {
 	private String simpleIdentifier;
 	private ArrayList<GeoPoint> coordinates;
 	private String rightTerminal;
-	private String leftTerminal;
-	
+	private String leftTerminal;	
 	private boolean visibleOnMap;
 
 	
-	Route(int identifier, String name, String color, String rightTerminal, String leftTerminal) {
+	Route(int identifier, String name, String color, String rightTerminal, String leftTerminal, String simpleIdentifier) {
 		this.identifier = identifier;
 		this.name = name;
 		this.color = color;
 		this.rightTerminal = rightTerminal;
 		this.leftTerminal = leftTerminal;
+		this.simpleIdentifier = simpleIdentifier;
 	}
 	
 	public Route(JSONObject object) throws JSONException {
@@ -33,7 +33,8 @@ public class Route {
 				object.getString("name"), 
 				object.getString("color"), 
 				object.getString("rightTerminal"), 
-				object.getString("leftTerminal"));
+				object.getString("leftTerminal"),
+				object.getString("simpleIdentifier"));
 		this.parseLineString(object.getJSONArray("paths").getJSONArray(0));
 	}
 	

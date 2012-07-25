@@ -6,6 +6,8 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.Timer;
+
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
@@ -14,14 +16,21 @@ import org.apache.http.impl.client.DefaultHttpClient;
 import org.json.JSONArray;
 import org.json.JSONException;
 import android.app.Activity;
-import android.util.Log;
 
 public class ApplicationBase {
 
 	private static String url = "http://132.248.51.251:9000/";
 	private static String routesResourceURL = "transports/8/lines";
 	private static String vehiclesResourceURL = "vehicles";
-	private static String instantsResourceURL = "instants";
+	private static String instantsResourceURL = "instants/recent";
+	private static Timer timer;
+
+	public static Timer globalTimer() {
+		if(timer == null) {
+			timer = new Timer();
+		}
+		return timer;
+	}
 	
 	public static String urlFor(String string) throws BadURLResourceException {
 		if(string.equalsIgnoreCase("routes"))
@@ -57,8 +66,7 @@ public class ApplicationBase {
 	         result=sb.toString();
 	         
 	     } catch(Exception e){}
-
-	     Log.i("MOCHE", result);
+	      
 	     try{
 	    	 // Handle empty results arising from errors on network comunication
 	    	 if(result.isEmpty()) {

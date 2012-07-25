@@ -6,20 +6,22 @@ import java.util.HashMap;
 import org.json.JSONArray;
 import org.json.JSONException;
 
-import android.util.Log;
-
 public class Vehicles {
 
 	protected static Vehicles singleton;
 	protected HashMap<Integer, ArrayList<Vehicle>> vehiclesInRoute;
 	
-	public static Vehicles getOrBuild(JSONArray jsonArray) {
-		
-		if(singleton == null || singleton.vehiclesInRoute.isEmpty()) {
-			singleton = new Vehicles();
-			singleton.applyCollection(jsonArray);
-		}
+	public static Vehicles buildFromJSON(JSONArray jsonArray) {
+		singleton = new Vehicles();
+		singleton.applyCollection(jsonArray);
 		return singleton;
+	}
+	
+	public static ArrayList<Vehicle> vehiclesForRoute(Integer routeId) {
+		if(singleton != null && !singleton.vehiclesInRoute.isEmpty()) {
+			return singleton.vehiclesInRoute.get(routeId);
+		}
+		return new ArrayList<Vehicle>();
 	}
 	
 	public void applyCollection(JSONArray jsonArray) {
@@ -29,7 +31,7 @@ public class Vehicles {
 				try {
 					vehicle = new Vehicle(jsonArray.getJSONObject(i));
 					ArrayList<Vehicle> vehicles;
-					
+
 					if(vehiclesInRoute.containsKey(vehicle.getLineId())) {
 						vehicles = vehiclesInRoute.get(vehicle.getLineId());
 						vehicles.add(vehicle);
@@ -42,7 +44,6 @@ public class Vehicles {
 					e.printStackTrace();
 				}
        	}
-		Log.i("Routes",String.valueOf(vehiclesInRoute.keySet().size()));
 	}
 	
 }
