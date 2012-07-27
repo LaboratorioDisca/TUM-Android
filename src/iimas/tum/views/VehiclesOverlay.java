@@ -2,43 +2,50 @@ package iimas.tum.views;
 
 import java.util.ArrayList;
 
-import android.app.AlertDialog;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
+import android.widget.Toast;
+
 import com.google.android.maps.ItemizedOverlay;
+import com.google.android.maps.MapView;
 import com.google.android.maps.OverlayItem;
 
 public class VehiclesOverlay extends ItemizedOverlay<OverlayItem> {
-	private ArrayList<OverlayItem> mOverlays = new ArrayList<OverlayItem>();
-	Context mContext;
+	private ArrayList<OverlayItem> m_overlays = new ArrayList<OverlayItem>();
+	private Context c;
 	
-	public VehiclesOverlay(Drawable defaultMarker, Context context) {
-		super(boundCenterBottom(defaultMarker));
-		mContext = context;
+	public VehiclesOverlay(Drawable defaultMarker, MapView mapView) {
+		super(defaultMarker);
+		boundCenterBottom(defaultMarker);
+		c = mapView.getContext();
 	}
-	
+
 	public void addOverlay(OverlayItem overlay) {
-	    mOverlays.add(overlay);
+	    m_overlays.add(overlay);
 	    populate();
 	}
 
 	@Override
 	protected OverlayItem createItem(int i) {
-		return mOverlays.get(i);
+		return m_overlays.get(i);
 	}
 
 	@Override
 	public int size() {
-		return mOverlays.size();
+		return m_overlays.size();
 	}
 	
-	@Override
-	protected boolean onTap(int index) {
-	  OverlayItem item = mOverlays.get(index);
-	  AlertDialog.Builder dialog = new AlertDialog.Builder(mContext);
-	  dialog.setTitle(item.getTitle());
-	  dialog.setMessage(item.getSnippet());
-	  dialog.show();
-	  return true;
+	@Override 
+	public boolean onTap(int index) {
+		OverlayItem item = this.m_overlays.get(index);
+		if(item != null) {
+			Toast.makeText(c, item.getSnippet(), Toast.LENGTH_SHORT).show();
+		}
+		return true;
+	}
+
+	protected boolean onBalloonTap(int index, OverlayItem item) {
+		
+		return true;
 	}
 }

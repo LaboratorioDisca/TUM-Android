@@ -17,7 +17,10 @@ public class Instants {
 	}
 	
 	public static Instant instantForVehicle(Integer vehicleId) {
-		return singleton.instants.get(vehicleId);
+		if(singleton != null && singleton.instants != null) {
+			return singleton.instants.get(vehicleId);
+		}
+		return null;
 	}
 	
 	public void applyCollection(JSONArray jsonArray) {

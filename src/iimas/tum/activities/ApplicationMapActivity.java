@@ -3,9 +3,12 @@ package iimas.tum.activities;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.Locale;
 import java.util.TimerTask;
 
 import org.json.JSONArray;
+import org.ocpsoft.pretty.time.PrettyTime;
+
 import iimas.tum.R;
 import iimas.tum.collections.Instants;
 import iimas.tum.collections.Vehicles;
@@ -45,7 +48,7 @@ public class ApplicationMapActivity extends MapActivity implements LocationListe
 	private LocationManager locationManager;
 	private Activity currentActivity;
 	private TimerTask currentInstantCall;
-	
+		
     /** Called when the activity is first created. */
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -79,7 +82,9 @@ public class ApplicationMapActivity extends MapActivity implements LocationListe
 		
 		@SuppressLint("UseSparseArrays")
 		@Override 
-		 public void run() {		    
+		 public void run() {	
+       		Log.e("Vehicles", "Fetching vehicles");
+
 	       	JSONArray jsonArray = ApplicationBase.fetch("vehicles", currentActivity);
 	       	if(jsonArray != null) {
 	       		Vehicles.buildFromJSON(jsonArray);
@@ -134,7 +139,7 @@ public class ApplicationMapActivity extends MapActivity implements LocationListe
     public void onRestart() {
     	super.onRestart();
 		this.drawCurrentLocationAndRoutes();
-   		ApplicationBase.globalTimer().scheduleAtFixedRate(newInstantFetcherCall(), 0, 15000);
+   		ApplicationBase.globalTimer().scheduleAtFixedRate(newInstantFetcherCall(), 0, 10000);
     }
     
     public void onPause() {
@@ -158,22 +163,33 @@ public class ApplicationMapActivity extends MapActivity implements LocationListe
     		if(route.isVisibleOnMap()) {
     			ArrayList<Vehicle> vehicles = Vehicles.vehiclesForRoute(route.getIdentifier());
     			
-    			//Drawable drawable = this.getResources().getDrawable(R.drawable.androidmarker);
-				//VehiclesOverlay itemizedoverlay = new VehiclesOverlay(drawable, this);
+    			String uri = "drawable/" + route.getSimpleIdentifier();
+    			uri = uri.toLowerCase();
+    		    int imageResource = getResources().getIdentifier(uri, null, getPackageName());
+    		    
+    			Drawable drawable = this.getResources().getDrawable(imageResource);
+				VehiclesOverlay itemizedoverlay = new VehiclesOverlay(drawable, this.mapView);
 				
     			for(Vehicle vehicle : vehicles) {
     				Instant vehicleInstant = Instants.instantForVehicle(vehicle.getId());
     				
     				if(vehicleInstant != null) {
-    					OverlayItem oi = new OverlayItem(vehicleInstant.getCoordinate(), "", String.valueOf(vehicleInstant.getVehicleSpeed()) + "km/h");
-    					//oi.setMarker(marker)
-    					//overlays.add(itemizedoverlay);
+    					GeoPoint point = vehicleInstant.getCoordinate();
+    					double speed = vehicleInstant.getVehicleSpeed();
+    					
+    					PrettyTime p = new PrettyTime(new Locale("es"));
+    					
+    					OverlayItem overlayItem = new OverlayItem(point,route.getName() + ":: ", 
+    							"Recibido " + p.format(vehicleInstant.getDate()) + " : Vel. " + String.valueOf(speed) + " km/h");
+    					itemizedoverlay.addOverlay(overlayItem);
     				}
     			}
     			ArrayList<GeoPoint> geoPoints = route.getCoordinates();
     			for (int i = 1; i < geoPoints.size(); i++) {
     				overlays.add(new RouteOverlay(geoPoints.get(i-1), geoPoints.get(i), Color.parseColor(route.getColor()), route.getIdentifier()));
     			}
+    			
+    			overlays.add(itemizedoverlay);
     		} 
     	}
    }
@@ -188,11 +204,14 @@ public class ApplicationMapActivity extends MapActivity implements LocationListe
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle item selection
+    	Intent intentActivity;
         switch (item.getItemId()) {
             case R.id.main:
+            	intentActivity = new Intent(this, LandingViewActivity.class);
+            	startActivity(intentActivity);
                 return true;
             case R.id.routes:
-                Intent intentActivity = new Intent(this, RoutesListActivity.class);
+                intentActivity = new Intent(this, RoutesListActivity.class);
             	startActivity(intentActivity);
             	return true;
             default:
