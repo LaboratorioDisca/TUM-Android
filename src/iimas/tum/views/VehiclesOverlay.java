@@ -1,9 +1,16 @@
 package iimas.tum.views;
 
+import iimas.tum.R;
+
 import java.util.ArrayList;
 
-import android.content.Context;
+import android.app.Activity;
+import android.graphics.Color;
 import android.graphics.drawable.Drawable;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.maps.ItemizedOverlay;
@@ -12,12 +19,13 @@ import com.google.android.maps.OverlayItem;
 
 public class VehiclesOverlay extends ItemizedOverlay<OverlayItem> {
 	private ArrayList<OverlayItem> m_overlays = new ArrayList<OverlayItem>();
-	private Context c;
+	private Activity currentActivity;
 	
-	public VehiclesOverlay(Drawable defaultMarker, MapView mapView) {
+	public VehiclesOverlay(Drawable defaultMarker, MapView mapView, Activity activity) {
 		super(defaultMarker);
 		boundCenterBottom(defaultMarker);
-		c = mapView.getContext();
+		this.currentActivity = activity;
+		populate();
 	}
 
 	public void addOverlay(OverlayItem overlay) {
@@ -37,9 +45,33 @@ public class VehiclesOverlay extends ItemizedOverlay<OverlayItem> {
 	
 	@Override 
 	public boolean onTap(int index) {
-		OverlayItem item = this.m_overlays.get(index);
+		OverlayItemForInstant item = (OverlayItemForInstant) this.m_overlays.get(index);
 		if(item != null) {
-			Toast.makeText(c, item.getSnippet(), Toast.LENGTH_SHORT).show();
+			//get the LayoutInflater and inflate the custom_toast layout
+		    LayoutInflater inflater = currentActivity.getLayoutInflater();
+		    View layout = inflater.inflate(R.layout.custom_toast, (ViewGroup) currentActivity.findViewById(R.id.toast_layout));
+		 
+		    View ribbon = (View) layout.findViewById(R.id.mini_ribbon);
+		    ribbon.setBackgroundColor(Color.parseColor(item.route.getColor()));
+		    TextView title = (TextView) layout.findViewById(R.id.route_title);
+		    title.setText("VEHICULO");
+		    
+		    TextView vehicleId = (TextView) layout.findViewById(R.id.vehicle_id);
+		    vehicleId.setText(item.getVehicleId());
+
+		    TextView time = (TextView) layout.findViewById(R.id.instant_time);
+		    time.setText(item.getTime());
+		 
+		    TextView speed = (TextView) layout.findViewById(R.id.instant_speed);
+		    speed.setText(item.getSpeed());
+		    
+		    //create the toast object, set display duration,
+		    //set the view as layout that's inflated above and then call show()
+		    Toast t = new Toast(currentActivity.getApplicationContext());
+		    t.setDuration(Toast.LENGTH_SHORT);
+		    t.setView(layout);
+		    t.show();
+			//Toast.makeText(c, item.getSnippet(), Toast.LENGTH_SHORT).show();
 		}
 		return true;
 	}

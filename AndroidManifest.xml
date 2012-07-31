@@ -18,16 +18,17 @@
         <activity
             android:name=".activities.LandingViewActivity"
             android:label="@string/menu_main"
+			android:screenOrientation="portrait"
             android:theme="@android:style/Theme.NoTitleBar" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
             android:name=".activities.ApplicationMapActivity"
             android:label="@string/menu_map"
+            android:screenOrientation="portrait"
             android:theme="@android:style/Theme.NoTitleBar" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -38,6 +39,7 @@
         <activity
             android:name=".activities.RoutesListActivity"
             android:label="@string/menu_routes"
+            android:screenOrientation="portrait"
             android:theme="@android:style/Theme.NoTitleBar" >
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />

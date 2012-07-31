@@ -32,11 +32,10 @@
 
         <TextView
             android:id="@+id/route_number"
-            android:layout_width="wrap_content"
+            android:layout_width="0dip"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dip"
             android:layout_weight="3.22"
-            android:text="00"
         	android:textColor="#6D6E6C"
             android:textSize="50dip"
             android:textStyle="bold"
@@ -50,7 +49,6 @@
         android:layout_marginLeft="100dip"
         android:layout_marginTop="23dip"
         android:layout_toRightOf="@+id/route_number"
-        android:text="Left terminal"
         android:textColor="#6D6E6C"
         android:textSize="16dip" />
 
@@ -60,7 +58,6 @@
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/right_terminal"
         android:layout_below="@+id/right_terminal"
-        android:text="Right terminal"
         android:textColor="#6D6E6C"
         android:textSize="16dip"
         android:typeface="sans" />

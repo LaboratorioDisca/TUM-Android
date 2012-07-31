@@ -3,12 +3,8 @@ package iimas.tum.activities;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
-import java.util.Locale;
 import java.util.TimerTask;
-
 import org.json.JSONArray;
-import org.ocpsoft.pretty.time.PrettyTime;
-
 import iimas.tum.R;
 import iimas.tum.collections.Instants;
 import iimas.tum.collections.Vehicles;
@@ -17,15 +13,13 @@ import iimas.tum.models.Route;
 import iimas.tum.models.Vehicle;
 import iimas.tum.utils.ApplicationBase;
 import iimas.tum.views.CustomMapView;
+import iimas.tum.views.OverlayItemForInstant;
 import iimas.tum.views.RouteOverlay;
 import iimas.tum.views.VehiclesOverlay;
-
 import com.google.android.maps.GeoPoint;
 import com.google.android.maps.MapActivity;
 import com.google.android.maps.MyLocationOverlay;
 import com.google.android.maps.Overlay;
-import com.google.android.maps.OverlayItem;
-
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
@@ -58,8 +52,17 @@ public class ApplicationMapActivity extends MapActivity implements LocationListe
         mapView = (CustomMapView) findViewById(R.id.mapview);
         mapView.getController().setCenter(new GeoPoint((int) (19.322675 * 1E6), (int) (-99.192080 * 1E6)));
         mapView.getController().setZoom(16);
-        mapView.setBuiltInZoomControls(true);
+        mapView.setBuiltInZoomControls(false);
         
+		currentActivity = this;
+    	Thread thread = new Thread(null, vehicleFetcher, "fetchVehiclesJSON");
+    	thread.start();
+    	
+    }
+    
+    @Override
+    protected void onResume() {
+        super.onResume();
         locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
 		locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, this);
 
@@ -69,13 +72,8 @@ public class ApplicationMapActivity extends MapActivity implements LocationListe
 				mapView.getController().animateTo(locationOverlay.getMyLocation());
 			}
 		});
-		
 		this.drawCurrentLocationAndRoutes();
-		
-		currentActivity = this;
-    	Thread thread = new Thread(null, vehicleFetcher, "fetchVehiclesJSON");
-    	thread.start();
-    	
+
     }
     
     private Runnable vehicleFetcher = new Runnable(){ 
@@ -163,24 +161,17 @@ public class ApplicationMapActivity extends MapActivity implements LocationListe
     		if(route.isVisibleOnMap()) {
     			ArrayList<Vehicle> vehicles = Vehicles.vehiclesForRoute(route.getIdentifier());
     			
-    			String uri = "drawable/" + route.getSimpleIdentifier();
-    			uri = uri.toLowerCase();
+    			String uri = "drawable/" + route.getSimpleIdentifier().toLowerCase();
     		    int imageResource = getResources().getIdentifier(uri, null, getPackageName());
-    		    
     			Drawable drawable = this.getResources().getDrawable(imageResource);
-				VehiclesOverlay itemizedoverlay = new VehiclesOverlay(drawable, this.mapView);
+				VehiclesOverlay itemizedoverlay = new VehiclesOverlay(drawable, this.mapView, this);
 				
     			for(Vehicle vehicle : vehicles) {
     				Instant vehicleInstant = Instants.instantForVehicle(vehicle.getId());
     				
     				if(vehicleInstant != null) {
-    					GeoPoint point = vehicleInstant.getCoordinate();
-    					double speed = vehicleInstant.getVehicleSpeed();
     					
-    					PrettyTime p = new PrettyTime(new Locale("es"));
-    					
-    					OverlayItem overlayItem = new OverlayItem(point,route.getName() + ":: ", 
-    							"Recibido " + p.format(vehicleInstant.getDate()) + " : Vel. " + String.valueOf(speed) + " km/h");
+    					OverlayItemForInstant overlayItem = new OverlayItemForInstant(vehicleInstant,  route); 
     					itemizedoverlay.addOverlay(overlayItem);
     				}
     			}

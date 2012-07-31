@@ -10,7 +10,12 @@ import org.json.JSONException;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.KeyEvent;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
@@ -88,4 +93,42 @@ public class RoutesListActivity extends Activity {
 			}
         });
     }
+    
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.map_menu, menu);
+        return true;
+    }
+    
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle item selection
+    	Intent intentActivity;
+        switch (item.getItemId()) {
+            case R.id.main:
+            	intentActivity = new Intent(this, LandingViewActivity.class);
+            	startActivity(intentActivity);
+                return true;
+            case R.id.mapview:
+            	intentActivity = new Intent(this, ApplicationMapActivity.class);
+            	startActivity(intentActivity);
+                return true;
+            case R.id.routes:
+            	return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+    
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+        	Intent intentActivity = new Intent(this, ApplicationMapActivity.class);
+        	startActivity(intentActivity);
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
+    }
+
 }
