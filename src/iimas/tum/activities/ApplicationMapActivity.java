@@ -54,15 +54,6 @@ public class ApplicationMapActivity extends MapActivity implements LocationListe
         mapView.getController().setZoom(16);
         mapView.setBuiltInZoomControls(false);
         
-		currentActivity = this;
-    	Thread thread = new Thread(null, vehicleFetcher, "fetchVehiclesJSON");
-    	thread.start();
-    	
-    }
-    
-    @Override
-    protected void onResume() {
-        super.onResume();
         locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
 		locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, this);
 
@@ -74,6 +65,9 @@ public class ApplicationMapActivity extends MapActivity implements LocationListe
 		});
 		this.drawCurrentLocationAndRoutes();
 
+		currentActivity = this;
+    	Thread thread = new Thread(null, vehicleFetcher, "fetchVehiclesJSON");
+    	thread.start();
     }
     
     private Runnable vehicleFetcher = new Runnable(){ 

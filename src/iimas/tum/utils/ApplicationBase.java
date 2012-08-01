@@ -24,7 +24,7 @@ public class ApplicationBase {
 	private static String vehiclesResourceURL = "vehicles";
 	private static String instantsResourceURL = "instants/recent";
 	private static Timer timer;
-
+	
 	public static Timer globalTimer() {
 		if(timer == null) {
 			timer = new Timer();
