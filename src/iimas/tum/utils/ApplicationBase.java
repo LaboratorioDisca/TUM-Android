@@ -23,7 +23,10 @@ public class ApplicationBase {
 	private static String routesResourceURL = "transports/8/lines";
 	private static String vehiclesResourceURL = "vehicles";
 	private static String instantsResourceURL = "instants/recent";
+	private static String serviceGeneralStatus = "service/status";
 	private static Timer timer;
+	
+	public static Activity currentActivity;
 	
 	public static Timer globalTimer() {
 		if(timer == null) {
@@ -39,15 +42,16 @@ public class ApplicationBase {
 			return url.concat(vehiclesResourceURL);
 		else if(string.equalsIgnoreCase("instants"))
 			return url.concat(instantsResourceURL);
+		else if(string.equalsIgnoreCase("serviceStatus"))
+			return url.concat(serviceGeneralStatus);
 		else
 			throw new ApplicationBase.BadURLResourceException();
 	}
 	
-	public static JSONArray fetch(String resource, Activity activity) {
-		 InputStream is = null;
-	     String result = "";
-	     JSONArray json = null;
-	      try{
+	private static String fetchResource(String resource) {
+		InputStream is = null;
+	    String result = new String();
+	    try{
 	         HttpClient httpclient = new DefaultHttpClient();
 	         HttpGet get = new HttpGet(urlFor(resource));
 	         HttpResponse response = httpclient.execute(get);
@@ -66,17 +70,25 @@ public class ApplicationBase {
 	         result=sb.toString();
 	         
 	     } catch(Exception e){}
-	      
-	     try{
+	     return result;
+	}
+	
+	public static JSONArray fetchResourceAsArray(String resource) {
+		String result = fetchResource(resource);
+	    JSONArray json = null;
+	    try{
 	    	 // Handle empty results arising from errors on network comunication
 	    	 if(result.isEmpty()) {
 	    		 if(resource.equalsIgnoreCase("routes"))
-	    			 result = readRawTextFile(activity, R.raw.routes);
+	    			 result = readRawTextFile(currentActivity, R.raw.routes);
 	    	 }
 	         json = new JSONArray(result);
 	     }catch(JSONException e){}
-	     
 	     return json;
+	}
+	
+	public static String fetchResourceAsString(String resource) {
+		return fetchResource(resource).replaceAll("[^0-9]","");
 	}
 	
 	public static String readRawTextFile(Activity activity, int resId)

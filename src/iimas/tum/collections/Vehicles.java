@@ -1,10 +1,15 @@
 package iimas.tum.collections;
 
 import iimas.tum.models.Vehicle;
+import iimas.tum.utils.ApplicationBase;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import org.json.JSONArray;
 import org.json.JSONException;
+
+import android.annotation.SuppressLint;
+import android.util.Log;
 
 public class Vehicles {
 
@@ -24,6 +29,7 @@ public class Vehicles {
 		return new ArrayList<Vehicle>();
 	}
 	
+	@SuppressLint("UseSparseArrays")
 	public void applyCollection(JSONArray jsonArray) {
 		vehiclesInRoute = new HashMap<Integer, ArrayList<Vehicle>>();
 		for(int i = 0 ; i < jsonArray.length() ; i++) {
@@ -44,6 +50,27 @@ public class Vehicles {
 					e.printStackTrace();
 				}
        	}
+	}
+	
+	public static void fetchVehicles() {
+		if(singleton == null) {
+			Runnable vehicleFetcher = new Runnable(){ 
+				
+				@SuppressLint("UseSparseArrays")
+				@Override 
+				 public void run() {	
+		       		Log.e("Vehicles", "Fetching vehicles");
+	
+			       	JSONArray jsonArray = ApplicationBase.fetchResourceAsArray("vehicles");
+			       	if(jsonArray != null) {
+			       		Vehicles.buildFromJSON(jsonArray);
+			       	} 
+				 }
+			};
+			
+	    	Thread thread = new Thread(null, vehicleFetcher, "fetchVehiclesJSON");
+	    	thread.start();
+		}
 	}
 	
 }

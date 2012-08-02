@@ -1,7 +1,6 @@
 package iimas.tum.activities;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 import java.util.TimerTask;
 import org.json.JSONArray;
@@ -20,8 +19,6 @@ import com.google.android.maps.GeoPoint;
 import com.google.android.maps.MapActivity;
 import com.google.android.maps.MyLocationOverlay;
 import com.google.android.maps.Overlay;
-import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
@@ -40,7 +37,6 @@ public class ApplicationMapActivity extends MapActivity implements LocationListe
 	CustomMapView mapView;
 	private MyLocationOverlay locationOverlay;
 	private LocationManager locationManager;
-	private Activity currentActivity;
 	private TimerTask currentInstantCall;
 		
     /** Called when the activity is first created. */
@@ -63,34 +59,20 @@ public class ApplicationMapActivity extends MapActivity implements LocationListe
 				mapView.getController().animateTo(locationOverlay.getMyLocation());
 			}
 		});
-		this.drawCurrentLocationAndRoutes();
+		this.compassEnabler(true);
 
-		currentActivity = this;
-    	Thread thread = new Thread(null, vehicleFetcher, "fetchVehiclesJSON");
-    	thread.start();
+		ApplicationBase.currentActivity = this;
+		Vehicles.fetchVehicles();
+   		ApplicationBase.globalTimer().scheduleAtFixedRate(newInstantFetcherCall(), 0, 10000);
+   		
     }
-    
-    private Runnable vehicleFetcher = new Runnable(){ 
-		
-		@SuppressLint("UseSparseArrays")
-		@Override 
-		 public void run() {	
-       		Log.e("Vehicles", "Fetching vehicles");
-
-	       	JSONArray jsonArray = ApplicationBase.fetch("vehicles", currentActivity);
-	       	if(jsonArray != null) {
-	       		Vehicles.buildFromJSON(jsonArray);
-	       		ApplicationBase.globalTimer().scheduleAtFixedRate(newInstantFetcherCall(), 0, 10000);
-	       	} 
-		 }
-	};
 	
 	private TimerTask newInstantFetcherCall() {
 
 		currentInstantCall = new TimerTask() {
 			@Override 
 			 public void run() {		    
-		       	JSONArray jsonArray = ApplicationBase.fetch("instants", currentActivity);
+		       	JSONArray jsonArray = ApplicationBase.fetchResourceAsArray("instants");
 		       	if(jsonArray != null) {
 		       		Log.e("Timer", "Fetching time");
 		       		Instants.buildFromJSON(jsonArray);
@@ -105,17 +87,21 @@ public class ApplicationMapActivity extends MapActivity implements LocationListe
    		return currentInstantCall;
 	}
 	
-    
-    public void drawCurrentLocationAndRoutes() {
-    	locationOverlay.enableMyLocation();
-		locationOverlay.enableCompass();
-		this.drawRoutesWithVehiclesInstants();
-    }
+	public void compassEnabler(boolean enable) {
+		if(enable) {
+			locationOverlay.enableMyLocation();
+			locationOverlay.enableCompass();
+		} else {
+			locationOverlay.disableMyLocation();
+			locationOverlay.disableCompass();
+		}
+	}
     
     public void drawRoutesWithVehiclesInstants() {
     	if(RoutesListActivity.routes != null) {
-        	this.drawPaths(RoutesListActivity.routes.values());
+        	this.drawPaths();
     	}
+    	mapView.getOverlays().add(locationOverlay);
     }
     
     public void onLocationChanged(Location location) {
@@ -130,14 +116,13 @@ public class ApplicationMapActivity extends MapActivity implements LocationListe
     
     public void onRestart() {
     	super.onRestart();
-		this.drawCurrentLocationAndRoutes();
+   		this.compassEnabler(true);
    		ApplicationBase.globalTimer().scheduleAtFixedRate(newInstantFetcherCall(), 0, 10000);
     }
     
     public void onPause() {
     	super.onPause();
-		locationOverlay.disableMyLocation();
-		locationOverlay.disableCompass();
+		this.compassEnabler(false);
 		if(currentInstantCall != null) {
 	    	currentInstantCall.cancel();
 		}
@@ -147,11 +132,12 @@ public class ApplicationMapActivity extends MapActivity implements LocationListe
         return false;
     }
     
-    private void drawPaths(Collection<Route> routes) {
+    private void drawPaths() {
     	mapView.getOverlays().clear();
+    	mapView.invalidate();
 		List<Overlay> overlays = mapView.getOverlays();
 		
-    	for (Route route : routes) {
+    	for (Route route : RoutesListActivity.routes.values()) {
     		if(route.isVisibleOnMap()) {
     			ArrayList<Vehicle> vehicles = Vehicles.vehiclesForRoute(route.getIdentifier());
     			
@@ -197,6 +183,10 @@ public class ApplicationMapActivity extends MapActivity implements LocationListe
                 return true;
             case R.id.routes:
                 intentActivity = new Intent(this, RoutesListActivity.class);
+            	startActivity(intentActivity);
+            	return true;
+            case R.id.info:
+            	intentActivity = new Intent(this, InfoViewActivity.class);
             	startActivity(intentActivity);
             	return true;
             default:

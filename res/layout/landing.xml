@@ -1,26 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:orientation="vertical" 
-    android:background="@drawable/repeat_background" >
+    android:background="@drawable/gradient_front"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:id="@+id/service_box"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="69dp"
+        android:background="#88FFFFFF"
+        android:gravity="center"
+        android:padding="15dip" >
+
+        <TextView
+            android:id="@+id/service_legend"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Estado del servicio:"
+            android:textColor="#fff"
+            android:textSize="13dip"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/service_status"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dip"
+            android:layout_toRightOf="@+id/service_legend"
+            android:text="Actualizando ..."
+            android:textColor="#000"
+            android:textSize="13dip"
+            android:textStyle="bold" />
+    </RelativeLayout>
 
     <ImageView
         android:id="@+id/logo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/logo"
-        android:layout_gravity="center"
-        android:layout_marginTop="30dip"
-        android:drawingCacheQuality="high" />
+        android:layout_above="@+id/service_box"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="99dp"
+        android:drawingCacheQuality="high"
+        android:src="@drawable/logo" />
 
-    <RelativeLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="fill_parent"
-        android:layout_height="60dip"
-        android:layout_marginTop="130dip"
-        android:background="#F5F7FB"
-        android:orientation="vertical" >
-    </RelativeLayout>
-
-</LinearLayout>
+</RelativeLayout>

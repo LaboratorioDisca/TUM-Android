@@ -25,7 +25,6 @@ public class RoutesListActivity extends Activity {
 	
 	static HashMap<Integer, Route> routes;
 	private ProgressDialog progressDialog;
-	private RoutesListActivity currentActivity;
 	
 	private Runnable routeFetcher = new Runnable(){ 
 		
@@ -34,7 +33,7 @@ public class RoutesListActivity extends Activity {
 		 public void run() {
 			routes = new HashMap<Integer, Route>();
 		    
-	       	JSONArray jsonArray = ApplicationBase.fetch("routes", currentActivity);
+	       	JSONArray jsonArray = ApplicationBase.fetchResourceAsArray("routes");
 	       	if(jsonArray != null) {
 	       		for(int i = 0 ; i < jsonArray.length() ; i++) {
 	       			Route route;
@@ -46,7 +45,7 @@ public class RoutesListActivity extends Activity {
 	   				}
 	           	}
 	       	}
-	       	currentActivity.runOnUiThread(returnRes);
+	       	ApplicationBase.currentActivity.runOnUiThread(returnRes);
 		 }
 	};
 	
@@ -63,7 +62,6 @@ public class RoutesListActivity extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         this.setContentView(R.layout.routes_list);
-        this.currentActivity = this;
     	
         if(routes != null) {
         	drawRoutesList();
@@ -114,6 +112,10 @@ public class RoutesListActivity extends Activity {
             	intentActivity = new Intent(this, ApplicationMapActivity.class);
             	startActivity(intentActivity);
                 return true;
+            case R.id.info:
+            	intentActivity = new Intent(this, InfoViewActivity.class);
+            	startActivity(intentActivity);
+            	return true;
             case R.id.routes:
             	return true;
             default:
