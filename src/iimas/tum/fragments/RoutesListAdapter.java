@@ -58,7 +58,7 @@ public class RoutesListAdapter extends BaseAdapter {
         } else {
         	leftTerminal.setTextColor(Color.parseColor("#6D6E6C"));
         	rightTerminal.setTextColor(Color.parseColor("#6D6E6C"));
-        	routeNumber.setTextColor(Color.parseColor("#6D6E6C"));
+        	routeNumber.setTextColor(Color.parseColor("#2D2E2D"));
         }
         
         View ribbon = (View) view.findViewById(R.id.ribbon);

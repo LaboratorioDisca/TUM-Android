@@ -51,56 +51,64 @@ public class LandingViewActivity extends Activity {
 		
 		@Override 
 		 public void run() {	
-			Integer status = Integer.parseInt(ApplicationBase.fetchResourceAsString("serviceStatus"));
+			final String result = ApplicationBase.fetchResourceAsString("serviceStatus");
 			String message = new String();
 			String color = "black";
 			String legend = "Estado actual del servicio:";
 			
-			Calendar calendar = Calendar.getInstance();
-			int hour = calendar.get(Calendar.HOUR_OF_DAY);
-			
-			if(hour < 22) {
-				if(status > 8) {
-		    		message = "Normal";
-		    		color = "#0E870C";
-		    	} else if(status <= 8 && status >= 3) {
-		    		message = "Escaso";
-		    		color = "#E8CE2D";
-		    	} else if(status == 0) {
-		    		message = "No hay";
-		    	}
-			} else {
-				legend = "Confiabilidad actual del servicio:";
-		    	if(status > 8) {
-		    		message = "Alta";
-		    		color = "#0E870C";
-		    	} else if(status <= 8 && status >= 5) {
-		    		message = "Media";
-		    		color = "#E8CE2D";
-		    	} else if(status < 5) {
-		    		message = "Baja";
-		    		color = "#FF2510";
-		    	}
-			}
-			
-	    	final String messageToText = message;
-	    	final String currentLegend = legend;
-	    	final String colorToText = color;
+			if(!result.isEmpty()) {
+				Integer status = Integer.parseInt(result);
 
-	    	runOnUiThread(new Runnable() {
-
-				@Override
-				public void run() {
-					TextView serviceStatusText = (TextView) ApplicationBase.currentActivity.findViewById(R.id.service_status);
-				    serviceStatusText.setText(messageToText);
-				    serviceStatusText.setTextColor(Color.parseColor(colorToText));					
-					TextView serviceLegendText = (TextView) ApplicationBase.currentActivity.findViewById(R.id.service_legend);
-					serviceLegendText.setText(currentLegend);
+				Calendar calendar = Calendar.getInstance();
+				int hour = calendar.get(Calendar.HOUR_OF_DAY);
+				
+				if(hour < 22) {
+					if(status > 8) {
+			    		message = "Normal";
+			    		color = "#0E870C";
+			    	} else if(status <= 8 && status >= 3) {
+			    		message = "Escaso";
+			    		color = "#E8CE2D";
+			    	} else if(status == 0) {
+			    		message = "No hay";
+			    	}
+				} else {
+					legend = "Confiabilidad actual del servicio:";
+			    	if(status > 8) {
+			    		message = "Alta";
+			    		color = "#0E870C";
+			    	} else if(status <= 8 && status >= 5) {
+			    		message = "Media";
+			    		color = "#E8CE2D";
+			    	} else if(status < 5) {
+			    		message = "Baja";
+			    		color = "#FF2510";
+			    	}
 				}
-	    		
-	    	});
-		 }
-	};
+			} else {
+				message = "Desconocido"; 
+			}
+			 
+		    final String messageToText = message;
+		    final String currentLegend = legend;
+		    final String colorToText = color;
+			runOnUiThread(new Runnable() {
+					
+					@Override
+					public void run() {
+						TextView serviceStatusText = (TextView) ApplicationBase.currentActivity.findViewById(R.id.service_status);
+					    serviceStatusText.setText(messageToText);
+					    serviceStatusText.setTextColor(Color.parseColor(colorToText));					
+						TextView serviceLegendText = (TextView) ApplicationBase.currentActivity.findViewById(R.id.service_legend);
+						serviceLegendText.setText(currentLegend);
+						if(result.isEmpty()) {
+							ApplicationBase.raiseConnectivityAlert().show();
+						}
+					}
+		    		
+		    	});
+		 } 
+    };
     
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

@@ -16,6 +16,8 @@ import org.apache.http.impl.client.DefaultHttpClient;
 import org.json.JSONArray;
 import org.json.JSONException;
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 
 public class ApplicationBase {
 
@@ -111,6 +113,17 @@ public class ApplicationBase {
              return text.toString();
     }
  
+	public static AlertDialog raiseConnectivityAlert() {
+		AlertDialog.Builder builder = new AlertDialog.Builder(currentActivity);
+		builder.setTitle("Aviso");
+		builder.setMessage("Tu teléfono no está actualmente conectado a internet").setNeutralButton("Aceptar", new DialogInterface.OnClickListener() {
+           public void onClick(DialogInterface dialog, int id) {
+                dialog.cancel();
+           }
+	    });
+		AlertDialog alertDialog = builder.create();
+		return alertDialog;
+	}
 	
 	public static class BadURLResourceException extends Exception
 	{

@@ -19,7 +19,7 @@
         android:background="@drawable/black_white_gradient" >
     </View>
 
-    <!-- ListRow Left sied -->
+    <!-- ListRow Left side -->
 
     <LinearLayout
         android:id="@+id/route_number_layout"
@@ -36,7 +36,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dip"
             android:layout_weight="3.22"
-        	android:textColor="#6D6E6C"
+        	android:textColor="#494A49"
             android:textSize="50dip"
             android:textStyle="bold"
             android:typeface="sans" />
