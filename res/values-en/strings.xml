@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">PumaBus</string>   
+	<string name="menu_routes">Routes</string>
+    <string name="menu_main">Home</string>
+    <string name="menu_map">Map</string>
+    <string name="menu_timetables">Service Schedule</string>
+	<string name="menu_help">Help</string>    
+	<string name="menu_more">More</string>
+	
+	<string name="help_title">How to use this app?</string>
+	<string name="help_instruction_one">Go to the routes section and select the desired route or routes</string>
+	<string name="help_instruction_two">Go to the map and observe the real time location for each pumabus on any of the routes selected</string>
+	<string name="help_instruction_three">Localize the pumabus closer to your location (shown as a blue circle). On tapping one, extra info will be displayed</string>
+		
+	<string name="timetables_weekdays">Weekdays</string>
+	<string name="timetables_saturdays">Saturdays</string>
+	<string name="timetables_sundays">Sundays</string>
+	
+	<string name="timetables_weekdays_routes">All the routes from 6:00 to 22:00 hrs</string>
+	<string name="timetables_saturdays_routes_one">Routes 1, 2, 4, 5 and 9 from 6:00 to 15:00 hrs</string>
+	<string name="timetables_saturdays_routes_two">Routes 3 and 10 from 6:00 to 23:00 hrs</string>
+	<string name="timetables_sundays_routes">Routes 3 and 10 from 6:00 to 23:00 hrs</string>
+	
+	<string name="service_status_legend">Service Status:</string>
+	<string name="service_status_updating">Updating &#8230;</string>
+	
+	<string name="service_status_normal">Normal</string>
+	<string name="service_status_few">Few</string>
+	<string name="service_status_very_few">Very few</string>
+	<string name="service_status_stopped">Stopped</string>
+	<string name="service_status_unknown">Unknown</string>
+	
+	<string name="vehicle">PUMABUS</string>
+	<string name="received">Received on</string>
+	<string name="speed">Speed</string>
+	
+	<string name="loading_routes_title">Wait please</string>
+	<string name="loading_routes_action">Downloading routes</string>
+	
+	<string name="none"></string>
+	
+</resources>

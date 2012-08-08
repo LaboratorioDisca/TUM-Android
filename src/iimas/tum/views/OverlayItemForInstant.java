@@ -1,9 +1,11 @@
 package iimas.tum.views;
 
+import java.text.DateFormat;
 import java.util.Locale;
-import org.ocpsoft.pretty.time.PrettyTime;
+
 import iimas.tum.models.Instant;
 import iimas.tum.models.Route;
+
 import com.google.android.maps.OverlayItem;
 
 public class OverlayItemForInstant extends OverlayItem {
@@ -17,14 +19,13 @@ public class OverlayItemForInstant extends OverlayItem {
 		this.instant = instant;
 	}
 	
-	public String getSpeed() {
-		double speed = instant.getVehicleSpeed();
-		return "Velocidad "+speed+" km/h";
+	public double getSpeed() {
+		return instant.getVehicleSpeed();
 	}
 	
-	public String getTime() {
-		PrettyTime p = new PrettyTime(new Locale("es"));
-		return "òltimo reporte " + p.format(instant.getDate());
+	public String getFormattedDateTime() {
+		DateFormat df = DateFormat.getDateTimeInstance(DateFormat.MEDIUM, DateFormat.SHORT, Locale.getDefault());
+		return df.format(this.instant.getDate());
 	}
 	
 	public String getVehicleId() {

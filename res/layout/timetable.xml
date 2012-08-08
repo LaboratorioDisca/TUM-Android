@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/instruction_two"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" 
+    android:background="@drawable/gradient_back" >
+
+    <RelativeLayout
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:background="#000"
+        android:gravity="center"
+        android:padding="15dip" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/menu_timetables"
+            android:textColor="#fff"
+            android:textSize="15dip"
+            android:textStyle="bold" />
+        
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/weekdays"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+       	android:layout_below="@+id/title"
+        android:gravity="center"
+		android:layout_marginLeft="20dip"
+        android:layout_marginTop="80dip"
+        android:padding="15dip" >
+
+        <TextView
+            android:id="@+id/weekdays_days"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/timetables_weekdays"
+            android:textColor="#fff"
+            android:textSize="17dip"
+            android:textStyle="bold" />
+        <TextView
+            android:id="@+id/weekdays_routes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dip"
+            android:layout_below="@+id/weekdays_days"
+            android:gravity="center"
+            android:text="@string/timetables_weekdays_routes"
+            android:textColor="#000"
+            android:textSize="13dip" />
+    </RelativeLayout>
+    
+    <RelativeLayout
+        android:id="@+id/saturday"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+       	android:layout_below="@+id/weekdays"
+        android:gravity="center"
+        android:layout_marginLeft="20dip"
+        android:layout_marginTop="10dip"
+        android:padding="15dip" >
+
+        <TextView
+            android:id="@+id/saturday_day"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/timetables_saturdays"
+            android:textColor="#fff"
+            android:textSize="17dip"
+            android:textStyle="bold" />
+        <TextView
+            android:id="@+id/saturday_routes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dip"
+            android:layout_below="@+id/saturday_day"
+            android:gravity="center"
+            android:text="@string/timetables_saturdays_routes_one"
+            android:textColor="#000"
+            android:textSize="13dip" />
+        <TextView
+            android:id="@+id/saturday_routes_extra"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dip"
+            android:layout_below="@+id/saturday_routes"
+            android:gravity="center"
+            android:text="@string/timetables_saturdays_routes_two"
+            android:textColor="#000"
+            android:textSize="13dip" />
+    </RelativeLayout>
+    
+    <RelativeLayout
+        android:id="@+id/sunday"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+       	android:layout_below="@+id/saturday"
+        android:gravity="center"
+        android:layout_marginLeft="20dip"
+        android:layout_marginTop="10dip"
+        android:padding="15dip" >
+
+        <TextView
+            android:id="@+id/sunday_day"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/timetables_sundays"
+            android:textColor="#fff"
+            android:textSize="17dip"
+            android:textStyle="bold" />
+        <TextView
+            android:id="@+id/sunday_routes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dip"
+            android:layout_below="@+id/sunday_day"
+            android:gravity="center"
+            android:text="@string/timetables_sundays_routes"
+            android:textColor="#000"
+            android:textSize="13dip" />
+    </RelativeLayout>
+</RelativeLayout>

@@ -33,10 +33,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dip"
-                android:layout_marginTop="8dip"
+                android:layout_marginTop="5dip"
                 android:textColor="#fff"
 				android:gravity="center"
-                android:textSize="10dip" />
+                android:textSize="13dip" />
 
             <TextView
                 android:id="@+id/vehicle_id"
@@ -44,9 +44,11 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/route_title"
                 android:layout_marginLeft="20dip"
+				android:layout_marginTop="-5dip"
                 android:gravity="center"
                 android:textColor="#fff"
-                android:textSize="19dip"
+                android:textSize="21dip"
+                android:textStyle="bold"
                 android:typeface="sans" />
 
         </RelativeLayout>
@@ -55,7 +57,7 @@
             android:id="@+id/inner_layout_2"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_marginLeft="30dip" >
+            android:layout_marginLeft="40dip" >
 
             <TextView
                 android:id="@+id/instant_time"

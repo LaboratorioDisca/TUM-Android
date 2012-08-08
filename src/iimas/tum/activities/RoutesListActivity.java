@@ -4,10 +4,11 @@ import iimas.tum.R;
 import iimas.tum.fragments.RoutesListAdapter;
 import iimas.tum.models.Route;
 import iimas.tum.utils.ApplicationBase;
+import iimas.tum.utils.MenuSwitcher;
+
 import java.util.HashMap;
 import org.json.JSONArray;
 import org.json.JSONException;
-import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -28,7 +29,6 @@ public class RoutesListActivity extends Activity {
 	
 	private Runnable routeFetcher = new Runnable(){ 
 		
-		@SuppressLint("UseSparseArrays")
 		@Override 
 		 public void run() {
 			routes = new HashMap<Integer, Route>();
@@ -70,7 +70,7 @@ public class RoutesListActivity extends Activity {
         
     	Thread thread = new Thread(null, routeFetcher, "fetchRoutesJSON");
     	thread.start();
-    	this.progressDialog = ProgressDialog.show(this, "Espere por favor", "Descargando rutas" ,true);
+    	this.progressDialog = ProgressDialog.show(this, getResources().getString(R.string.loading_routes_title), getResources().getString(R.string.loading_routes_action),true);
     	
     }
     
@@ -101,26 +101,9 @@ public class RoutesListActivity extends Activity {
     
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle item selection
-    	Intent intentActivity;
-        switch (item.getItemId()) {
-            case R.id.main:
-            	intentActivity = new Intent(this, LandingViewActivity.class);
-            	startActivity(intentActivity);
-                return true;
-            case R.id.mapview:
-            	intentActivity = new Intent(this, ApplicationMapActivity.class);
-            	startActivity(intentActivity);
-                return true;
-            case R.id.info:
-            	intentActivity = new Intent(this, InfoViewActivity.class);
-            	startActivity(intentActivity);
-            	return true;
-            case R.id.routes:
-            	return true;
-            default:
-                return super.onOptionsItemSelected(item);
-        }
+        if(!MenuSwitcher.onSelectedMenuItem(item, this, R.id.routes)) 
+        	return super.onOptionsItemSelected(item);
+        return true;
     }
     
     @Override

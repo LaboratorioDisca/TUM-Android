@@ -3,9 +3,6 @@ package iimas.tum.models;
 import java.util.Date;
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import android.text.format.DateFormat;
-
 import com.google.android.maps.GeoPoint;
 
 public class Instant {

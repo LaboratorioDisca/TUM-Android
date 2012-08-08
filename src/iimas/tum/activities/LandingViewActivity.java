@@ -5,8 +5,8 @@ import java.util.Calendar;
 import iimas.tum.R;
 import iimas.tum.collections.Vehicles;
 import iimas.tum.utils.ApplicationBase;
+import iimas.tum.utils.MenuSwitcher;
 import android.app.Activity;
-import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.PixelFormat;
 import android.os.Bundle;
@@ -54,43 +54,30 @@ public class LandingViewActivity extends Activity {
 			final String result = ApplicationBase.fetchResourceAsString("serviceStatus");
 			String message = new String();
 			String color = "black";
-			String legend = "Estado actual del servicio:";
 			
 			if(!result.isEmpty()) {
-				Integer status = Integer.parseInt(result);
+				Integer value = Integer.parseInt(result);
 
 				Calendar calendar = Calendar.getInstance();
 				int hour = calendar.get(Calendar.HOUR_OF_DAY);
 				
-				if(hour < 22) {
-					if(status > 8) {
-			    		message = "Normal";
-			    		color = "#0E870C";
-			    	} else if(status <= 8 && status >= 3) {
-			    		message = "Escaso";
-			    		color = "#E8CE2D";
-			    	} else if(status == 0) {
-			    		message = "No hay";
-			    	}
-				} else {
-					legend = "Confiabilidad actual del servicio:";
-			    	if(status > 8) {
-			    		message = "Alta";
-			    		color = "#0E870C";
-			    	} else if(status <= 8 && status >= 5) {
-			    		message = "Media";
-			    		color = "#E8CE2D";
-			    	} else if(status < 5) {
-			    		message = "Baja";
-			    		color = "#FF2510";
-			    	}
-				}
+				if(value > 8) {
+		    		message = getResources().getString(R.string.service_status_normal);
+		    		color = "#0E870C";
+		    	} else if(value <= 8 && value >= 3) {
+		    		message = getResources().getString(R.string.service_status_few);
+		    		color = "#E8CE2D";
+		    	} else if(value > 0 && value < 3) {
+		    		message = getResources().getString(R.string.service_status_very_few);
+		    		color = "#FF2510";
+		    	} else if(value == 0 && (hour >= 21 || hour < 6) ) {
+		    		message = getResources().getString(R.string.service_status_stopped);
+		    	}
 			} else {
-				message = "Desconocido"; 
+				message = getResources().getString(R.string.service_status_unknown); 
 			}
 			 
 		    final String messageToText = message;
-		    final String currentLegend = legend;
 		    final String colorToText = color;
 			runOnUiThread(new Runnable() {
 					
@@ -98,9 +85,7 @@ public class LandingViewActivity extends Activity {
 					public void run() {
 						TextView serviceStatusText = (TextView) ApplicationBase.currentActivity.findViewById(R.id.service_status);
 					    serviceStatusText.setText(messageToText);
-					    serviceStatusText.setTextColor(Color.parseColor(colorToText));					
-						TextView serviceLegendText = (TextView) ApplicationBase.currentActivity.findViewById(R.id.service_legend);
-						serviceLegendText.setText(currentLegend);
+					    serviceStatusText.setTextColor(Color.parseColor(colorToText));
 						if(result.isEmpty()) {
 							ApplicationBase.raiseConnectivityAlert().show();
 						}
@@ -112,24 +97,9 @@ public class LandingViewActivity extends Activity {
     
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle item selection
-    	Intent intentActivity;
-        switch (item.getItemId()) {
-            case R.id.mapview:
-            	intentActivity = new Intent(this, ApplicationMapActivity.class);
-            	startActivity(intentActivity);
-                return true;
-            case R.id.routes:
-                intentActivity = new Intent(this, RoutesListActivity.class);
-            	startActivity(intentActivity);
-            	return true;
-            case R.id.info:
-            	intentActivity = new Intent(this, InfoViewActivity.class);
-            	startActivity(intentActivity);
-            	return true;
-            default:
-                return super.onOptionsItemSelected(item);
-        }
+        if(!MenuSwitcher.onSelectedMenuItem(item, this, R.id.main)) 
+        	return super.onOptionsItemSelected(item);
+        return true;
     }
     
     @Override

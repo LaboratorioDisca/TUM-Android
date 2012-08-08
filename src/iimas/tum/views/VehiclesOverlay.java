@@ -54,16 +54,16 @@ public class VehiclesOverlay extends ItemizedOverlay<OverlayItem> {
 		    View ribbon = (View) layout.findViewById(R.id.mini_ribbon);
 		    ribbon.setBackgroundColor(Color.parseColor(item.route.getColor()));
 		    TextView title = (TextView) layout.findViewById(R.id.route_title);
-		    title.setText("VEHICULO");
+		    title.setText(currentActivity.getResources().getString(R.string.vehicle));
 		    
 		    TextView vehicleId = (TextView) layout.findViewById(R.id.vehicle_id);
 		    vehicleId.setText(item.getVehicleId());
 
 		    TextView time = (TextView) layout.findViewById(R.id.instant_time);
-		    time.setText(item.getTime());
+		    time.setText(currentActivity.getResources().getString(R.string.received) +" "+item.getFormattedDateTime());
 		 
 		    TextView speed = (TextView) layout.findViewById(R.id.instant_speed);
-		    speed.setText(item.getSpeed());
+		    speed.setText(currentActivity.getResources().getString(R.string.speed) +" "+item.getSpeed()+" km/h");
 		    
 		    //create the toast object, set display duration,
 		    //set the view as layout that's inflated above and then call show()

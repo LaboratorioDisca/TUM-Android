@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/instruction_two"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/gradient_back"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:background="#000"
+        android:gravity="center"
+        android:padding="15dip" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/help_title"
+            android:textColor="#fff"
+            android:textSize="15dip"
+            android:textStyle="bold" />
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:id="@+id/task_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/title"
+        android:layout_marginTop="30dp"
+        android:background="#99000000"
+        android:padding="10dip" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:gravity="center"
+            android:text="1"
+            android:textColor="#fff"
+            android:textSize="13dip"
+            android:textStyle="bold" />
+    </RelativeLayout>
+    
+    
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:gravity="right"
+            android:layout_marginRight="10dip"
+            android:layout_below="@+id/task_1"
+            android:layout_marginTop="30dip"
+            android:text="@string/help_instruction_one"
+            android:textColor="#fff"
+            android:textSize="15dip"
+            android:textStyle="bold" />
+    
+    <RelativeLayout
+        android:id="@+id/task_2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_marginTop="100dp"
+        android:layout_below="@+id/task_1"
+        android:background="#99000000"
+        android:padding="10dip" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:gravity="center"
+            android:text="2"
+            android:textColor="#fff"
+            android:textSize="13dip"
+            android:textStyle="bold" />
+    </RelativeLayout>
+    
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:gravity="right"
+            android:layout_marginRight="10dip"
+            android:layout_below="@+id/task_2"
+            android:layout_marginTop="20dip"
+            android:text="@string/help_instruction_two"
+            android:textColor="#fff"
+            android:textSize="15dip"
+            android:textStyle="bold" />
+    
+    <RelativeLayout
+        android:id="@+id/task_3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_marginTop="100dp"
+        android:layout_below="@+id/task_2"
+        android:background="#99000000"
+        android:padding="10dip" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:gravity="center"
+            android:text="3"
+            android:textColor="#fff"
+            android:textSize="13dip"
+            android:textStyle="bold" />
+    </RelativeLayout>
+    
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:gravity="right"
+            android:layout_marginRight="10dip"
+            android:layout_below="@+id/task_3"
+            android:layout_marginTop="20dip"
+            android:text="@string/help_instruction_three"
+            android:textColor="#fff"
+            android:textSize="15dip"
+            android:textStyle="bold" />
+
+</RelativeLayout>

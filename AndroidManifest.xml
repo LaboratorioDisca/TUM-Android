@@ -11,13 +11,13 @@
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     
     <application
-        android:icon="@drawable/ic_launcher"
+        android:icon="@drawable/pumabus8"
         android:label="@string/app_name" >
         <uses-library android:name="com.google.android.maps" />
           
         <activity
             android:name=".activities.LandingViewActivity"
-            android:label="@string/menu_main"
+            android:label="@string/app_name"
 			android:screenOrientation="portrait"
             android:theme="@android:style/Theme.NoTitleBar" >
             <intent-filter>
@@ -47,8 +47,18 @@
             </intent-filter>
         </activity>
 		<activity
-            android:name=".activities.InfoViewActivity"
-            android:label="@string/menu_info"
+            android:name=".activities.HelpViewActivity"
+            android:label="@string/menu_help"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.NoTitleBar" >
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".activities.TimeTableViewActivity"
+            android:label="@string/menu_timetables"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.NoTitleBar" >
             <intent-filter>

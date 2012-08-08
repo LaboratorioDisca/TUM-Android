@@ -22,7 +22,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="Estado del servicio:"
+            android:text="@string/service_status_legend"
             android:textColor="#fff"
             android:textSize="13dip"
             android:textStyle="bold" />
@@ -33,7 +33,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="8dip"
             android:layout_toRightOf="@+id/service_legend"
-            android:text="Actualizando ..."
+            android:text="@string/service_status_updating"
             android:textColor="#000"
             android:textSize="13dip"
             android:textStyle="bold" />
@@ -41,6 +41,7 @@
 
     <ImageView
         android:id="@+id/logo"
+        android:contentDescription="@string/none"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_above="@+id/service_box"

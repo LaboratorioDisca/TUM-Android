@@ -8,7 +8,6 @@ import java.util.HashMap;
 import org.json.JSONArray;
 import org.json.JSONException;
 
-import android.annotation.SuppressLint;
 import android.util.Log;
 
 public class Vehicles {
@@ -29,7 +28,6 @@ public class Vehicles {
 		return new ArrayList<Vehicle>();
 	}
 	
-	@SuppressLint("UseSparseArrays")
 	public void applyCollection(JSONArray jsonArray) {
 		vehiclesInRoute = new HashMap<Integer, ArrayList<Vehicle>>();
 		for(int i = 0 ; i < jsonArray.length() ; i++) {
@@ -56,7 +54,6 @@ public class Vehicles {
 		if(singleton == null) {
 			Runnable vehicleFetcher = new Runnable(){ 
 				
-				@SuppressLint("UseSparseArrays")
 				@Override 
 				 public void run() {	
 		       		Log.e("Vehicles", "Fetching vehicles");

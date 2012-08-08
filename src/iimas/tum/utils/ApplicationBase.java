@@ -18,6 +18,7 @@ import org.json.JSONException;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.view.Display;
 
 public class ApplicationBase {
 
@@ -35,6 +36,10 @@ public class ApplicationBase {
 			timer = new Timer();
 		}
 		return timer;
+	}
+	
+	public static Display getScreenSize() {
+		return currentActivity.getWindowManager().getDefaultDisplay();
 	}
 	
 	public static String urlFor(String string) throws BadURLResourceException {

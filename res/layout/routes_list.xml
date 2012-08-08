@@ -14,7 +14,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center"
-            android:text="@string/routes_section_title"
+            android:text="@string/menu_routes"
             android:textColor="#fff"
             android:textSize="21sp"
             android:textStyle="bold" />

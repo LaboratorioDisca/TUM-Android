@@ -11,6 +11,7 @@ import iimas.tum.models.Instant;
 import iimas.tum.models.Route;
 import iimas.tum.models.Vehicle;
 import iimas.tum.utils.ApplicationBase;
+import iimas.tum.utils.MenuSwitcher;
 import iimas.tum.views.CustomMapView;
 import iimas.tum.views.OverlayItemForInstant;
 import iimas.tum.views.RouteOverlay;
@@ -20,7 +21,6 @@ import com.google.android.maps.MapActivity;
 import com.google.android.maps.MyLocationOverlay;
 import com.google.android.maps.Overlay;
 import android.content.Context;
-import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.location.Location;
@@ -51,7 +51,6 @@ public class ApplicationMapActivity extends MapActivity implements LocationListe
         mapView.setBuiltInZoomControls(false);
         
         locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-		locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, this);
 
 		locationOverlay = new MyLocationOverlay(this, mapView);
 		locationOverlay.runOnFirstFix(new Runnable() {
@@ -89,9 +88,12 @@ public class ApplicationMapActivity extends MapActivity implements LocationListe
 	
 	public void compassEnabler(boolean enable) {
 		if(enable) {
+			locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, this);
 			locationOverlay.enableMyLocation();
 			locationOverlay.enableCompass();
+			
 		} else {
+			locationManager.removeUpdates(this);
 			locationOverlay.disableMyLocation();
 			locationOverlay.disableCompass();
 		}
@@ -120,9 +122,11 @@ public class ApplicationMapActivity extends MapActivity implements LocationListe
    		ApplicationBase.globalTimer().scheduleAtFixedRate(newInstantFetcherCall(), 0, 10000);
     }
     
-    public void onPause() {
-    	super.onPause();
+    public void onStop() {
+    	super.onStop();
+    	
 		this.compassEnabler(false);
+		
 		if(currentInstantCall != null) {
 	    	currentInstantCall.cancel();
 		}
@@ -155,11 +159,8 @@ public class ApplicationMapActivity extends MapActivity implements LocationListe
     					itemizedoverlay.addOverlay(overlayItem);
     				}
     			}
-    			ArrayList<GeoPoint> geoPoints = route.getCoordinates();
-    			for (int i = 1; i < geoPoints.size(); i++) {
-    				overlays.add(new RouteOverlay(geoPoints.get(i-1), geoPoints.get(i), Color.parseColor(route.getColor()), route.getIdentifier()));
-    			}
     			
+				overlays.add(new RouteOverlay(route.getCoordinates(), Color.parseColor(route.getColor()), route.getIdentifier()));
     			overlays.add(itemizedoverlay);
     		} 
     	}
@@ -174,24 +175,9 @@ public class ApplicationMapActivity extends MapActivity implements LocationListe
     
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle item selection
-    	Intent intentActivity;
-        switch (item.getItemId()) {
-            case R.id.main:
-            	intentActivity = new Intent(this, LandingViewActivity.class);
-            	startActivity(intentActivity);
-                return true;
-            case R.id.routes:
-                intentActivity = new Intent(this, RoutesListActivity.class);
-            	startActivity(intentActivity);
-            	return true;
-            case R.id.info:
-            	intentActivity = new Intent(this, InfoViewActivity.class);
-            	startActivity(intentActivity);
-            	return true;
-            default:
-                return super.onOptionsItemSelected(item);
-        }
+        if(!MenuSwitcher.onSelectedMenuItem(item, this, R.id.mapview)) 
+        	return super.onOptionsItemSelected(item);
+        return true;
     }
 
 	@Override
