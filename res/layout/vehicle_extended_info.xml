@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/vehicle_overlay"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal" >
@@ -7,11 +8,11 @@
     <View
         android:id="@+id/mini_ribbon"
         android:layout_width="fill_parent"
-        android:layout_height="3dip"
+        android:layout_height="5dip"
         android:background="#791F33" >
     </View>
 
-    <!-- ListRow Left sied -->
+    <!-- ListRow Left side -->
 
     <LinearLayout
         android:id="@+id/toast_layout"
@@ -20,7 +21,7 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
         android:layout_below="@+id/mini_ribbon"
-        android:background="#000"
+        android:background="#DD000000"
         android:padding="3dip" >
 
 		<RelativeLayout
@@ -32,19 +33,19 @@
                 android:id="@+id/route_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="20dip"
+                android:layout_marginLeft="10dip"
                 android:layout_marginTop="5dip"
                 android:textColor="#fff"
 				android:gravity="center"
-                android:textSize="13dip" />
+                android:textSize="10dip" />
 
             <TextView
                 android:id="@+id/vehicle_id"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/route_title"
-                android:layout_marginLeft="20dip"
-				android:layout_marginTop="-5dip"
+                android:layout_marginLeft="10dip"
+				android:layout_marginTop="-2dip"
                 android:gravity="center"
                 android:textColor="#fff"
                 android:textSize="21dip"
@@ -57,15 +58,15 @@
             android:id="@+id/inner_layout_2"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_marginLeft="40dip" >
+            android:layout_marginLeft="25dip" >
 
             <TextView
                 android:id="@+id/instant_time"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="#fff"
-                android:layout_marginTop="9dip"
-                android:textSize="12dip" />
+                android:layout_marginTop="7dip"
+                android:textSize="11dip" />
 
             <TextView
                 android:id="@+id/instant_speed"
@@ -73,13 +74,24 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/instant_time"
                 android:textColor="#fff"
-                android:textSize="12dip"
+                android:textSize="11dip"
+                android:layout_marginTop="5dip"
                 android:typeface="sans" />
+
+            <ImageButton
+                android:id="@+id/close_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/instant_speed"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="5dp"
+                android:layout_marginTop="8dip"
+                android:background="#00000000"
+                android:src="@drawable/close" />
 
         </RelativeLayout>
 
     </LinearLayout>
-
 
 
 </RelativeLayout>

@@ -1,11 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
-<iimas.tum.views.CustomMapView
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/mapview"
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/vehicle_overlay"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:clickable="true"
-    android:apiKey="0f3XaTLUN3WCqzxXOsj1CgOIn4fj3r25Hm_Nqag"  
+    android:orientation="horizontal" >
     
-/>
+    <iimas.tum.views.CustomMapView
+    	xmlns:android="http://schemas.android.com/apk/res/android"
+    	android:id="@+id/mapview"
+    	android:layout_width="fill_parent"
+    	android:layout_height="fill_parent"
+    	android:clickable="true"
+    	android:apiKey="0f3XaTLUN3WCqzxXOsj1CgOIn4fj3r25Hm_Nqag"  >
+	</iimas.tum.views.CustomMapView>
+	
+    <RelativeLayout
+        android:id="@+id/map_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:background="#19394F"
+        android:gravity="center"
+        android:padding="15dip" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/map_title"
+            android:textColor="#fff"
+            android:textSize="15dip"
+            android:textStyle="bold" />
+    </RelativeLayout>
+</RelativeLayout>
+
+
    <!-- android:apiKey="0Sp8gbE2A7hswQd5VhvTN6uWTkmwkF_TNtVj_jQ"  -->

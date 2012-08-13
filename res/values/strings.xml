@@ -7,6 +7,8 @@
     <string name="menu_timetables">Horarios</string>
 	<string name="menu_help">Ayuda</string>
     
+	<string name="map_title">Mapa del Campus</string>
+	
 	<string name="menu_more">Más</string>
 	<string name="help_title">¿Cómo usar esta app?</string>
 	<string name="help_instruction_one">Ir a la sección de rutas y seleccionar la ruta o rutas deseadas</string>

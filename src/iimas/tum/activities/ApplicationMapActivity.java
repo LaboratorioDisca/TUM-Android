@@ -13,12 +13,12 @@ import iimas.tum.models.Vehicle;
 import iimas.tum.utils.ApplicationBase;
 import iimas.tum.utils.MenuSwitcher;
 import iimas.tum.views.CustomMapView;
+import iimas.tum.views.CustomMyLocationOverlay;
 import iimas.tum.views.OverlayItemForInstant;
 import iimas.tum.views.RouteOverlay;
 import iimas.tum.views.VehiclesOverlay;
 import com.google.android.maps.GeoPoint;
 import com.google.android.maps.MapActivity;
-import com.google.android.maps.MyLocationOverlay;
 import com.google.android.maps.Overlay;
 import android.content.Context;
 import android.graphics.Color;
@@ -34,8 +34,8 @@ import android.view.MenuItem;
 
 public class ApplicationMapActivity extends MapActivity implements LocationListener {
 	
-	CustomMapView mapView;
-	private MyLocationOverlay locationOverlay;
+	public CustomMapView mapView;
+	private CustomMyLocationOverlay locationOverlay;
 	private LocationManager locationManager;
 	private TimerTask currentInstantCall;
 		
@@ -52,7 +52,7 @@ public class ApplicationMapActivity extends MapActivity implements LocationListe
         
         locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
 
-		locationOverlay = new MyLocationOverlay(this, mapView);
+		locationOverlay = new CustomMyLocationOverlay(this, mapView);
 		locationOverlay.runOnFirstFix(new Runnable() {
 			public void run() {
 				mapView.getController().animateTo(locationOverlay.getMyLocation());
@@ -148,7 +148,8 @@ public class ApplicationMapActivity extends MapActivity implements LocationListe
     			String uri = "drawable/" + route.getSimpleIdentifier().toLowerCase();
     		    int imageResource = getResources().getIdentifier(uri, null, getPackageName());
     			Drawable drawable = this.getResources().getDrawable(imageResource);
-				VehiclesOverlay itemizedoverlay = new VehiclesOverlay(drawable, this.mapView, this);
+    			Drawable selectedMarker = this.getResources().getDrawable(R.drawable.bus);
+				VehiclesOverlay itemizedoverlay = new VehiclesOverlay(drawable, selectedMarker, this.mapView, this);
 				
     			for(Vehicle vehicle : vehicles) {
     				Instant vehicleInstant = Instants.instantForVehicle(vehicle.getId());
@@ -156,6 +157,10 @@ public class ApplicationMapActivity extends MapActivity implements LocationListe
     				if(vehicleInstant != null) {
     					
     					OverlayItemForInstant overlayItem = new OverlayItemForInstant(vehicleInstant,  route); 
+    					if(VehiclesOverlay.activeInstant != null &&
+    							VehiclesOverlay.activeInstant.getVehicleId() == overlayItem.getVehicleId()) {
+    						overlayItem.setMarker(selectedMarker);
+    					}
     					itemizedoverlay.addOverlay(overlayItem);
     				}
     			}

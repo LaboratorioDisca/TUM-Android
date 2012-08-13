@@ -1,17 +1,21 @@
 package iimas.tum.views;
 
 import iimas.tum.R;
+import iimas.tum.activities.ApplicationMapActivity;
 
 import java.util.ArrayList;
 
 import android.app.Activity;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
-import android.view.LayoutInflater;
+import android.support.v4.view.ViewPager.LayoutParams;
+import android.view.Gravity;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
+import android.widget.PopupWindow;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.android.maps.ItemizedOverlay;
 import com.google.android.maps.MapView;
@@ -19,12 +23,27 @@ import com.google.android.maps.OverlayItem;
 
 public class VehiclesOverlay extends ItemizedOverlay<OverlayItem> {
 	private ArrayList<OverlayItem> m_overlays = new ArrayList<OverlayItem>();
-	private Activity currentActivity;
+	private ApplicationMapActivity currentActivity;
+	public Drawable selectedMarker;
+	public Drawable defaultMarker;
 	
-	public VehiclesOverlay(Drawable defaultMarker, MapView mapView, Activity activity) {
+	public static PopupWindow activeOverlay;
+	public static OverlayItemForInstant activeInstant;
+	
+	public View layout;
+	
+	public VehiclesOverlay(Drawable defaultMarker, Drawable selectedMarker, MapView mapView, Activity activity) {
 		super(defaultMarker);
+		this.currentActivity = (ApplicationMapActivity) activity;
+
+		this.defaultMarker = defaultMarker;
+		this.selectedMarker = selectedMarker;
 		boundCenterBottom(defaultMarker);
-		this.currentActivity = activity;
+		boundCenterBottom(selectedMarker);
+		
+		layout = currentActivity.getLayoutInflater().inflate(R.layout.vehicle_extended_info, 
+				(ViewGroup) currentActivity.findViewById(R.id.toast_layout));
+	    
 		populate();
 	}
 
@@ -46,10 +65,10 @@ public class VehiclesOverlay extends ItemizedOverlay<OverlayItem> {
 	@Override 
 	public boolean onTap(int index) {
 		OverlayItemForInstant item = (OverlayItemForInstant) this.m_overlays.get(index);
+		
 		if(item != null) {
-			//get the LayoutInflater and inflate the custom_toast layout
-		    LayoutInflater inflater = currentActivity.getLayoutInflater();
-		    View layout = inflater.inflate(R.layout.custom_toast, (ViewGroup) currentActivity.findViewById(R.id.toast_layout));
+			item.setMarker(selectedMarker);
+			//get the LayoutInflater and inflate the custom_toast layout		    
 		 
 		    View ribbon = (View) layout.findViewById(R.id.mini_ribbon);
 		    ribbon.setBackgroundColor(Color.parseColor(item.route.getColor()));
@@ -64,13 +83,39 @@ public class VehiclesOverlay extends ItemizedOverlay<OverlayItem> {
 		 
 		    TextView speed = (TextView) layout.findViewById(R.id.instant_speed);
 		    speed.setText(currentActivity.getResources().getString(R.string.speed) +" "+item.getSpeed()+" km/h");
+
+		    ImageButton button = (ImageButton) layout.findViewById(R.id.close_button);
+		    button.setOnClickListener(new OnClickListener() {
+		    	 
+				@Override
+				public void onClick(View arg0) {
+					activeOverlay.dismiss();
+					if(activeInstant != null)
+						activeInstant.setMarker(defaultMarker);
+					activeInstant = null;
+					currentActivity.drawRoutesWithVehiclesInstants();
+				}
+	 
+			});
 		    
+		    if(activeOverlay != null)
+		    	activeOverlay.dismiss();
+		    activeOverlay = new PopupWindow(
+		               layout, 
+		               LayoutParams.WRAP_CONTENT,  
+		                     LayoutParams.WRAP_CONTENT);
+		    
+		    if(activeInstant != null)
+		    	activeInstant.setMarker(defaultMarker);
+		    activeInstant = item;
+		    currentActivity.drawRoutesWithVehiclesInstants();
+		    
+		    //RelativeLayout mapTitle = (RelativeLayout) currentActivity.mapView.findViewById(R.id.map_title);
+		    
+		    activeOverlay.showAtLocation(currentActivity.mapView, Gravity.TOP, 0, 115);
 		    //create the toast object, set display duration,
 		    //set the view as layout that's inflated above and then call show()
-		    Toast t = new Toast(currentActivity.getApplicationContext());
-		    t.setDuration(Toast.LENGTH_SHORT);
-		    t.setView(layout);
-		    t.show();
+
 			//Toast.makeText(c, item.getSnippet(), Toast.LENGTH_SHORT).show();
 		}
 		return true;
