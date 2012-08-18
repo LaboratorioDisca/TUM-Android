@@ -173,7 +173,7 @@ public class MapViewActivity extends MapActivity implements LocationListener {
     				
     				if(vehicleInstant != null) {
     					
-    					OverlayItemForInstant overlayItem = new OverlayItemForInstant(vehicleInstant, route); 
+    					OverlayItemForInstant overlayItem = new OverlayItemForInstant(vehicleInstant, route, vehicle); 
     					if(this.overlayItem != null && this.overlayItem.instant.getVehicleId() == vehicleInstant.getVehicleId()) {
     						this.unsetCurrentOverlayItem(false);
     						this.setCurrentOverlayItem(overlayItem);
@@ -227,7 +227,7 @@ public class MapViewActivity extends MapActivity implements LocationListener {
 	    title.setText(this.getResources().getString(R.string.vehicle));
 	    
 	    TextView vehicleId = (TextView) layout.findViewById(R.id.vehicle_id);
-	    vehicleId.setText(item.getVehicleId());
+	    vehicleId.setText(String.valueOf(item.vehicle.getPublicNumber()));
 
 	    TextView time = (TextView) layout.findViewById(R.id.instant_time);
 	    time.setText(this.getResources().getString(R.string.received) +" "+item.getFormattedDateTime());

@@ -5,6 +5,7 @@ import java.util.Locale;
 
 import iimas.tum.models.Instant;
 import iimas.tum.models.Route;
+import iimas.tum.models.Vehicle;
 
 import android.graphics.drawable.Drawable;
 
@@ -14,13 +15,16 @@ public class OverlayItemForInstant extends OverlayItem {
 
 	public Route route;
 	public Instant instant;
-	public Drawable defaultMarker;
+	public Vehicle vehicle;
+	
+	private Drawable defaultMarker;
 	public static Drawable selectedMarker;
 	
-	public OverlayItemForInstant(Instant instant, Route route) {
+	public OverlayItemForInstant(Instant instant, Route route, Vehicle vehicle) {
 		super(instant.getCoordinate(), "", "");
 		this.route = route;
 		this.instant = instant;
+		this.vehicle = vehicle;
 	}
 	
 	public double getSpeed() {

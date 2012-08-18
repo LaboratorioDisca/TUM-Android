@@ -6,14 +6,14 @@
     android:layout_height="fill_parent"
     android:orientation="horizontal" >
     
-    <iimas.tum.views.CustomMapView
+    <iimas.tum.views.PinchableMapView
     	xmlns:android="http://schemas.android.com/apk/res/android"
     	android:id="@+id/mapview"
     	android:layout_width="fill_parent"
     	android:layout_height="fill_parent"
     	android:clickable="true"
     	android:apiKey="0f3XaTLUN3WCqzxXOsj1CgOIn4fj3r25Hm_Nqag"  >
-	</iimas.tum.views.CustomMapView>
+	</iimas.tum.views.PinchableMapView>
 	
     <RelativeLayout
         android:id="@+id/map_title"
