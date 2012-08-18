@@ -15,7 +15,6 @@
     <!-- ListRow Left side -->
 
     <LinearLayout
-        android:id="@+id/toast_layout"
         android:layout_width="match_parent"
         android:layout_height="60dip"
         android:layout_alignParentLeft="true"

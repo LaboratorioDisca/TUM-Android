@@ -62,16 +62,16 @@ public class RoutesListActivity extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         this.setContentView(R.layout.routes_list);
-    	
+        
+        ApplicationBase.currentActivity = this;
+        
         if(routes != null) {
         	drawRoutesList();
-    		return;
+        } else {        
+        	Thread thread = new Thread(null, routeFetcher, "fetchRoutesJSON");
+    		thread.start();
+    		this.progressDialog = ProgressDialog.show(this, getResources().getString(R.string.loading_routes_title), getResources().getString(R.string.loading_routes_action),true);
         }
-        
-    	Thread thread = new Thread(null, routeFetcher, "fetchRoutesJSON");
-    	thread.start();
-    	this.progressDialog = ProgressDialog.show(this, getResources().getString(R.string.loading_routes_title), getResources().getString(R.string.loading_routes_action),true);
-    	
     }
     
     public void drawRoutesList() {
@@ -109,7 +109,7 @@ public class RoutesListActivity extends Activity {
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK) {
-        	Intent intentActivity = new Intent(this, ApplicationMapActivity.class);
+        	Intent intentActivity = new Intent(this, MapViewActivity.class);
         	startActivity(intentActivity);
             return true;
         }

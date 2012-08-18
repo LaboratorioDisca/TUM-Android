@@ -6,9 +6,12 @@ import android.view.MotionEvent;
 
 import com.google.android.maps.MapView;
 
-public class CustomMapView extends MapView {
+/*
+ * Class for enabling pinch gesture on map
+ */
+public class PinchableMapView extends MapView {
 
-	public CustomMapView(Context context, AttributeSet attrs) {
+	public PinchableMapView(Context context, AttributeSet attrs) {
 		super(context, attrs);
 	}
 

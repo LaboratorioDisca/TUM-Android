@@ -1,7 +1,7 @@
 package iimas.tum.utils;
 
 import iimas.tum.R;
-import iimas.tum.activities.ApplicationMapActivity;
+import iimas.tum.activities.MapViewActivity;
 import iimas.tum.activities.HelpViewActivity;
 import iimas.tum.activities.LandingViewActivity;
 import iimas.tum.activities.RoutesListActivity;
@@ -23,7 +23,7 @@ public class MenuSwitcher {
                 return true;
             case R.id.mapview:
             	if(activityMenuLink != R.id.mapview) {
-            		intentActivity = new Intent(activity, ApplicationMapActivity.class);
+            		intentActivity = new Intent(activity, MapViewActivity.class);
             		activity.startActivity(intentActivity);
             	}
                 return true;

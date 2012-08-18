@@ -25,7 +25,7 @@ public class ApplicationBase {
 	private static String url = "http://132.248.51.251:9000/";
 	private static String routesResourceURL = "transports/8/lines";
 	private static String vehiclesResourceURL = "vehicles";
-	private static String instantsResourceURL = "instants/recent";
+	private static String instantsResourceURL = "instants/lastminute";
 	private static String serviceGeneralStatus = "service/status";
 	private static Timer timer;
 	

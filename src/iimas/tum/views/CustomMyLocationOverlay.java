@@ -1,5 +1,7 @@
 package iimas.tum.views;
 
+import iimas.tum.activities.MapViewActivity;
+import iimas.tum.utils.ApplicationBase;
 import android.content.Context;
 import com.google.android.maps.MapView;
 import com.google.android.maps.MyLocationOverlay;
@@ -12,9 +14,13 @@ public class CustomMyLocationOverlay extends MyLocationOverlay {
 	}
 	
 	protected void drawCompass(Canvas canvas, float bearing) {
-		if(VehiclesOverlay.activeOverlay == null) {
-			canvas.translate(0, 80);
-			super.drawCompass(canvas, bearing);
+		if(ApplicationBase.currentActivity != null && ApplicationBase.currentActivity instanceof MapViewActivity) {
+			MapViewActivity activity = (MapViewActivity) ApplicationBase.currentActivity;
+			if(activity.getCurrentOverlayItem() != null) {
+				canvas.translate(0, 80);
+				super.drawCompass(canvas, bearing);
+			}
+			
 		}
 	}
 
