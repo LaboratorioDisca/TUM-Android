@@ -40,6 +40,8 @@
 	<string name="loading_routes_title">Wait please</string>
 	<string name="loading_routes_action">Downloading routes</string>
 	
+	<string name="connectivity_problem">Your phone is not currently connected to the internet</string>
+	
 	<string name="none"></string>
 	
 </resources>

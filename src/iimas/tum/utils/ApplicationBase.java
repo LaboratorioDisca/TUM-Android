@@ -121,7 +121,7 @@ public class ApplicationBase {
 	public static AlertDialog raiseConnectivityAlert() {
 		AlertDialog.Builder builder = new AlertDialog.Builder(currentActivity);
 		builder.setTitle("Aviso");
-		builder.setMessage("Tu teléfono no está actualmente conectado a internet").setNeutralButton("Aceptar", new DialogInterface.OnClickListener() {
+		builder.setMessage(currentActivity.getResources().getString(R.string.connectivity_problem)).setNeutralButton("Aceptar", new DialogInterface.OnClickListener() {
            public void onClick(DialogInterface dialog, int id) {
                 dialog.cancel();
            }

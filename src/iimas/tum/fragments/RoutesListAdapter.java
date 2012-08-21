@@ -44,25 +44,28 @@ public class RoutesListAdapter extends BaseAdapter {
     public View getView(int position, View view, ViewGroup parent) {
         if(view==null)
         	view = inflater.inflate(R.layout.list_row, null);
- 
+
         TextView leftTerminal = (TextView) view.findViewById(R.id.left_terminal);
         TextView rightTerminal = (TextView) view.findViewById(R.id.right_terminal);
         TextView routeNumber = (TextView) view.findViewById(R.id.route_number);
         
         Route route = (Route) this.routes.get(position);
-        
+        View ribbon = (View) view.findViewById(R.id.ribbon);
+        ribbon.setBackgroundColor(Color.parseColor(route.getColor()));
+
         if(route.isVisibleOnMap()) {
         	leftTerminal.setTextColor(Color.parseColor("#FFFFFF"));
         	rightTerminal.setTextColor(Color.parseColor("#FFFFFF"));
         	routeNumber.setTextColor(Color.parseColor("#FFFFFF"));
+        	ribbon.getBackground().setAlpha(255);
         } else {
         	leftTerminal.setTextColor(Color.parseColor("#6D6E6C"));
         	rightTerminal.setTextColor(Color.parseColor("#6D6E6C"));
         	routeNumber.setTextColor(Color.parseColor("#2D2E2D"));
+        	ribbon.getBackground().setAlpha(150);
         }
         
-        View ribbon = (View) view.findViewById(R.id.ribbon);
-        ribbon.setBackgroundColor(Color.parseColor(route.getColor()));
+        
         // Setting all values in listview
         leftTerminal.setText(route.getLeftTerminal());
         rightTerminal.setText(route.getRightTerminal());

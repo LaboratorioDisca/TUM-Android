@@ -41,5 +41,7 @@
 	<string name="loading_routes_title">Espere por favor</string>
 	<string name="loading_routes_action">Descargando rutas</string>
 	
+	<string name="connectivity_problem">Tu teléfono no está actualmente conectado a internet</string>
+	
 	<string name="none"></string>
 </resources>
