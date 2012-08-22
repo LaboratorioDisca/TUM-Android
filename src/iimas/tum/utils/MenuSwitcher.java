@@ -1,6 +1,7 @@
 package iimas.tum.utils;
 
 import iimas.tum.R;
+import iimas.tum.activities.SearchPlacesActivity;
 import iimas.tum.activities.MapViewActivity;
 import iimas.tum.activities.HelpViewActivity;
 import iimas.tum.activities.LandingViewActivity;
@@ -42,6 +43,12 @@ public class MenuSwitcher {
             case R.id.timetables:
             	if(activityMenuLink != R.id.timetables) {
             		intentActivity = new Intent(activity, TimeTableViewActivity.class);
+            		activity.startActivity(intentActivity);
+            	}
+            	return true;
+            case R.id.places:
+            	if(activityMenuLink != R.id.places) {
+            		intentActivity = new Intent(activity, SearchPlacesActivity.class);
             		activity.startActivity(intentActivity);
             	}
             	return true;

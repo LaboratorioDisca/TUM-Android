@@ -6,7 +6,8 @@
     <string name="menu_map">Mapa</string>
     <string name="menu_timetables">Horarios</string>
 	<string name="menu_help">Ayuda</string>
-    
+    <string name="menu_places">Lugares</string>
+	
 	<string name="map_title">Mapa del Campus</string>
 	
 	<string name="menu_more">Más</string>
@@ -42,5 +43,6 @@
 	
 	<string name="connectivity_problem">Tu teléfono no está actualmente conectado a internet</string>
 	
+	<string name="search">Búsqueda</string>
 	<string name="none"></string>
 </resources>

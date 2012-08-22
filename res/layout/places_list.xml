@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent" 
+    android:layout_height="fill_parent"
+    android:orientation="vertical">
+
+	<LinearLayout
+	    android:id="@+id/title"
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content"
+	    android:background="#000"
+	    android:gravity="center"
+	    android:padding="15dip" >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/menu_places"
+            android:textColor="#fff"
+            android:textSize="15dip"
+            android:textStyle="bold" />
+        
+    </LinearLayout>
+	<RelativeLayout
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content"
+	    android:background="#000"
+	    android:padding="3dip" >
+
+		<EditText
+		    android:id="@+id/search_field"
+		    android:layout_width="252dp"
+		    android:layout_height="wrap_content"
+		    android:layout_alignParentRight="true"
+		    android:layout_centerVertical="true"
+		    android:ems="10"
+		    android:inputType="text" />
+        
+    </RelativeLayout>
+
+    
+	<ListView android:id="@android:id/list"
+			  android:layout_width="fill_parent"
+        	  android:layout_height="fill_parent"
+        	  android:divider="#111414"
+              android:dividerHeight="1dp" >
+	</ListView>
+	
+</LinearLayout>

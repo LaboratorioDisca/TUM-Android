@@ -7,8 +7,9 @@
    	
    	<item android:id="@+id/more" android:title="@string/menu_more" android:icon="@drawable/more" >
         <menu>
+            <item android:title="@string/menu_places" android:id="@+id/places" />
 			<item android:title="@string/menu_timetables" android:id="@+id/timetables" />
-   			<item android:title="@string/menu_help" android:icon="@drawable/help" android:id="@+id/help" />
+   			<item android:title="@string/menu_help" android:id="@+id/help" />
     	</menu>
     </item>
    	

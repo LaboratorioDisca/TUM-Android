@@ -7,6 +7,7 @@
     <string name="menu_timetables">Service Schedule</string>
 	<string name="menu_help">Help</string>    
 	<string name="menu_more">More</string>
+	<string name="menu_places">Places</string>
 	
 	<string name="map_title">Campus Map</string>
 	
@@ -41,6 +42,7 @@
 	<string name="loading_routes_action">Downloading routes</string>
 	
 	<string name="connectivity_problem">Your phone is not currently connected to the internet</string>
+	<string name="search">Search</string>
 	
 	<string name="none"></string>
 	

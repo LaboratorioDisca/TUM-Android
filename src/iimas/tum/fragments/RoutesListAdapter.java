@@ -43,7 +43,7 @@ public class RoutesListAdapter extends BaseAdapter {
  
     public View getView(int position, View view, ViewGroup parent) {
         if(view==null)
-        	view = inflater.inflate(R.layout.list_row, null);
+        	view = inflater.inflate(R.layout.route_row, null);
 
         TextView leftTerminal = (TextView) view.findViewById(R.id.left_terminal);
         TextView rightTerminal = (TextView) view.findViewById(R.id.right_terminal);

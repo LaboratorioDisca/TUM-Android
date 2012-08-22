@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal" >
+
+	<TextView
+            android:id="@+id/place_name"
+            android:layout_width="fill_parent"
+            android:layout_height="50dip"
+        	android:textColor="#fff"
+        	android:padding="13dip"
+            android:textSize="18dip"
+            android:text="Prueba"
+            android:textStyle="bold"
+            android:typeface="sans" />
+</RelativeLayout>

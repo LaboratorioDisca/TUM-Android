@@ -2,13 +2,17 @@ package iimas.tum.models;
 
 import com.google.android.maps.GeoPoint;
 
-public class Station {
+public class Place {
+	public enum Category {STOP, FACULTY, LIBRARY, STORE};
+	
 	private String name;
 	private GeoPoint coordinate;
+	private Category type;
 	
-	public Station(String name, GeoPoint coordinate){
+	public Place(String name, GeoPoint coordinate, Category type){
 		this.name = name;
 		this.coordinate = coordinate;
+		this.type = type;
 	}
 	
 	public String getName() {
@@ -17,6 +21,10 @@ public class Station {
 	
 	public GeoPoint getGeopoint() {
 		return this.coordinate;
+	}
+	
+	public Category getType() {
+		return this.type;
 	}
 	
 }

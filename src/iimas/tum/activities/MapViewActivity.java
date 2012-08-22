@@ -7,11 +7,11 @@ import java.util.TimerTask;
 import org.json.JSONArray;
 import iimas.tum.R;
 import iimas.tum.collections.Instants;
-import iimas.tum.collections.Stations;
+import iimas.tum.collections.Places;
 import iimas.tum.collections.Vehicles;
 import iimas.tum.models.Instant;
 import iimas.tum.models.Route;
-import iimas.tum.models.Station;
+import iimas.tum.models.Place;
 import iimas.tum.models.Vehicle;
 import iimas.tum.utils.ApplicationBase;
 import iimas.tum.utils.MenuSwitcher;
@@ -85,7 +85,6 @@ public class MapViewActivity extends MapActivity implements LocationListener {
 		ApplicationBase.currentActivity = this;
 		Vehicles.fetchVehicles();
    		ApplicationBase.globalTimer().scheduleAtFixedRate(newInstantFetcherCall(), 0, 10000);
-   		this.drawStations();
 		mapView.getOverlays().add(locationOverlay);
     }
 	
@@ -121,19 +120,19 @@ public class MapViewActivity extends MapActivity implements LocationListener {
 		}
 	}
     
-	private void drawStations() {
-		Stations stationCollection = Stations.collection();
+	/*private void drawStations() {
+		Places stationCollection = Places.collection();
 
 		StationsOverlay overlay = new StationsOverlay(this.getResources().getDrawable(R.drawable.stop), this.mapView.getContext());
 		List<Overlay> overlays = mapView.getOverlays();
 		for(Integer id : stationCollection.stations.keySet()) {
-			Station station = stationCollection.stations.get(id);
+			Place station = stationCollection.stations.get(id);
 			OverlayItem oi = new OverlayItem(station.getGeopoint(), station.getName(), "");
 			overlay.addOverlay(oi);
 		}
 		
 		overlays.add(overlay);
-	}
+	}*/
 	
     public void drawRoutesWithVehiclesInstants() {
     	if(RoutesListActivity.routes != null) {
@@ -222,7 +221,6 @@ public class MapViewActivity extends MapActivity implements LocationListener {
     		this.unsetCurrentOverlayItem(true);
     	}
     	
-   		this.drawStations();
    }
     
     @Override
