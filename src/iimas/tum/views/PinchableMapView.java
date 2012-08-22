@@ -32,4 +32,6 @@ public class PinchableMapView extends MapView {
 	  
 	  return super.onInterceptTouchEvent(ev);
 	}
+	
+	
 }

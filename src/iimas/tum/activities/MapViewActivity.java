@@ -1,14 +1,17 @@
 package iimas.tum.activities;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.TimerTask;
 import org.json.JSONArray;
 import iimas.tum.R;
 import iimas.tum.collections.Instants;
+import iimas.tum.collections.Stations;
 import iimas.tum.collections.Vehicles;
 import iimas.tum.models.Instant;
 import iimas.tum.models.Route;
+import iimas.tum.models.Station;
 import iimas.tum.models.Vehicle;
 import iimas.tum.utils.ApplicationBase;
 import iimas.tum.utils.MenuSwitcher;
@@ -16,10 +19,12 @@ import iimas.tum.views.PinchableMapView;
 import iimas.tum.views.CustomMyLocationOverlay;
 import iimas.tum.views.OverlayItemForInstant;
 import iimas.tum.views.RouteOverlay;
+import iimas.tum.views.StationsOverlay;
 import iimas.tum.views.VehiclesOverlay;
 import com.google.android.maps.GeoPoint;
 import com.google.android.maps.MapActivity;
 import com.google.android.maps.Overlay;
+import com.google.android.maps.OverlayItem;
 
 import android.content.Context;
 import android.graphics.Color;
@@ -52,6 +57,9 @@ public class MapViewActivity extends MapActivity implements LocationListener {
 	private OverlayItemForInstant overlayItem;
 	private PopupWindow activePopup;
 	
+	private VehiclesOverlay vehiclesOverlay;
+	private HashMap<Integer, RouteOverlay> routesOverlay;
+	
     /** Called when the activity is first created. */
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -63,6 +71,7 @@ public class MapViewActivity extends MapActivity implements LocationListener {
         resetMapToLastZoomAndCenter();
         mapView.setBuiltInZoomControls(false);
         
+        routesOverlay = new HashMap<Integer, RouteOverlay>();
         locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
 
 		locationOverlay = new CustomMyLocationOverlay(this, mapView);
@@ -76,6 +85,8 @@ public class MapViewActivity extends MapActivity implements LocationListener {
 		ApplicationBase.currentActivity = this;
 		Vehicles.fetchVehicles();
    		ApplicationBase.globalTimer().scheduleAtFixedRate(newInstantFetcherCall(), 0, 10000);
+   		this.drawStations();
+		mapView.getOverlays().add(locationOverlay);
     }
 	
 	private TimerTask newInstantFetcherCall() {
@@ -110,11 +121,24 @@ public class MapViewActivity extends MapActivity implements LocationListener {
 		}
 	}
     
+	private void drawStations() {
+		Stations stationCollection = Stations.collection();
+
+		StationsOverlay overlay = new StationsOverlay(this.getResources().getDrawable(R.drawable.stop), this.mapView.getContext());
+		List<Overlay> overlays = mapView.getOverlays();
+		for(Integer id : stationCollection.stations.keySet()) {
+			Station station = stationCollection.stations.get(id);
+			OverlayItem oi = new OverlayItem(station.getGeopoint(), station.getName(), "");
+			overlay.addOverlay(oi);
+		}
+		
+		overlays.add(overlay);
+	}
+	
     public void drawRoutesWithVehiclesInstants() {
     	if(RoutesListActivity.routes != null) {
         	this.drawPaths();
     	}
-    	mapView.getOverlays().add(locationOverlay);
     }
     
     public void onLocationChanged(Location location) {
@@ -128,7 +152,6 @@ public class MapViewActivity extends MapActivity implements LocationListener {
 		if(this.overlayItem == null) {
 			this.lastLocation = new GeoPoint(lat, lng);
 		}*/
-		
 	}
     
     public void onRestart() {
@@ -152,10 +175,11 @@ public class MapViewActivity extends MapActivity implements LocationListener {
     }
     
     private void drawPaths() {
-    	mapView.getOverlays().clear();
-    	mapView.invalidate();
 		List<Overlay> overlays = mapView.getOverlays();
-		
+		overlays.clear();
+    	mapView.invalidate();
+    	
+    	boolean selectedVehicleIsDraw = false;
     	for (Route route : RoutesListActivity.routes.values()) {
     		if(route.isVisibleOnMap()) {
     			ArrayList<Vehicle> vehicles = Vehicles.vehiclesForRoute(route.getIdentifier());
@@ -166,7 +190,7 @@ public class MapViewActivity extends MapActivity implements LocationListener {
     		    Drawable defaultMarker = this.getResources().getDrawable(imageResource);
     			Drawable selectedMarker = this.getResources().getDrawable(R.drawable.bus);
     			
-				VehiclesOverlay itemizedoverlay = new VehiclesOverlay(defaultMarker, selectedMarker, this.mapView);
+				vehiclesOverlay = new VehiclesOverlay(defaultMarker, selectedMarker, this.mapView);
 				
     			for(Vehicle vehicle : vehicles) {
     				Instant vehicleInstant = Instants.instantForVehicle(vehicle.getId());
@@ -177,15 +201,28 @@ public class MapViewActivity extends MapActivity implements LocationListener {
     					if(this.overlayItem != null && this.overlayItem.instant.getVehicleId() == vehicleInstant.getVehicleId()) {
     						this.unsetCurrentOverlayItem(false);
     						this.setCurrentOverlayItem(overlayItem);
+    						selectedVehicleIsDraw = true;
     					}
-    					itemizedoverlay.addOverlay(overlayItem);
+    					vehiclesOverlay.addOverlay(overlayItem);
     				}
     			}
     			
-				overlays.add(new RouteOverlay(route.getCoordinates(), Color.parseColor(route.getColor()), route.getIdentifier()));
-    			overlays.add(itemizedoverlay);
+    			RouteOverlay routeOverlay = routesOverlay.get(route.getIdentifier());
+    			if(routeOverlay == null) {
+    				routeOverlay = new RouteOverlay(route.getCoordinates(), Color.parseColor(route.getColor()), route.getIdentifier());
+    				routesOverlay.put(route.getIdentifier(), routeOverlay);
+    			}
+    			
+				overlays.add(routeOverlay);
+    			overlays.add(vehiclesOverlay);
     		} 
     	}
+    	
+    	if(!selectedVehicleIsDraw && overlayItem != null) {
+    		this.unsetCurrentOverlayItem(true);
+    	}
+    	
+   		this.drawStations();
    }
     
     @Override

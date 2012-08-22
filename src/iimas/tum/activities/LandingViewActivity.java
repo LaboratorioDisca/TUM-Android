@@ -3,6 +3,7 @@ package iimas.tum.activities;
 import java.util.Calendar;
 
 import iimas.tum.R;
+import iimas.tum.collections.Stations;
 import iimas.tum.collections.Vehicles;
 import iimas.tum.utils.ApplicationBase;
 import iimas.tum.utils.MenuSwitcher;
@@ -45,6 +46,7 @@ public class LandingViewActivity extends Activity {
 	    Thread thread = new Thread(null, serviceStatusGetter, "fetchVehiclesJSON");
     	thread.start();
     	Vehicles.fetchVehicles();
+    	Stations.collection();
     }
     
     private Runnable serviceStatusGetter = new Runnable(){ 

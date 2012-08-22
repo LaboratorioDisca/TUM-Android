@@ -87,7 +87,7 @@ public class ApplicationBase {
 	    	 // Handle empty results arising from errors on network comunication
 	    	 if(result.isEmpty()) {
 	    		 if(resource.equalsIgnoreCase("routes"))
-	    			 result = readRawTextFile(currentActivity, R.raw.routes);
+	    			 result = readRawTextFile(R.raw.routes);
 	    	 }
 	         json = new JSONArray(result);
 	     }catch(JSONException e){}
@@ -98,24 +98,25 @@ public class ApplicationBase {
 		return fetchResource(resource).replaceAll("[^0-9]","");
 	}
 	
-	public static String readRawTextFile(Activity activity, int resId)
+	public static InputStream rawTextStream(int resId) {
+		return currentActivity.getResources().openRawResource(resId);
+	}
+	
+	public static String readRawTextFile(int resId)
     {
-         InputStream inputStream = activity.getResources().openRawResource(resId);
-
-            InputStreamReader inputreader = new InputStreamReader(inputStream);
-            BufferedReader buffreader = new BufferedReader(inputreader);
-             String line;
-             StringBuilder text = new StringBuilder();
-
-             try {
-               while (( line = buffreader.readLine()) != null) {
+		InputStreamReader inputreader = new InputStreamReader(rawTextStream(resId));
+		BufferedReader buffreader = new BufferedReader(inputreader);
+		String line;
+		StringBuilder text = new StringBuilder();
+		try {
+			while (( line = buffreader.readLine()) != null) {
                    text.append(line);
                    text.append('\n');
                  }
            } catch (IOException e) {
                return null;
            }
-             return text.toString();
+		return text.toString();
     }
  
 	public static AlertDialog raiseConnectivityAlert() {
