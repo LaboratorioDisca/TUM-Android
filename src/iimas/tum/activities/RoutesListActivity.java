@@ -39,7 +39,7 @@ public class RoutesListActivity extends Activity {
 	       			Route route;
 	   				try {
 	   					route = new Route(jsonArray.getJSONObject(i));
-	   					routes.put(route.getIdentifier(), route);
+	   					routes.put(route.identifier, route);
 	   				} catch (JSONException e) {
 	   					e.printStackTrace();
 	   				}

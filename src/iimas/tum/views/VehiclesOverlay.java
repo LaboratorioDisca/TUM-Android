@@ -49,9 +49,4 @@ public class VehiclesOverlay extends ItemizedOverlay<OverlayItem> {
 		}
 		return true;
 	}
-	
-	protected boolean onBalloonTap(int index, OverlayItem item) {
-		
-		return true;
-	}
 }

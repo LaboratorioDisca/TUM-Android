@@ -9,9 +9,17 @@
             android:layout_width="fill_parent"
             android:layout_height="50dip"
         	android:textColor="#fff"
-        	android:padding="13dip"
-            android:textSize="18dip"
-            android:text="Prueba"
+        	android:padding="13dp"
+            android:textSize="17sp"
             android:textStyle="bold"
             android:typeface="sans" />
+	<TextView
+           android:id="@+id/place_type"
+           android:layout_width="fill_parent"
+           android:layout_height="50dip"
+           android:layout_marginTop="20dip"
+       	   android:textColor="#fff"
+       	   android:padding="13dp"
+           android:textSize="12sp"
+           android:typeface="sans" />
 </RelativeLayout>

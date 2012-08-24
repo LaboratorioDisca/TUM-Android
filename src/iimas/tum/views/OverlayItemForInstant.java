@@ -21,23 +21,23 @@ public class OverlayItemForInstant extends OverlayItem {
 	public static Drawable selectedMarker;
 	
 	public OverlayItemForInstant(Instant instant, Route route, Vehicle vehicle) {
-		super(instant.getCoordinate(), "", "");
+		super(instant.coordinate, "", "");
 		this.route = route;
 		this.instant = instant;
 		this.vehicle = vehicle;
 	}
 	
 	public double getSpeed() {
-		return instant.getVehicleSpeed();
+		return instant.vehicleSpeed;
 	}
 	
 	public String getFormattedDateTime() {
 		DateFormat df = DateFormat.getDateTimeInstance(DateFormat.MEDIUM, DateFormat.SHORT, Locale.getDefault());
-		return df.format(this.instant.getDate());
+		return df.format(this.instant.date);
 	}
 	
 	public String getVehicleId() {
-		return String.valueOf(instant.getVehicleId());
+		return String.valueOf(instant.vehicleId);
 	}
 	
 	public void setSelected() {

@@ -38,7 +38,7 @@ public class RoutesListAdapter extends BaseAdapter {
     }
  
     public long getItemId(int position) {
-        return routes.get(position).getIdentifier();
+        return routes.get(position).identifier;
     }
  
     public View getView(int position, View view, ViewGroup parent) {
@@ -51,7 +51,7 @@ public class RoutesListAdapter extends BaseAdapter {
         
         Route route = (Route) this.routes.get(position);
         View ribbon = (View) view.findViewById(R.id.ribbon);
-        ribbon.setBackgroundColor(Color.parseColor(route.getColor()));
+        ribbon.setBackgroundColor(Color.parseColor(route.color));
 
         if(route.isVisibleOnMap()) {
         	leftTerminal.setTextColor(Color.parseColor("#FFFFFF"));
@@ -67,8 +67,8 @@ public class RoutesListAdapter extends BaseAdapter {
         
         
         // Setting all values in listview
-        leftTerminal.setText(route.getLeftTerminal());
-        rightTerminal.setText(route.getRightTerminal());
+        leftTerminal.setText(route.leftTerminal);
+        rightTerminal.setText(route.rightTerminal);
         routeNumber.setText(route.getRouteNumber());
         return view;
     }

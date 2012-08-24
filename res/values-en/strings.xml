@@ -10,12 +10,15 @@
 	<string name="menu_places">Places</string>
 	
 	<string name="map_title">Campus Map</string>
+	<string name="routes_title">Pumabus Routes</string>
 	
 	<string name="help_title">How to use this app?</string>
-	<string name="help_instruction_one">Go to the routes section and select the desired route or routes</string>
-	<string name="help_instruction_two">Go to the map and observe the real time location for each pumabus on any of the routes selected</string>
-	<string name="help_instruction_three">Localize the pumabus closer to your location (shown as a blue circle). On tapping one, extra info will be displayed</string>
-		
+	<string name="help_also">Also</string>
+	<string name="help_instruction_one">Go to the routes section and select the desired route or routes.</string>
+	<string name="help_instruction_two">Go to the map and observe the real time location for each pumabus on any of the routes selected.</string>
+	<string name="help_instruction_three">Localize the pumabus closer to your location (shown as a blue circle). On tapping one, extra info will be displayed.</string>
+	<string name="help_instruction_four">Find places in CU such as pumabus stations, faculties and research institutes.</string>
+	
 	<string name="timetables_weekdays">Weekdays</string>
 	<string name="timetables_saturdays">Saturdays</string>
 	<string name="timetables_sundays">Sundays</string>
@@ -41,9 +44,11 @@
 	<string name="loading_routes_title">Wait please</string>
 	<string name="loading_routes_action">Downloading routes</string>
 	
-	<string name="connectivity_problem">Your phone is not currently connected to the internet</string>
-	<string name="search">Search</string>
+	<string name="connectivity_problem_title">Message</string>
+	<string name="connectivity_problem">Could not contact the remote server. Please, check your internet connection.</string>
 	
+	<string name="search">Search</string>
+	<string name="accept">Accept</string>
 	<string name="none"></string>
 	
 </resources>

@@ -3,7 +3,7 @@
     android:id="@+id/vehicle_overlay"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
-    android:orientation="horizontal" >
+    android:orientation="horizontal">
 
     <View
         android:id="@+id/mini_ribbon"

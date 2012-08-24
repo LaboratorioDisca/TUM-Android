@@ -121,8 +121,9 @@ public class ApplicationBase {
  
 	public static AlertDialog raiseConnectivityAlert() {
 		AlertDialog.Builder builder = new AlertDialog.Builder(currentActivity);
-		builder.setTitle("Aviso");
-		builder.setMessage(currentActivity.getResources().getString(R.string.connectivity_problem)).setNeutralButton("Aceptar", new DialogInterface.OnClickListener() {
+		builder.setTitle(currentActivity.getResources().getString(R.string.connectivity_problem_title));
+		builder.setMessage(currentActivity.getResources().getString(R.string.connectivity_problem)).
+		setNeutralButton(currentActivity.getResources().getString(R.string.accept), new DialogInterface.OnClickListener() {
            public void onClick(DialogInterface dialog, int id) {
                 dialog.cancel();
            }

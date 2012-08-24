@@ -7,25 +7,23 @@ import java.util.TimerTask;
 import org.json.JSONArray;
 import iimas.tum.R;
 import iimas.tum.collections.Instants;
-import iimas.tum.collections.Places;
 import iimas.tum.collections.Vehicles;
 import iimas.tum.models.Instant;
-import iimas.tum.models.Route;
 import iimas.tum.models.Place;
+import iimas.tum.models.Route;
 import iimas.tum.models.Vehicle;
 import iimas.tum.utils.ApplicationBase;
 import iimas.tum.utils.MenuSwitcher;
 import iimas.tum.views.PinchableMapView;
 import iimas.tum.views.CustomMyLocationOverlay;
 import iimas.tum.views.OverlayItemForInstant;
+import iimas.tum.views.PlacesOverlay;
 import iimas.tum.views.RouteOverlay;
-import iimas.tum.views.StationsOverlay;
 import iimas.tum.views.VehiclesOverlay;
 import com.google.android.maps.GeoPoint;
 import com.google.android.maps.MapActivity;
 import com.google.android.maps.Overlay;
 import com.google.android.maps.OverlayItem;
-
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
@@ -42,9 +40,14 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup.LayoutParams;
+import android.view.animation.AlphaAnimation;
+import android.view.animation.Animation;
+import android.view.animation.LinearInterpolator;
+import android.view.animation.RotateAnimation;
 import android.widget.ImageButton;
 import android.widget.PopupWindow;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class MapViewActivity extends MapActivity implements LocationListener {
 	
@@ -59,6 +62,10 @@ public class MapViewActivity extends MapActivity implements LocationListener {
 	
 	private VehiclesOverlay vehiclesOverlay;
 	private HashMap<Integer, RouteOverlay> routesOverlay;
+	
+	private Place activePlace;
+	
+	private ImageButton locationUpdaterButton;
 	
     /** Called when the activity is first created. */
     @Override
@@ -75,17 +82,47 @@ public class MapViewActivity extends MapActivity implements LocationListener {
         locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
 
 		locationOverlay = new CustomMyLocationOverlay(this, mapView);
-		locationOverlay.runOnFirstFix(new Runnable() {
-			public void run() {
-				mapView.getController().animateTo(locationOverlay.getMyLocation());
-			}
-		});
+		
+		mapView.getOverlays().add(locationOverlay);		
+
 		this.compassEnabler(true);
 
 		ApplicationBase.currentActivity = this;
 		Vehicles.fetchVehicles();
    		ApplicationBase.globalTimer().scheduleAtFixedRate(newInstantFetcherCall(), 0, 10000);
-		mapView.getOverlays().add(locationOverlay);
+		this.setPlaceOnMap(SearchPlacesActivity.lastSelected);
+		this.clearOverlays();
+		this.drawPlaces();
+		
+	    locationUpdaterButton = (ImageButton) findViewById(R.id.location_updater);
+	    
+	    final AlphaAnimation animation=new AlphaAnimation(1, 0.2f);
+	    animation.setDuration(1200);
+	    animation.setInterpolator(new LinearInterpolator());
+	    animation.setRepeatCount(Animation.INFINITE);
+	    animation.setRepeatMode(Animation.REVERSE);
+	    
+	    final RotateAnimation rotation = new RotateAnimation(40, -20, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
+	    rotation.setDuration(1000);
+		rotation.setInterpolator(new LinearInterpolator());
+		rotation.setRepeatCount(Animation.INFINITE);
+		rotation.setRepeatMode(Animation.REVERSE);
+
+	    locationUpdaterButton.setOnClickListener(new OnClickListener() {
+	    	
+			@Override
+			public void onClick(View arg0) {
+				locationUpdaterButton.startAnimation(animation);
+				locationUpdaterButton.startAnimation(rotation);
+				
+				locationOverlay.runOnFirstFix(new Runnable() {
+					public void run() {
+						mapView.getController().animateTo(locationOverlay.getMyLocation());
+					}
+				});
+			}
+ 
+		});
     }
 	
 	private TimerTask newInstantFetcherCall() {
@@ -99,7 +136,7 @@ public class MapViewActivity extends MapActivity implements LocationListener {
 		       		Instants.buildFromJSON(jsonArray);
 		       		runOnUiThread(new Runnable() {
 		       		    public void run() {
-		       		    	drawRoutesWithVehiclesInstants();
+		       		    	drawMainOverlays();
 		       		    }
 		       		});
 		       	} 
@@ -120,27 +157,28 @@ public class MapViewActivity extends MapActivity implements LocationListener {
 		}
 	}
     
-	/*private void drawStations() {
-		Places stationCollection = Places.collection();
+	private void drawPlaces() {
+    	List<Overlay> overlays = mapView.getOverlays();
 
-		StationsOverlay overlay = new StationsOverlay(this.getResources().getDrawable(R.drawable.stop), this.mapView.getContext());
-		List<Overlay> overlays = mapView.getOverlays();
-		for(Integer id : stationCollection.stations.keySet()) {
-			Place station = stationCollection.stations.get(id);
-			OverlayItem oi = new OverlayItem(station.getGeopoint(), station.getName(), "");
-			overlay.addOverlay(oi);
+		if(activePlace != null) {
+			PlacesOverlay overlay = new PlacesOverlay(this.getResources().getDrawable(R.drawable.stop_marker));
+			overlay.addOverlay(new OverlayItem(activePlace.coordinate, activePlace.name, this.getResources().getString(activePlace.getResourceId())));
+			overlays.add(overlay);
 		}
 		
-		overlays.add(overlay);
-	}*/
+	}
 	
-    public void drawRoutesWithVehiclesInstants() {
+    public void drawMainOverlays() {
     	if(RoutesListActivity.routes != null) {
+    		this.clearOverlays();
         	this.drawPaths();
+        	this.drawPlaces();
     	}
     }
     
     public void onLocationChanged(Location location) {
+    	locationUpdaterButton.clearAnimation();
+
     	if(!this.mapView.getOverlays().contains(locationOverlay)) {
     		mapView.getOverlays().add(locationOverlay);
     	}
@@ -173,17 +211,21 @@ public class MapViewActivity extends MapActivity implements LocationListener {
         return false;
     }
     
-    private void drawPaths() {
-		List<Overlay> overlays = mapView.getOverlays();
+    private void clearOverlays() {
+    	List<Overlay> overlays = mapView.getOverlays();
 		overlays.clear();
     	mapView.invalidate();
+    }
+    
+    private void drawPaths() {
+    	List<Overlay> overlays = mapView.getOverlays();
     	
     	boolean selectedVehicleIsDraw = false;
     	for (Route route : RoutesListActivity.routes.values()) {
     		if(route.isVisibleOnMap()) {
-    			ArrayList<Vehicle> vehicles = Vehicles.vehiclesForRoute(route.getIdentifier());
+    			ArrayList<Vehicle> vehicles = Vehicles.vehiclesForRoute(route.identifier);
     			
-    			String uri = "drawable/" + route.getSimpleIdentifier().toLowerCase();
+    			String uri = "drawable/" + route.simpleIdentifier.toLowerCase();
     		    int imageResource = getResources().getIdentifier(uri, null, getPackageName());
     			
     		    Drawable defaultMarker = this.getResources().getDrawable(imageResource);
@@ -192,12 +234,12 @@ public class MapViewActivity extends MapActivity implements LocationListener {
 				vehiclesOverlay = new VehiclesOverlay(defaultMarker, selectedMarker, this.mapView);
 				
     			for(Vehicle vehicle : vehicles) {
-    				Instant vehicleInstant = Instants.instantForVehicle(vehicle.getId());
+    				Instant vehicleInstant = Instants.instantForVehicle(vehicle.id);
     				
     				if(vehicleInstant != null) {
     					
     					OverlayItemForInstant overlayItem = new OverlayItemForInstant(vehicleInstant, route, vehicle); 
-    					if(this.overlayItem != null && this.overlayItem.instant.getVehicleId() == vehicleInstant.getVehicleId()) {
+    					if(this.overlayItem != null && this.overlayItem.instant.vehicleId == vehicleInstant.vehicleId) {
     						this.unsetCurrentOverlayItem(false);
     						this.setCurrentOverlayItem(overlayItem);
     						selectedVehicleIsDraw = true;
@@ -206,10 +248,10 @@ public class MapViewActivity extends MapActivity implements LocationListener {
     				}
     			}
     			
-    			RouteOverlay routeOverlay = routesOverlay.get(route.getIdentifier());
+    			RouteOverlay routeOverlay = routesOverlay.get(route.identifier);
     			if(routeOverlay == null) {
-    				routeOverlay = new RouteOverlay(route.getCoordinates(), Color.parseColor(route.getColor()), route.getIdentifier());
-    				routesOverlay.put(route.getIdentifier(), routeOverlay);
+    				routeOverlay = new RouteOverlay(route.coordinates, Color.parseColor(route.color), route.identifier);
+    				routesOverlay.put(route.identifier, routeOverlay);
     			}
     			
 				overlays.add(routeOverlay);
@@ -243,12 +285,20 @@ public class MapViewActivity extends MapActivity implements LocationListener {
     }
     
     public void resetMapToLastZoomAndCenter() {
+    	this.resetMapToLastCenterWithZoom(16);
+    }
+    
+    public void resetMapToLastCenterWithZoom(int zoom) {
     	mapView.getController().animateTo(this.lastLocation);
-        mapView.getController().setZoom(16);
+        mapView.getController().setZoom(zoom);
     }
 
     public void setDefaultLocation() {
-    	this.lastLocation = new GeoPoint((int) (19.322675 * 1E6), (int) (-99.192080 * 1E6));
+    	this.setLocation(new GeoPoint((int) (19.322675 * 1E6), (int) (-99.192080 * 1E6)));
+    }
+    
+    public void setLocation(GeoPoint point) {
+    	this.lastLocation = point;
     }
     
     
@@ -257,12 +307,12 @@ public class MapViewActivity extends MapActivity implements LocationListener {
 		
     	//get the LayoutInflater and inflate the custom_toast layout
 	    View ribbon = (View) layout.findViewById(R.id.mini_ribbon);
-	    ribbon.setBackgroundColor(Color.parseColor(item.route.getColor()));
+	    ribbon.setBackgroundColor(Color.parseColor(item.route.color));
 	    TextView title = (TextView) layout.findViewById(R.id.route_title);
 	    title.setText(this.getResources().getString(R.string.vehicle));
 	    
 	    TextView vehicleId = (TextView) layout.findViewById(R.id.vehicle_id);
-	    vehicleId.setText(String.valueOf(item.vehicle.getPublicNumber()));
+	    vehicleId.setText(String.valueOf(item.vehicle.publicNumber));
 
 	    TextView time = (TextView) layout.findViewById(R.id.instant_time);
 	    time.setText(this.getResources().getString(R.string.received) +" "+item.getFormattedDateTime());
@@ -285,8 +335,9 @@ public class MapViewActivity extends MapActivity implements LocationListener {
  
 		});
 	    
-	    activePopup.showAtLocation(layout, Gravity.TOP, 0, 115);
+	    View header = (View) findViewById(R.id.map_title);
 	    
+	    activePopup.showAsDropDown(header);
 	    this.mapView.getController().animateTo(item.getPoint());
 	    this.mapView.getController().setZoom(18);
     }
@@ -331,4 +382,32 @@ public class MapViewActivity extends MapActivity implements LocationListener {
 		// TODO Auto-generated method stub
 		
 	}
+	
+	public void setPlaceOnMap(Place place) {
+		if(place != null) {
+			this.activePlace = place;
+			this.unsetCurrentOverlayItem(false);
+			this.setLocation(place.coordinate);
+			this.resetMapToLastCenterWithZoom(18);
+			
+			View toastView = getLayoutInflater().inflate(R.layout.place_overlay, null);
+			
+			TextView name = (TextView) toastView.findViewById(R.id.place_name);
+			name.setText(activePlace.name);
+			
+			TextView type = (TextView) toastView.findViewById(R.id.place_type);
+			type.setText(this.getResources().getString(activePlace.getResourceId()));
+			
+			Toast toast = new Toast(this);
+			toast.setView(toastView);
+			toast.setGravity(Gravity.BOTTOM, 0, 0);
+			toast.setDuration(Toast.LENGTH_LONG);
+			toast.show();
+		}
+	}
+	
+	public void resetPlaceOnMap() {
+		this.setPlaceOnMap(activePlace);
+	}
+	
 }

@@ -7,34 +7,75 @@
 	<LinearLayout
 	    android:id="@+id/title"
 	    android:layout_width="match_parent"
-	    android:layout_height="wrap_content"
-	    android:background="#000"
-	    android:gravity="center"
-	    android:padding="15dip" >
+	    android:layout_height="45dip"
+	    android:background="@drawable/pattern_headers" >
+	    
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="center"
+            android:gravity="left"
+			android:paddingLeft="10dip"
+            android:paddingTop="7dip"
             android:text="@string/menu_places"
             android:textColor="#fff"
-            android:textSize="15dip"
+            android:textSize="21dip"
             android:textStyle="bold" />
+	
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            >
+			<ImageView
+                android:id="@+id/search_icon_cancel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentTop="true"
+                android:visibility="gone"
+                android:src="@drawable/search_icon_cancel" />
+
+			<ImageView
+			    android:id="@+id/search_icon"
+			    android:layout_width="wrap_content"
+			    android:layout_height="wrap_content"
+			    android:layout_alignParentRight="true"
+			    android:layout_alignParentTop="true"
+			    android:src="@drawable/search_icon" />
+
+        </RelativeLayout>
+
         
+
     </LinearLayout>
+
 	<RelativeLayout
+	    android:id="@+id/search_area"
 	    android:layout_width="match_parent"
-	    android:layout_height="wrap_content"
-	    android:background="#000"
-	    android:padding="3dip" >
+	    android:layout_height="61dp"
+	    android:background="@drawable/pattern_dark"
+	    android:padding="5dip" >
 
 		<EditText
 		    android:id="@+id/search_field"
 		    android:layout_width="252dp"
 		    android:layout_height="wrap_content"
+		    android:layout_marginTop="4dip"
+		    android:layout_alignParentBottom="true"
 		    android:layout_alignParentRight="true"
-		    android:layout_centerVertical="true"
+		    android:layout_alignParentTop="true"
 		    android:ems="10"
-		    android:inputType="text" />
+		    android:inputType="text" >
+
+		    <requestFocus />
+		</EditText>
+
+		<ImageView
+		    android:id="@+id/imageView1"
+		    android:layout_width="wrap_content"
+		    android:layout_height="wrap_content"
+		    android:layout_centerVertical="true"
+		    android:layout_toLeftOf="@+id/search_field"
+		    android:src="@drawable/search_input" />
         
     </RelativeLayout>
 

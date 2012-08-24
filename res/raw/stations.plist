@@ -32,11 +32,11 @@
 	<key>4</key>
 	<dict>
 		<key>longitude</key>
-		<string>-99.179104</string>
+		<string>-99.179096</string>
 		<key>latitude</key>
-		<string>19.322608</string>
+		<string>19.322618</string>
 		<key>name</key>
-		<string>Ciencias</string>
+		<string>Ciencias : Biología</string>
 	</dict>
 	<key>5</key>
 	<dict>
@@ -45,7 +45,7 @@
 		<key>latitude</key>
 		<string>19.322360</string>
 		<key>name</key>
-		<string>Ciencias</string>
+		<string>Ciencias : Biología</string>
 	</dict>
 	<key>6</key>
 	<dict>
@@ -54,7 +54,7 @@
 		<key>latitude</key>
 		<string>19.324705</string>
 		<key>name</key>
-		<string>Ciencias</string>
+		<string>Ciencias : Matemáticas</string>
 	</dict>
 	<key>7</key>
 	<dict>
@@ -131,11 +131,11 @@
 	<key>15</key>
 	<dict>
 		<key>longitude</key>
-		<string>-99.189216</string>
+		<string>-99.189312</string>
 		<key>latitude</key>
 		<string>19.323570</string>
 		<key>name</key>
-		<string>Metrobus CU</string>
+		<string>Metrobus CU (Cerca de Biomédicas)</string>
 	</dict>
 	<key>16</key>
 	<dict>
@@ -185,18 +185,18 @@
 	<key>21</key>
 	<dict>
 		<key>longitude</key>
-		<string>-99.187338</string>
+		<string>-99.188186</string>
 		<key>latitude</key>
-		<string>19.330228</string>
+		<string>19.330121</string>
 		<key>name</key>
 		<string>Servicios Médicos</string>
 	</dict>
 	<key>22</key>
 	<dict>
 		<key>longitude</key>
-		<string>-99.185879</string>
+		<string>-99.186292</string>
 		<key>latitude</key>
-		<string>19.330471</string>
+		<string>19.330429</string>
 		<key>name</key>
 		<string>Alberca Olímpica</string>
 	</dict>
@@ -239,9 +239,9 @@
 	<key>27</key>
 	<dict>
 		<key>longitude</key>
-		<string>-99.181008</string>
+		<string>-99.181043</string>
 		<key>latitude</key>
-		<string>19.327149</string>
+		<string>19.327006</string>
 		<key>name</key>
 		<string>Posgrado de Ingeniería</string>
 	</dict>
@@ -266,9 +266,9 @@
 	<key>30</key>
 	<dict>
 		<key>longitude</key>
-		<string>-99.183256</string>
+		<string>-99.183396</string>
 		<key>latitude</key>
-		<string>19.330839</string>
+		<string>19.330779</string>
 		<key>name</key>
 		<string>CELE</string>
 	</dict>
@@ -497,15 +497,6 @@
 		<key>name</key>
 		<string>TV UNAM</string>
 	</dict>
-	<key>56</key>
-	<dict>
-		<key>longitude</key>
-		<string>-99.176298</string>
-		<key>latitude</key>
-		<string>19.317489</string>
-		<key>name</key>
-		<string>TV UNAM</string>
-	</dict>
 	<key>57</key>
 	<dict>
 		<key>longitude</key>
@@ -621,7 +612,7 @@
 		<key>latitude</key>
 		<string>19.335361</string>
 		<key>name</key>
-		<string>Av. Universidad</string>
+		<string>Derecho</string>
 	</dict>
 	<key>70</key>
 	<dict>

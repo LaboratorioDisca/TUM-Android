@@ -9,20 +9,24 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Filter;
-import android.widget.ImageView;
+import android.widget.Filterable;
 import android.widget.TextView;
 
-public class PlacesAdapter extends ArrayAdapter<Place> {
+public class PlacesAdapter extends ArrayAdapter<Place> implements Filterable {
 
     Context context; 
     int layoutResourceId;    
     public ArrayList<Place> places;
+    public ArrayList<Place> filteringPlacesSet;
+    private Filter filter;
 
+	@SuppressWarnings("unchecked")
 	public PlacesAdapter(Context context, int layoutResourceId, ArrayList<Place> places) {
     	super(context, layoutResourceId, places);
         this.layoutResourceId = layoutResourceId;
         this.context = context;
-        this.places = (ArrayList<Place>) places.clone();
+        this.places = places;
+        this.filteringPlacesSet = (ArrayList<Place>) places.clone();
     }
 
     @Override
@@ -35,72 +39,81 @@ public class PlacesAdapter extends ArrayAdapter<Place> {
     		
     		placeHolder = new PlaceHolder();
     		//placeHolder.imgIcon = (ImageView) view.findViewById(R.id.placeTypeIcon);
-            placeHolder.txtTitle = (TextView) view.findViewById(R.id.place_name);
+            placeHolder.title = (TextView) view.findViewById(R.id.place_name);
+            placeHolder.kind = (TextView) view.findViewById(R.id.place_type);
+            
             view.setTag(placeHolder);
     	} else {
     		placeHolder = (PlaceHolder) view.getTag();
     	}
         
-        Place place = this.places.get(position);
-        placeHolder.txtTitle.setText(place.getName());
-        //holder.imgIcon.setImageResource(place.getType());
-        
+        Place place = this.filteringPlacesSet.get(position);
+        placeHolder.title.setText(place.name);
+        placeHolder.kind.setText(context.getResources().getString(place.getResourceId()));
         return view;
     }
     
     @Override
+    public int getCount() {
+        return filteringPlacesSet.size();
+    }
+
+    @Override
+    public Place getItem(int position) {
+        return filteringPlacesSet.get(position);
+    }
+    
+    public void add(Place object) {
+    	filteringPlacesSet.add(object);
+        this.notifyDataSetChanged();
+    }
+    
     public Filter getFilter() {
-    	return new PlaceFilter();
+        if (filter == null) {
+        	filter = new PlaceFilter();
+        }
+        return filter;
     }
-    
-    static class PlaceHolder
-    {
-        ImageView imgIcon;
-        TextView txtTitle;
-    }
-    
-    private class PlaceFilter extends Filter
-    {
+
+    private class PlaceFilter extends Filter {
 
         @Override
         protected FilterResults performFiltering(CharSequence constraint) {
+            FilterResults results = new FilterResults();
 
-            constraint = constraint.toString().toLowerCase();
-            FilterResults result = new FilterResults();
-            if(constraint != null && constraint.toString().length() > 0)
-            {
-            	ArrayList<Place> filtered = new ArrayList<Place>();
+            if(constraint == null || constraint.length() == 0) {
+                ArrayList<Place> list = new ArrayList<Place>(places);
+                results.values = list;
+                results.count = list.size();
+            } else {
+                ArrayList<Place> newValues = new ArrayList<Place>();
+                for(int i = 0; i < places.size(); i++) {
+                	Place item = places.get(i);
+                    if(item.toString().contains(constraint.toString().toLowerCase())) {
+                        newValues.add(item);
+                    }
+                }
+                results.values = newValues;
+                results.count = newValues.size();
+            }       
 
-                for(Place place : places) {
-                	 if(place.getName().toLowerCase().contains(constraint))
-                     	filtered.add(place);
-                }
-                
-                result.count = filtered.size();
-                result.values = filtered;
-            }
-            else
-            {
-                synchronized(this)
-                {
-                    result.values = places;
-                    result.count = places.size();
-                }
-            }
-            return result;
+            return results;
         }
 
         @SuppressWarnings("unchecked")
         @Override
         protected void publishResults(CharSequence constraint, FilterResults results) {
-        	ArrayList<Place> filteredPlaces = (ArrayList<Place>)results.values;
-            clear();
+        	filteringPlacesSet = (ArrayList<Place>) results.values;
             notifyDataSetChanged();
-
-            for(int i = 0, l = filteredPlaces.size(); i < l; i++)
-                add(filteredPlaces.get(i));
-            notifyDataSetInvalidated();
         }
 
+    }
+
+
+    
+    static class PlaceHolder
+    {
+    	TextView title;
+        TextView kind;
     }
 }

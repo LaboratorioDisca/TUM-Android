@@ -36,13 +36,13 @@ public class Vehicles {
 					vehicle = new Vehicle(jsonArray.getJSONObject(i));
 					ArrayList<Vehicle> vehicles;
 
-					if(vehiclesInRoute.containsKey(vehicle.getLineId())) {
-						vehicles = vehiclesInRoute.get(vehicle.getLineId());
+					if(vehiclesInRoute.containsKey(vehicle.lineId)) {
+						vehicles = vehiclesInRoute.get(vehicle.lineId);
 						vehicles.add(vehicle);
 					} else {
 						vehicles = new ArrayList<Vehicle>();
 						vehicles.add(vehicle);
-						vehiclesInRoute.put(vehicle.getLineId(), vehicles);
+						vehiclesInRoute.put(vehicle.lineId, vehicles);
 					}
 				} catch (JSONException e) {
 					e.printStackTrace();

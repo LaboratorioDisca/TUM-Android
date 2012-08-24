@@ -7,16 +7,19 @@
     <LinearLayout
         android:id="@+id/sectiontitle"
         android:layout_width="match_parent"
-        android:layout_height="35dp"
-        android:orientation="vertical" >
+        android:layout_height="45dip"
+        android:orientation="vertical"
+        android:background="@drawable/pattern_headers" >
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:gravity="center"
-            android:text="@string/menu_routes"
+            android:gravity="left"
+            android:paddingLeft="10dip"
+            android:paddingTop="7dip"
+            android:text="@string/routes_title"
             android:textColor="#fff"
-            android:textSize="21sp"
+            android:textSize="21dip"
             android:textStyle="bold" />
 
     </LinearLayout>

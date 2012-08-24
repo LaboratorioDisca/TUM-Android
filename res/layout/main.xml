@@ -12,30 +12,41 @@
     	android:layout_width="fill_parent"
     	android:layout_height="fill_parent"
     	android:clickable="true"
-    	android:apiKey="0Sp8gbE2A7hswQd5VhvTN6uWTkmwkF_TNtVj_jQ"  >
+    	android:apiKey="0f3XaTLUN3WCqzxXOsj1CgOIn4fj3r25Hm_Nqag"  >
 	</iimas.tum.views.PinchableMapView>
 	
     <RelativeLayout
         android:id="@+id/map_title"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="45dp"
         android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentTop="true"
-        android:background="#19394F"
-        android:gravity="center"
-        android:padding="15dip" >
+        android:background="@drawable/pattern_headers" >
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="center"
+            android:gravity="left"
+            android:paddingLeft="10dip"
+            android:paddingTop="7dip"
             android:text="@string/map_title"
             android:textColor="#fff"
-            android:textSize="15dip"
+            android:textSize="21dip"
             android:textStyle="bold" />
+
+        <ImageButton
+            android:id="@+id/location_updater"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="8dip"
+            android:layout_marginRight="10dip"
+            android:src="@drawable/wayfinder"
+            android:background="#00ffffff" />
     </RelativeLayout>
 </RelativeLayout>
 
 
-   <!-- android:apiKey="0f3XaTLUN3WCqzxXOsj1CgOIn4fj3r25Hm_Nqag"  -->
+   <!-- android:apiKey="0Sp8gbE2A7hswQd5VhvTN6uWTkmwkF_TNtVj_jQ"  -->

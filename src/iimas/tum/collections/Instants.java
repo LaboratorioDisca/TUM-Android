@@ -28,7 +28,7 @@ public class Instants {
 		for(int i = 0 ; i < jsonArray.length() ; i++) {
 				try {
 		   			Instant instant = new Instant(jsonArray.getJSONObject(i));
-		   			instants.put(instant.getVehicleId(), instant);
+		   			instants.put(instant.vehicleId, instant);
 				} catch (JSONException e) {
 					e.printStackTrace();
 				}
