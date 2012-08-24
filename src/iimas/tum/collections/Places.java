@@ -1,6 +1,9 @@
 package iimas.tum.collections;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+
 import iimas.tum.R;
 
 import com.dd.plist.NSDictionary;
@@ -36,5 +39,13 @@ public class Places {
 				this.places.add(station);
 			}
 		} catch (Exception e) {	e.printStackTrace(); }
+		
+		Collections.sort(places, new Comparator<Place>() {
+	        @Override
+	        public int compare(Place place1, Place place2) {
+	            return place1.name.compareToIgnoreCase(place2.name);
+	        }
+	    });
+
 	}
 }
