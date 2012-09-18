@@ -14,7 +14,8 @@
 	<string name="routes_title">Rutas del Pumabus</string>
 	
 	<string name="about_title">Acerca de</string>
-
+	<string name="about_text">Proyecto desarrollado con el apoyo de:</string>
+	
 	<string name="timetables_weekdays">Lunes a Viernes</string>
 	<string name="timetables_saturdays">Sábados</string>
 	<string name="timetables_sundays">Domingos</string>		

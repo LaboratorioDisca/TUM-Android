@@ -13,6 +13,7 @@
 	<string name="routes_title">Pumabus Routes</string>
 	
 	<string name="about_title">About</string>
+	<string name="about_text">Project developed with the support of:</string>
 	
 	<string name="timetables_weekdays">Weekdays</string>
 	<string name="timetables_saturdays">Saturdays</string>

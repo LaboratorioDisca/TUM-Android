@@ -4,7 +4,7 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:background="@drawable/pattern_dark"
-    android:orientation="vertical" >
+    android:orientation="vertical" xmlns:app="http://schemas.android.com/apk/res/iimas.tum">
 
     <RelativeLayout
         android:id="@+id/title"
@@ -18,18 +18,61 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-			android:gravity="left"
+            android:gravity="left"
             android:paddingLeft="10dp"
             android:paddingTop="7dp"
             android:text="@string/about_title"
             android:textColor="#fff"
             android:textSize="21sp"
             android:textStyle="bold" />
-        
-        <com.viewpagerindicator.TitlePageIndicator
-			android:id="@+id/titles"
-			android:layout_height="wrap_content"
-			android:layout_width="fill_parent" />
     </RelativeLayout>
 
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/title"
+        android:layout_marginTop="30dp"
+        android:gravity="center"
+        android:text="@string/about_text"
+        android:textColor="#fff"
+        android:textSize="15sp"
+        android:textStyle="bold" />
+
+    <View
+        android:id="@+id/ribbon_top"
+        android:layout_width="fill_parent"
+        android:layout_height="0.5dp"
+        android:layout_alignParentLeft="true"
+        android:layout_marginTop="50dp"
+        android:layout_below="@+id/textView1"
+        android:background="#403E3E" />
+    
+    <android.support.v4.view.ViewPager
+        android:id="@+id/logoPager"
+        android:layout_width="match_parent"
+        android:layout_height="280dp"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/ribbon_top"
+        android:background="#000" >
+        
+    </android.support.v4.view.ViewPager>
+
+   	<View
+        android:id="@+id/ribbon_bottom"
+        android:layout_width="fill_parent"
+        android:layout_height="0.5dp"
+        android:layout_below="@+id/logoPager"
+        android:layout_alignParentLeft="true"
+        android:background="#403E3E" />
+	
+   	<com.viewpagerindicator.CirclePageIndicator
+   	    android:id="@+id/pageIndicator"
+    	android:layout_height="wrap_content"
+    	android:layout_width="fill_parent"
+    	android:layout_below="@+id/ribbon_bottom"
+    	android:paddingTop="10dp"
+    	android:layout_marginTop="15dp"
+   	    />
+   	
 </RelativeLayout>
