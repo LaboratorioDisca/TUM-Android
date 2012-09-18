@@ -47,8 +47,8 @@
             </intent-filter>
         </activity>
 		<activity
-            android:name=".activities.HelpViewActivity"
-            android:label="@string/menu_help"
+            android:name=".activities.AboutViewActivity"
+            android:label="@string/menu_about"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.NoTitleBar" >
             <intent-filter>

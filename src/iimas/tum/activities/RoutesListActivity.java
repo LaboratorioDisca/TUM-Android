@@ -29,7 +29,6 @@ public class RoutesListActivity extends Activity {
 	
 	private Runnable routeFetcher = new Runnable(){ 
 		
-		@Override 
 		 public void run() {
 			routes = new HashMap<Integer, Route>();
 		    
@@ -50,7 +49,6 @@ public class RoutesListActivity extends Activity {
 	};
 	
 	private Runnable returnRes = new Runnable(){ 
-		 @Override 
 		 public void run() {
 			 progressDialog.dismiss();
 			 drawRoutesList();
@@ -83,7 +81,6 @@ public class RoutesListActivity extends Activity {
         
         // Click event for single list row
         list.setOnItemClickListener(new OnItemClickListener() {
-			@Override
 			public void onItemClick(AdapterView<?> parent, View v, int pos, long id) {
 				Route route = (Route) adapter.getItem(pos);
 				route.setVisibleOnMap(!route.isVisibleOnMap());

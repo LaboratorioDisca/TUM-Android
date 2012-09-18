@@ -5,19 +5,14 @@
     <string name="menu_main">Home</string>
     <string name="menu_map">Map</string>
     <string name="menu_timetables">Service Schedule</string>
-	<string name="menu_help">Help</string>    
+	<string name="menu_about">About</string>    
 	<string name="menu_more">More</string>
 	<string name="menu_places">Places</string>
 	
 	<string name="map_title">Campus Map</string>
 	<string name="routes_title">Pumabus Routes</string>
 	
-	<string name="help_title">How to use this app?</string>
-	<string name="help_also">Also</string>
-	<string name="help_instruction_one">Go to the routes section and select the desired route or routes.</string>
-	<string name="help_instruction_two">Go to the map and observe the real time location for each pumabus on any of the routes selected.</string>
-	<string name="help_instruction_three">Localize the pumabus closer to your location (shown as a blue circle). On tapping one, extra info will be displayed.</string>
-	<string name="help_instruction_four">Find places in CU such as pumabus stations, faculties and research institutes.</string>
+	<string name="about_title">About</string>
 	
 	<string name="timetables_weekdays">Weekdays</string>
 	<string name="timetables_saturdays">Saturdays</string>

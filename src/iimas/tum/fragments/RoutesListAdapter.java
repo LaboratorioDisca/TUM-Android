@@ -75,7 +75,6 @@ public class RoutesListAdapter extends BaseAdapter {
     
     protected static class RouteNameComparator implements Comparator<Route> {
 
-		@Override
 		public int compare(Route route0, Route route1) {
 			String first = route0.getRouteNumber();
 			String second = route1.getRouteNumber();

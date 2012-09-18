@@ -110,7 +110,6 @@ public class MapViewActivity extends MapActivity implements LocationListener {
 
 	    locationUpdaterButton.setOnClickListener(new OnClickListener() {
 	    	
-			@Override
 			public void onClick(View arg0) {
 				locationUpdaterButton.startAnimation(animation);
 				locationUpdaterButton.startAnimation(rotation);
@@ -328,7 +327,6 @@ public class MapViewActivity extends MapActivity implements LocationListener {
 	    ImageButton button = (ImageButton) layout.findViewById(R.id.close_button);
 	    button.setOnClickListener(new OnClickListener() {
 	    	
-			@Override
 			public void onClick(View arg0) {
 				((MapViewActivity) ApplicationBase.currentActivity).unsetCurrentOverlayItem(true);
 			}
@@ -365,19 +363,16 @@ public class MapViewActivity extends MapActivity implements LocationListener {
 		return this.overlayItem;
 	}
     
-	@Override
 	public void onProviderDisabled(String arg0) {
 		// TODO Auto-generated method stub
 		
 	}
 
-	@Override
 	public void onProviderEnabled(String arg0) {
 		// TODO Auto-generated method stub
 		
 	}
 
-	@Override
 	public void onStatusChanged(String arg0, int arg1, Bundle arg2) {
 		// TODO Auto-generated method stub
 		

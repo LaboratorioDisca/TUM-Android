@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/instruction_two"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/pattern_dark"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="45dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:background="@drawable/pattern_headers" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+			android:gravity="left"
+            android:paddingLeft="10dp"
+            android:paddingTop="7dp"
+            android:text="@string/about_title"
+            android:textColor="#fff"
+            android:textSize="21sp"
+            android:textStyle="bold" />
+        
+        <com.viewpagerindicator.TitlePageIndicator
+			android:id="@+id/titles"
+			android:layout_height="wrap_content"
+			android:layout_width="fill_parent" />
+    </RelativeLayout>
+
+</RelativeLayout>

@@ -41,7 +41,6 @@ public class Places {
 		} catch (Exception e) {	e.printStackTrace(); }
 		
 		Collections.sort(places, new Comparator<Place>() {
-	        @Override
 	        public int compare(Place place1, Place place2) {
 	            return place1.name.compareToIgnoreCase(place2.name);
 	        }

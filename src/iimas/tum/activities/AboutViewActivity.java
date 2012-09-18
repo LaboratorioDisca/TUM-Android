@@ -12,7 +12,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.WindowManager;
 
-public class HelpViewActivity extends Activity {
+public class AboutViewActivity extends Activity {
 
 	@Override
     public void onCreate(Bundle savedInstanceState) {
@@ -20,7 +20,7 @@ public class HelpViewActivity extends Activity {
         getWindow().setFormat(PixelFormat.RGBA_8888);
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_DITHER);
 
-        this.setContentView(R.layout.help);
+        this.setContentView(R.layout.about);
     }
 	
 	@Override

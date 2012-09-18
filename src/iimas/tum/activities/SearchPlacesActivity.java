@@ -35,7 +35,6 @@ public class SearchPlacesActivity extends ListActivity {
 		
 	    loadAdapter();
 	    this.getListView().setOnItemClickListener(new OnItemClickListener() {
-			@Override
 			public void onItemClick(AdapterView<?> adapter, View arg1, int pos, long id) {
 				lastSelected = (Place) adapter.getItemAtPosition(pos);
 				Intent intentActivity = new Intent(ApplicationBase.currentActivity, MapViewActivity.class);
@@ -52,7 +51,6 @@ public class SearchPlacesActivity extends ListActivity {
 
 	    searchImage.setOnClickListener(new OnClickListener() {
 
-			@Override
 			public void onClick(View arg0) {
 				searchArea.setVisibility(View.VISIBLE);
 				searchImageCancel.setVisibility(View.VISIBLE);
@@ -62,7 +60,6 @@ public class SearchPlacesActivity extends ListActivity {
 	    });
 	    
 	    searchImageCancel.setOnClickListener(new OnClickListener() {
-	    	@Override
 			public void onClick(View arg0) {
 				searchArea.setVisibility(View.GONE);
 				searchImageCancel.setVisibility(View.GONE);
@@ -72,16 +69,14 @@ public class SearchPlacesActivity extends ListActivity {
 	    });
 	    
 	    filterEditText.addTextChangedListener(new TextWatcher() {
-	      @Override
 	      public void onTextChanged(CharSequence s, int start, int before, int count) {
 	    	  
 	      }
 	     
-	      @Override
+	      
 	      public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 	      }
      
-	      @Override
           public void afterTextChanged(Editable s) {
 	    	  adapter.getFilter().filter(s.toString());
 	      }

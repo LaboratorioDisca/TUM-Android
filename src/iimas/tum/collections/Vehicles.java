@@ -54,7 +54,6 @@ public class Vehicles {
 		if(singleton == null) {
 			Runnable vehicleFetcher = new Runnable(){ 
 				
-				@Override 
 				 public void run() {	
 		       		Log.e("Vehicles", "Fetching vehicles");
 	

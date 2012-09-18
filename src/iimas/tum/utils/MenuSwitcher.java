@@ -3,7 +3,7 @@ package iimas.tum.utils;
 import iimas.tum.R;
 import iimas.tum.activities.SearchPlacesActivity;
 import iimas.tum.activities.MapViewActivity;
-import iimas.tum.activities.HelpViewActivity;
+import iimas.tum.activities.AboutViewActivity;
 import iimas.tum.activities.LandingViewActivity;
 import iimas.tum.activities.RoutesListActivity;
 import iimas.tum.activities.TimeTableViewActivity;
@@ -36,7 +36,7 @@ public class MenuSwitcher {
             	return true;
             case R.id.help:
             	if(activityMenuLink != R.id.help) {
-            		intentActivity = new Intent(activity, HelpViewActivity.class);
+            		intentActivity = new Intent(activity, AboutViewActivity.class);
             		activity.startActivity(intentActivity);
             	}
             	return true;

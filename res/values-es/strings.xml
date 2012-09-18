@@ -5,7 +5,7 @@
     <string name="menu_main">Principal</string>
     <string name="menu_map">Mapa</string>
     <string name="menu_timetables">Horarios</string>
-	<string name="menu_help">Ayuda</string>
+	<string name="menu_about">Acerca de</string>
     <string name="menu_places">Lugares</string>
 	
 	<string name="menu_more">Más</string>
@@ -13,13 +13,8 @@
 	<string name="map_title">Mapa del Campus</string>
 	<string name="routes_title">Rutas del Pumabus</string>
 	
-	<string name="help_title">¿Cómo usar esta app?</string>
-	<string name="help_also">Además</string>
-	<string name="help_instruction_one">Ir a la sección de rutas y seleccionar la ruta o rutas deseadas.</string>
-	<string name="help_instruction_two">Ir al mapa y observar la posición en tiempo real de los pumabuses de la ruta o rutas que hayas seleccionado.</string>
-	<string name="help_instruction_three">Localiza el pumabus más cercano a tu ubicación (círculo azul). Al hacer tap en alguno, se mostrará información adicional.</string>
-	<string name="help_instruction_four">Encuentra lugares en CU como paradas del pumabus, facultades e institutos.</string>
-	
+	<string name="about_title">Acerca de</string>
+
 	<string name="timetables_weekdays">Lunes a Viernes</string>
 	<string name="timetables_saturdays">Sábados</string>
 	<string name="timetables_sundays">Domingos</string>		

@@ -51,8 +51,7 @@ public class LandingViewActivity extends Activity {
     
     private Runnable serviceStatusGetter = new Runnable(){ 
 		
-		@Override 
-		 public void run() {	
+		public void run() {	
 			final String result = ApplicationBase.fetchResourceAsString("serviceStatus");
 			String message = new String();
 			String color = "black";
@@ -83,7 +82,6 @@ public class LandingViewActivity extends Activity {
 		    final String colorToText = color;
 			runOnUiThread(new Runnable() {
 					
-					@Override
 					public void run() {
 						TextView serviceStatusText = (TextView) ApplicationBase.currentActivity.findViewById(R.id.service_status);
 					    serviceStatusText.setText(messageToText);
