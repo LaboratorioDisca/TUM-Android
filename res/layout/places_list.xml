@@ -27,6 +27,7 @@
             >
 			<ImageView
                 android:id="@+id/search_icon_cancel"
+                android:contentDescription="@string/none"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
@@ -36,6 +37,7 @@
 
 			<ImageView
 			    android:id="@+id/search_icon"
+			    android:contentDescription="@string/none"
 			    android:layout_width="wrap_content"
 			    android:layout_height="wrap_content"
 			    android:layout_alignParentRight="true"
@@ -73,6 +75,7 @@
 		    android:id="@+id/imageView1"
 		    android:layout_width="wrap_content"
 		    android:layout_height="wrap_content"
+		    android:contentDescription="@string/none"
 		    android:layout_centerVertical="true"
 		    android:layout_toLeftOf="@+id/search_field"
 		    android:src="@drawable/search_input" />

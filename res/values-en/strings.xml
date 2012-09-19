@@ -8,12 +8,18 @@
 	<string name="menu_about">About</string>    
 	<string name="menu_more">More</string>
 	<string name="menu_places">Places</string>
+	<string name="menu_more_info">More info</string>
 	
 	<string name="map_title">Campus Map</string>
 	<string name="routes_title">Pumabus Routes</string>
 	
 	<string name="about_title">About</string>
 	<string name="about_text">Project developed with the support of:</string>
+	
+	<string name="more_info_title">More info</string>
+	<string name="more_info_text_intro">This app and the telecommunication infrastructure embedded on every Pumabús are under constant improvement:</string>
+	<string name="more_info_text_content">At certain times along the day due campus nearby GSM network saturation, the reported location by some pumabuses could be not available or could it be with a considerable delay.</string>
+	<string name="more_info_version">Version 1</string>
 	
 	<string name="timetables_weekdays">Weekdays</string>
 	<string name="timetables_saturdays">Saturdays</string>

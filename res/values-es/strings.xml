@@ -7,11 +7,17 @@
     <string name="menu_timetables">Horarios</string>
 	<string name="menu_about">Acerca de</string>
     <string name="menu_places">Lugares</string>
-	
+	<string name="menu_more_info">Más información</string>
+    
 	<string name="menu_more">Más</string>
 		
 	<string name="map_title">Mapa del Campus</string>
 	<string name="routes_title">Rutas del Pumabus</string>
+	
+	<string name="more_info_title">Más información</string>
+	<string name="more_info_text_intro">Esta aplicación y la infraestructura de telecomunicaciones incorporada a cada Pumabús están en proceso de mejora:</string>
+	<string name="more_info_text_content">A ciertas horas del día, por la saturación de la red GSM cercana al campus, la ubicación reportada por algunos pumabuses podría no estar disponible o estarlo con un tiempo de retraso considerable.</string>
+	<string name="more_info_version">Versión 1</string>
 	
 	<string name="about_title">Acerca de</string>
 	<string name="about_text">Proyecto desarrollado con el apoyo de:</string>

@@ -28,6 +28,8 @@ public class LandingViewActivity extends Activity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        ApplicationBase.currentActivity = this;
+
         getWindow().setFormat(PixelFormat.RGBA_8888);
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_DITHER);
 
@@ -36,7 +38,6 @@ public class LandingViewActivity extends Activity {
         Animation myFadeInAnimation = AnimationUtils.loadAnimation(this, R.anim.fadein);
         myImageView.startAnimation(myFadeInAnimation);
         
-        ApplicationBase.currentActivity = this;
 	    
         serviceBox = (RelativeLayout) findViewById(R.id.service_box);
         Animation animation = AnimationUtils.loadAnimation(this, R.anim.fadein);

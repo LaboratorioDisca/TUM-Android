@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/more_info"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/pattern_dark"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="45dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:background="@drawable/pattern_headers" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="left"
+            android:paddingLeft="10dp"
+            android:paddingTop="7dp"
+            android:text="@string/more_info_title"
+            android:textColor="#fff"
+            android:textSize="21sp"
+            android:textStyle="bold" />
+        
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+			<ImageView
+			    android:id="@+id/close_more_icon"
+			    android:layout_width="wrap_content"
+			    android:layout_height="wrap_content"
+			    android:contentDescription="@string/none"
+			    android:layout_alignParentRight="true"
+			    android:layout_alignParentTop="true"
+			    android:layout_marginTop="5dp"
+			    android:layout_marginRight="10dp"
+			    android:src="@drawable/close_navbar" />
+
+        </RelativeLayout>
+    </RelativeLayout>
+   	
+    <TextView
+        android:id="@+id/moreInfoTextIntro"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/title"
+        android:layout_marginTop="0dp"
+        android:gravity="left"
+        android:text="@string/more_info_text_intro"
+        android:textColor="#A8A8A8"
+        android:textSize="13sp"
+        android:textStyle="bold"
+       	android:padding="20dp" />
+
+    <TextView
+        android:id="@+id/moreInfoTextContent"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/moreInfoTextIntro"
+        android:layout_marginTop="2dp"
+        android:gravity="left"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:layout_marginBottom="20dp"
+        android:text="@string/more_info_text_content"
+        android:textColor="#63635F"
+        android:textSize="11sp" />
+	
+    <View
+        android:id="@+id/ribbon_top"
+        android:layout_width="fill_parent"
+        android:layout_height="0.5dp"
+        android:layout_alignParentLeft="true"
+        android:layout_marginTop="10dp"
+        android:layout_below="@+id/moreInfoTextContent"
+        android:background="#403E3E" />
+
+    <ImageView
+        android:id="@+id/project_logo"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/ribbon_top"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="15dp"
+        android:contentDescription="@string/none"
+        android:src="@drawable/pumabus_project" />
+    
+    <TextView
+       	android:id="@+id/version"
+       	android:layout_width="fill_parent"
+       	android:layout_height="wrap_content"
+       	android:layout_marginTop="0dp"
+       	android:layout_below="@+id/project_logo"
+       	android:gravity="center"
+       	android:text="@string/more_info_version"
+       	android:textColor="#B86F13"
+       	android:textSize="13sp"
+       	android:textStyle="bold" />
+    
+    <TextView
+        android:id="@+id/web_url"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_below="@+id/version"
+        android:gravity="center"
+        android:text="@string/more_info_web_url"
+        android:textColor="#63635F"
+        android:textSize="18sp"/>
+    
+
+</RelativeLayout>

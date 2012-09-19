@@ -4,6 +4,7 @@ import com.viewpagerindicator.CirclePageIndicator;
 
 import iimas.tum.R;
 import iimas.tum.fragments.LogoFragmentAdapter;
+import iimas.tum.utils.ApplicationBase;
 import iimas.tum.utils.MenuSwitcher;
 import android.app.Activity;
 import android.content.Intent;
@@ -14,7 +15,10 @@ import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
 import android.view.WindowManager;
+import android.view.View.OnClickListener;
+import android.widget.ImageView;
 
 public class AboutViewActivity extends Activity {
 	
@@ -26,7 +30,9 @@ public class AboutViewActivity extends Activity {
         super.onCreate(savedInstanceState);
         getWindow().setFormat(PixelFormat.RGBA_8888);
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_DITHER);        
-        
+
+        ApplicationBase.currentActivity = this;
+
         this.setContentView(R.layout.about);
         
         adapterForLogos = new LogoFragmentAdapter(this.getApplicationContext());
@@ -36,6 +42,16 @@ public class AboutViewActivity extends Activity {
         CirclePageIndicator indicator = (CirclePageIndicator) findViewById(R.id.pageIndicator);
         indicator.setViewPager(logoPager);
         
+	    final ImageView moreInfoIcon = (ImageView) findViewById(R.id.more_info_icon);
+	    moreInfoIcon.setOnClickListener(new OnClickListener() {
+
+			public void onClick(View arg0) {
+				Intent intentActivity = new Intent(ApplicationBase.currentActivity, MoreInfoActivity.class);
+				ApplicationBase.currentActivity.startActivity(intentActivity);
+		        overridePendingTransition(R.anim.slide_up, R.anim.slide_down);
+			}
+	    	
+	    });
     }
 	
 	@Override

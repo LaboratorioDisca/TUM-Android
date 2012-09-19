@@ -1,6 +1,7 @@
 package iimas.tum.activities;
 
 import iimas.tum.R;
+import iimas.tum.utils.ApplicationBase;
 import iimas.tum.utils.MenuSwitcher;
 import android.app.Activity;
 import android.content.Intent;
@@ -19,6 +20,7 @@ public class TimeTableViewActivity extends Activity {
         super.onCreate(savedInstanceState);
         getWindow().setFormat(PixelFormat.RGBA_8888);
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_DITHER);
+        ApplicationBase.currentActivity = this;
 
         this.setContentView(R.layout.timetable);
     }

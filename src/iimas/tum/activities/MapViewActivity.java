@@ -72,6 +72,8 @@ public class MapViewActivity extends MapActivity implements LocationListener {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
+        ApplicationBase.currentActivity = this;
+
         this.setDefaultLocation();
         
         mapView = (PinchableMapView) findViewById(R.id.mapview);
@@ -87,7 +89,6 @@ public class MapViewActivity extends MapActivity implements LocationListener {
 
 		this.compassEnabler(true);
 
-		ApplicationBase.currentActivity = this;
 		Vehicles.fetchVehicles();
    		ApplicationBase.globalTimer().scheduleAtFixedRate(newInstantFetcherCall(), 0, 10000);
 		this.setPlaceOnMap(SearchPlacesActivity.lastSelected);
