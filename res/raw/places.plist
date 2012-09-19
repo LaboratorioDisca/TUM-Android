@@ -1,0 +1,864 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>New item</key>
+	<dict>
+		<key>category</key>
+		<integer>2</integer>
+		<key>id</key>
+		<integer>2</integer>
+		<key>latitude</key>
+		<real>19.33040529860932</real>
+		<key>longitude</key>
+		<real>-99.18054668647767</real>
+		<key>name</key>
+		<string>Instituto de Investigaciones en Matemáticas Aplicadas y Sistemas</string>
+	</dict>
+	<key>New item - 2</key>
+	<dict>
+		<key>category</key>
+		<integer>1</integer>
+		<key>id</key>
+		<integer>3</integer>
+		<key>latitude</key>
+		<real>19.33127596050153</real>
+		<key>longitude</key>
+		<real>-99.1871449206543</real>
+		<key>name</key>
+		<string>Facultad de Arquitectura</string>
+	</dict>
+	<key>New item - 3</key>
+	<dict>
+		<key>category</key>
+		<integer>1</integer>
+		<key>id</key>
+		<integer>4</integer>
+		<key>latitude</key>
+		<real>19.33631760903443</real>
+		<key>longitude</key>
+		<real>-99.18848602516175</real>
+		<key>name</key>
+		<string>Facultad de Psicologia</string>
+	</dict>
+	<key>New item - 4</key>
+	<dict>
+		<key>category</key>
+		<integer>1</integer>
+		<key>id</key>
+		<integer>5</integer>
+		<key>latitude</key>
+		<real>19.33440423062948</real>
+		<key>longitude</key>
+		<real>-99.18697325927735</real>
+		<key>name</key>
+		<string>Facultad de Filosofia y Letras</string>
+	</dict>
+	<key>New item - 5</key>
+	<dict>
+		<key>category</key>
+		<integer>1</integer>
+		<key>id</key>
+		<integer>6</integer>
+		<key>latitude</key>
+		<real>19.33446497314532</real>
+		<key>longitude</key>
+		<real>-99.18555705291749</real>
+		<key>name</key>
+		<string>Facultad de Derecho</string>
+	</dict>
+	<key>New item - 6</key>
+	<dict>
+		<key>category</key>
+		<integer>1</integer>
+		<key>id</key>
+		<integer>8</integer>
+		<key>latitude</key>
+		<real>19.33442447813667</real>
+		<key>longitude</key>
+		<real>-99.18166248542786</real>
+		<key>name</key>
+		<string>Facultad de Odontologia</string>
+	</dict>
+	<key>New item - 7</key>
+	<dict>
+		<key>category</key>
+		<integer>1</integer>
+		<key>id</key>
+		<integer>9</integer>
+		<key>latitude</key>
+		<real>19.33340197584983</real>
+		<key>longitude</key>
+		<real>-99.17932359916688</real>
+		<key>name</key>
+		<string>Facultad de Medicina</string>
+	</dict>
+	<key>New item - 8</key>
+	<dict>
+		<key>category</key>
+		<integer>1</integer>
+		<key>id</key>
+		<integer>12</integer>
+		<key>latitude</key>
+		<real>19.32438140606805</real>
+		<key>longitude</key>
+		<real>-99.18449489814759</real>
+		<key>name</key>
+		<string>Facultad de Contaduria y Administración</string>
+	</dict>
+	<key>New item - 9</key>
+	<dict>
+		<key>category</key>
+		<integer>1</integer>
+		<key>id</key>
+		<integer>13</integer>
+		<key>latitude</key>
+		<real>19.32920053787188</real>
+		<key>longitude</key>
+		<real>-99.17766062957764</real>
+		<key>name</key>
+		<string>Facultad de Medicina Veterinaria y Zootecnia</string>
+	</dict>
+	<key>New item - 10</key>
+	<dict>
+		<key>category</key>
+		<integer>1</integer>
+		<key>id</key>
+		<integer>14</integer>
+		<key>latitude</key>
+		<real>19.31828641816751</real>
+		<key>longitude</key>
+		<real>-99.1777786467743</real>
+		<key>name</key>
+		<string>Facultad de Ciencias Politicas y Sociales</string>
+	</dict>
+	<key>New item - 11</key>
+	<dict>
+		<key>category</key>
+		<integer>0</integer>
+		<key>id</key>
+		<integer>15</integer>
+		<key>latitude</key>
+		<real>19.32409792329952</real>
+		<key>longitude</key>
+		<real>-99.1871449206543</real>
+		<key>name</key>
+		<string>Escuela Nacional de Trabajo Social</string>
+	</dict>
+	<key>New item - 12</key>
+	<dict>
+		<key>category</key>
+		<integer>0</integer>
+		<key>id</key>
+		<integer>16</integer>
+		<key>latitude</key>
+		<real>19.33107854338802</real>
+		<key>longitude</key>
+		<real>-99.18350784523011</real>
+		<key>name</key>
+		<string>Centro de Enseñanza de Lenguas Extranjeras</string>
+	</dict>
+	<key>New item - 13</key>
+	<dict>
+		<key>category</key>
+		<integer>5</integer>
+		<key>id</key>
+		<integer>18</integer>
+		<key>latitude</key>
+		<real>19.32467501270251</real>
+		<key>longitude</key>
+		<real>-99.18590037567139</real>
+		<key>name</key>
+		<string>Fronton Cerrado</string>
+	</dict>
+	<key>New item - 14</key>
+	<dict>
+		<key>category</key>
+		<integer>5</integer>
+		<key>id</key>
+		<integer>19</integer>
+		<key>latitude</key>
+		<real>19.33021294244914</real>
+		<key>longitude</key>
+		<real>-99.18525664550782</real>
+		<key>name</key>
+		<string>Alberca Olimpica Universitaria</string>
+	</dict>
+	<key>New item - 15</key>
+	<dict>
+		<key>category</key>
+		<integer>5</integer>
+		<key>id</key>
+		<integer>20</integer>
+		<key>latitude</key>
+		<real>19.32640626868053</real>
+		<key>longitude</key>
+		<real>-99.18686597091676</real>
+		<key>name</key>
+		<string>Estadio de Practicas Roberto &quot;Tapatio&quot; Mendez</string>
+	</dict>
+	<key>New item - 16</key>
+	<dict>
+		<key>category</key>
+		<integer>5</integer>
+		<key>id</key>
+		<integer>21</integer>
+		<key>latitude</key>
+		<real>19.33154930688229</real>
+		<key>longitude</key>
+		<real>-99.19186560852052</real>
+		<key>name</key>
+		<string>Estadio Olimpico Universitario</string>
+	</dict>
+	<key>New item - 17</key>
+	<dict>
+		<key>category</key>
+		<integer>2</integer>
+		<key>id</key>
+		<integer>22</integer>
+		<key>latitude</key>
+		<real>19.31634245395034</real>
+		<key>longitude</key>
+		<real>-99.18111531478883</real>
+		<key>name</key>
+		<string>Instituto de Investigaciones Jurídicas</string>
+	</dict>
+	<key>New item - 18</key>
+	<dict>
+		<key>category</key>
+		<integer>2</integer>
+		<key>id</key>
+		<integer>23</integer>
+		<key>latitude</key>
+		<real>19.31589695889457</real>
+		<key>longitude</key>
+		<real>-99.17959182006837</real>
+		<key>name</key>
+		<string>Instituto de Investigaciones Económicas</string>
+	</dict>
+	<key>New item - 19</key>
+	<dict>
+		<key>category</key>
+		<integer>2</integer>
+		<key>id</key>
+		<integer>24</integer>
+		<key>latitude</key>
+		<real>19.3149249654675</real>
+		<key>longitude</key>
+		<real>-99.17928068382264</real>
+		<key>name</key>
+		<string>Instituto de Investigaciones Sociales</string>
+	</dict>
+	<key>New item - 20</key>
+	<dict>
+		<key>category</key>
+		<integer>2</integer>
+		<key>id</key>
+		<integer>25</integer>
+		<key>latitude</key>
+		<real>19.31446934155926</real>
+		<key>longitude</key>
+		<real>-99.18116895896912</real>
+		<key>name</key>
+		<string>Instituto de Investigaciones Filosoficas</string>
+	</dict>
+	<key>New item - 21</key>
+	<dict>
+		<key>category</key>
+		<integer>2</integer>
+		<key>id</key>
+		<integer>26</integer>
+		<key>latitude</key>
+		<real>19.32635564742268</real>
+		<key>longitude</key>
+		<real>-99.17800395233155</real>
+		<key>name</key>
+		<string>Instituto de Astronomia</string>
+	</dict>
+	<key>New item - 22</key>
+	<dict>
+		<key>category</key>
+		<integer>2</integer>
+		<key>id</key>
+		<integer>28</integer>
+		<key>latitude</key>
+		<real>19.32554570513669</real>
+		<key>longitude</key>
+		<real>-99.18032138092042</real>
+		<key>name</key>
+		<string>Instituto de Ciencias Nucleares </string>
+	</dict>
+	<key>New item - 23</key>
+	<dict>
+		<key>category</key>
+		<integer>2</integer>
+		<key>id</key>
+		<integer>27</integer>
+		<key>latitude</key>
+		<real>19.32586462039028</real>
+		<key>longitude</key>
+		<real>-99.17926459056855</real>
+		<key>name</key>
+		<string>Instituto de Investigaciones en Materiales</string>
+	</dict>
+	<key>New item - 24</key>
+	<dict>
+		<key>category</key>
+		<integer>2</integer>
+		<key>id</key>
+		<integer>30</integer>
+		<key>latitude</key>
+		<real>19.32821849943705</real>
+		<key>longitude</key>
+		<real>-99.17836873275758</real>
+		<key>name</key>
+		<string>Instituto de Fisiología Celular</string>
+	</dict>
+	<key>New item - 25</key>
+	<dict>
+		<key>category</key>
+		<integer>3</integer>
+		<key>id</key>
+		<integer>31</integer>
+		<key>latitude</key>
+		<real>19.3333311091176</real>
+		<key>longitude</key>
+		<real>-99.18744532806397</real>
+		<key>name</key>
+		<string>Biblioteca Central</string>
+	</dict>
+	<key>New item - 26</key>
+	<dict>
+		<key>category</key>
+		<integer>4</integer>
+		<key>id</key>
+		<integer>33</integer>
+		<key>latitude</key>
+		<real>19.31480346588272</real>
+		<key>longitude</key>
+		<real>-99.18532101852418</real>
+		<key>name</key>
+		<string>Museo Universitario de Arte Contemporaneo</string>
+	</dict>
+	<key>New item - 27</key>
+	<dict>
+		<key>category</key>
+		<integer>4</integer>
+		<key>id</key>
+		<integer>34</integer>
+		<key>latitude</key>
+		<real>19.3310380475383</real>
+		<key>longitude</key>
+		<real>-99.18763576490403</real>
+		<key>name</key>
+		<string>Museo Universitario de Ciencias y Artes</string>
+	</dict>
+	<key>New item - 28</key>
+	<dict>
+		<key>category</key>
+		<integer>11</integer>
+		<key>id</key>
+		<integer>35</integer>
+		<key>latitude</key>
+		<real>19.31870153253024</real>
+		<key>longitude</key>
+		<real>-99.18196289283753</real>
+		<key>name</key>
+		<string>Espacio Escultorico</string>
+	</dict>
+	<key>New item - 29</key>
+	<dict>
+		<key>category</key>
+		<integer>4</integer>
+		<key>id</key>
+		<integer>37</integer>
+		<key>latitude</key>
+		<real>19.31186719845898</real>
+		<key>longitude</key>
+		<real>-99.18042866928101</real>
+		<key>name</key>
+		<string>Museo Universum</string>
+	</dict>
+	<key>New item - 30</key>
+	<dict>
+		<key>category</key>
+		<integer>11</integer>
+		<key>id</key>
+		<integer>38</integer>
+		<key>latitude</key>
+		<real>19.31676769809838</real>
+		<key>longitude</key>
+		<real>-99.19448344451905</real>
+		<key>name</key>
+		<string>Jardin Botanico</string>
+	</dict>
+	<key>New item - 31</key>
+	<dict>
+		<key>category</key>
+		<integer>2</integer>
+		<key>id</key>
+		<integer>39</integer>
+		<key>latitude</key>
+		<real>19.32081758692196</real>
+		<key>longitude</key>
+		<real>-99.19317452651978</real>
+		<key>name</key>
+		<string>Instituto de Biología</string>
+	</dict>
+	<key>New item - 32</key>
+	<dict>
+		<key>category</key>
+		<integer>2</integer>
+		<key>id</key>
+		<integer>40</integer>
+		<key>latitude</key>
+		<real>19.32148580893219</real>
+		<key>longitude</key>
+		<real>-99.19261662704469</real>
+		<key>name</key>
+		<string>Instituto de Ecología</string>
+	</dict>
+	<key>New item - 33</key>
+	<dict>
+		<key>category</key>
+		<integer>2</integer>
+		<key>id</key>
+		<integer>41</integer>
+		<key>latitude</key>
+		<real>19.32296398730778</real>
+		<key>longitude</key>
+		<real>-99.19145791275025</real>
+		<key>name</key>
+		<string>Instituto de Investigaciones Biomédicas</string>
+	</dict>
+	<key>New item - 34</key>
+	<dict>
+		<key>category</key>
+		<integer>7</integer>
+		<key>id</key>
+		<integer>42</integer>
+		<key>latitude</key>
+		<real>19.31370996555643</real>
+		<key>longitude</key>
+		<real>-99.18519227249146</real>
+		<key>name</key>
+		<string>Cafe &quot;Azul y Oro&quot;</string>
+	</dict>
+	<key>New item - 35</key>
+	<dict>
+		<key>category</key>
+		<integer>7</integer>
+		<key>id</key>
+		<integer>43</integer>
+		<key>latitude</key>
+		<real>19.31437821662496</real>
+		<key>longitude</key>
+		<real>-99.18517081481934</real>
+		<key>name</key>
+		<string>Restaurante &quot;Nube Siete&quot;</string>
+	</dict>
+	<key>New item - 36</key>
+	<dict>
+		<key>category</key>
+		<integer>7</integer>
+		<key>id</key>
+		<integer>44</integer>
+		<key>latitude</key>
+		<real>19.3309064359631</real>
+		<key>longitude</key>
+		<real>-99.18761698944093</real>
+		<key>name</key>
+		<string>Cafeteria Facultad de Arquitectura</string>
+	</dict>
+	<key>New item - 37</key>
+	<dict>
+		<key>category</key>
+		<integer>5</integer>
+		<key>id</key>
+		<integer>45</integer>
+		<key>latitude</key>
+		<real>19.32632527465785</real>
+		<key>longitude</key>
+		<real>-99.19186560852052</real>
+		<key>name</key>
+		<string>Campos de Entrenamiento</string>
+	</dict>
+	<key>New item - 38</key>
+	<dict>
+		<key>category</key>
+		<integer>5</integer>
+		<key>id</key>
+		<integer>46</integer>
+		<key>latitude</key>
+		<real>19.32719595829714</real>
+		<key>longitude</key>
+		<real>-99.18454854232789</real>
+		<key>name</key>
+		<string>Frontones</string>
+	</dict>
+	<key>New item - 39</key>
+	<dict>
+		<key>category</key>
+		<integer>5</integer>
+		<key>id</key>
+		<integer>47</integer>
+		<key>latitude</key>
+		<real>19.32821354386213</real>
+		<key>longitude</key>
+		<real>-99.18613641006471</real>
+		<key>name</key>
+		<string>Campos de Entrenamiento Futbol Americano</string>
+	</dict>
+	<key>New item - 40</key>
+	<dict>
+		<key>category</key>
+		<integer>4</integer>
+		<key>id</key>
+		<integer>48</integer>
+		<key>latitude</key>
+		<real>19.31458071640947</real>
+		<key>longitude</key>
+		<real>-99.18403355819703</real>
+		<key>name</key>
+		<string>Sala Nezahualcoyotl</string>
+	</dict>
+	<key>New item - 41</key>
+	<dict>
+		<key>category</key>
+		<integer>4</integer>
+		<key>id</key>
+		<integer>49</integer>
+		<key>latitude</key>
+		<real>19.31370500954212</real>
+		<key>longitude</key>
+		<real>-99.18375460845948</real>
+		<key>name</key>
+		<string>Teatro &quot;Juan Ruiz de Alarcon&quot;</string>
+	</dict>
+	<key>New item - 42</key>
+	<dict>
+		<key>category</key>
+		<integer>1</integer>
+		<key>id</key>
+		<integer>7</integer>
+		<key>latitude</key>
+		<real>19.33489017012561</real>
+		<key>longitude</key>
+		<real>-99.18363659126283</real>
+		<key>name</key>
+		<string>Facultad de Economía</string>
+	</dict>
+	<key>New item - 43</key>
+	<dict>
+		<key>category</key>
+		<integer>7</integer>
+		<key>id</key>
+		<integer>60</integer>
+		<key>latitude</key>
+		<real>19.33031418256163</real>
+		<key>longitude</key>
+		<real>-99.18346492988587</real>
+		<key>name</key>
+		<string>Restaurante &quot;Cibarium&quot;</string>
+	</dict>
+	<key>New item - 44</key>
+	<dict>
+		<key>category</key>
+		<integer>11</integer>
+		<key>id</key>
+		<integer>61</integer>
+		<key>latitude</key>
+		<real>19.33311850873563</real>
+		<key>longitude</key>
+		<real>-99.18514935714722</real>
+		<key>name</key>
+		<string>Las Islas</string>
+	</dict>
+	<key>New item - 45</key>
+	<dict>
+		<key>category</key>
+		<integer>1</integer>
+		<key>id</key>
+		<integer>1</integer>
+		<key>latitude</key>
+		<real>19.32483194017</real>
+		<key>longitude</key>
+		<real>-99.17932896358491</real>
+		<key>name</key>
+		<string>Facultad de Ciencias</string>
+	</dict>
+	<key>New item - 46</key>
+	<dict>
+		<key>category</key>
+		<integer>1</integer>
+		<key>id</key>
+		<integer>62</integer>
+		<key>latitude</key>
+		<real>19.32280199580957</real>
+		<key>longitude</key>
+		<real>-99.17801468116761</real>
+		<key>name</key>
+		<string>Anexo Facultad de Química</string>
+	</dict>
+	<key>New item - 47</key>
+	<dict>
+		<key>category</key>
+		<integer>1</integer>
+		<key>id</key>
+		<integer>11</integer>
+		<key>latitude</key>
+		<real>19.33131139431734</real>
+		<key>longitude</key>
+		<real>-99.18468265277863</real>
+		<key>name</key>
+		<string>Facultad de Ingeniería</string>
+	</dict>
+	<key>New item - 48</key>
+	<dict>
+		<key>category</key>
+		<integer>12</integer>
+		<key>id</key>
+		<integer>63</integer>
+		<key>latitude</key>
+		<real>19.32938277115886</real>
+		<key>longitude</key>
+		<real>-99.18214528305055</real>
+		<key>name</key>
+		<string>Torre de Ingeniería</string>
+	</dict>
+	<key>New item - 49</key>
+	<dict>
+		<key>category</key>
+		<integer>12</integer>
+		<key>id</key>
+		<integer>64</integer>
+		<key>latitude</key>
+		<real>19.33213649385732</real>
+		<key>longitude</key>
+		<real>-99.18830363494874</real>
+		<key>name</key>
+		<string>Rectoría</string>
+	</dict>
+	<key>New item - 50</key>
+	<dict>
+		<key>category</key>
+		<integer>5</integer>
+		<key>id</key>
+		<integer>65</integer>
+		<key>latitude</key>
+		<real>19.3319542636427</real>
+		<key>longitude</key>
+		<real>-99.19212310058595</real>
+		<key>name</key>
+		<string>Estadio Olímpico Universitario</string>
+	</dict>
+	<key>New item - 51</key>
+	<dict>
+		<key>category</key>
+		<integer>1</integer>
+		<key>id</key>
+		<integer>17</integer>
+		<key>latitude</key>
+		<real>19.32620378354886</real>
+		<key>longitude</key>
+		<real>-99.18257443649293</real>
+		<key>name</key>
+		<string>Anexo Facultad de Ingeniería</string>
+	</dict>
+	<key>New item - 52</key>
+	<dict>
+		<key>category</key>
+		<integer>1</integer>
+		<key>id</key>
+		<integer>10</integer>
+		<key>latitude</key>
+		<real>19.33163029831477</real>
+		<key>longitude</key>
+		<real>-99.18163029891969</real>
+		<key>name</key>
+		<string>Facultad de Química</string>
+	</dict>
+	<key>New item - 53</key>
+	<dict>
+		<key>category</key>
+		<integer>2</integer>
+		<key>id</key>
+		<integer>29</integer>
+		<key>latitude</key>
+		<real>19.32540396482416</real>
+		<key>longitude</key>
+		<real>-99.17665748340607</real>
+		<key>name</key>
+		<string>Instituto de Física</string>
+	</dict>
+	<key>New item - 54</key>
+	<dict>
+		<key>category</key>
+		<integer>10</integer>
+		<key>id</key>
+		<integer>58</integer>
+		<key>latitude</key>
+		<real>19.32572288035437</real>
+		<key>longitude</key>
+		<real>-99.1878637526703</real>
+		<key>name</key>
+		<string>Bicipuma Estadio &quot;Tapatio&quot; Mendez</string>
+	</dict>
+	<key>New item - 55</key>
+	<dict>
+		<key>category</key>
+		<integer>10</integer>
+		<key>id</key>
+		<integer>50</integer>
+		<key>latitude</key>
+		<real>19.33155436884802</real>
+		<key>longitude</key>
+		<real>-99.18936042530061</real>
+		<key>name</key>
+		<string>Bicipuma Estadio Olímpico</string>
+	</dict>
+	<key>New item - 56</key>
+	<dict>
+		<key>category</key>
+		<integer>10</integer>
+		<key>id</key>
+		<integer>55</integer>
+		<key>latitude</key>
+		<real>19.33346271873869</real>
+		<key>longitude</key>
+		<real>-99.18091683132172</real>
+		<key>name</key>
+		<string>Bicipuma Medicina</string>
+	</dict>
+	<key>New item - 57</key>
+	<dict>
+		<key>category</key>
+		<integer>10</integer>
+		<key>id</key>
+		<integer>53</integer>
+		<key>latitude</key>
+		<real>19.3340195275016</real>
+		<key>longitude</key>
+		<real>-99.18389944774628</real>
+		<key>name</key>
+		<string>Bicipuma Derecho</string>
+	</dict>
+	<key>New item - 58</key>
+	<dict>
+		<key>category</key>
+		<integer>10</integer>
+		<key>id</key>
+		<integer>36</integer>
+		<key>latitude</key>
+		<real>19.32409792330026</real>
+		<key>longitude</key>
+		<real>-99.17465655548096</real>
+		<key>name</key>
+		<string>Bicicentro Metro C.U.</string>
+	</dict>
+	<key>New item - 59</key>
+	<dict>
+		<key>category</key>
+		<integer>5</integer>
+		<key>id</key>
+		<integer>51</integer>
+		<key>latitude</key>
+		<real>19.33149868721671</real>
+		<key>longitude</key>
+		<real>-99.18668358070374</real>
+		<key>name</key>
+		<string>Bicipuma Arquitectura</string>
+	</dict>
+	<key>New item - 60</key>
+	<dict>
+		<key>category</key>
+		<integer>10</integer>
+		<key>id</key>
+		<integer>52</integer>
+		<key>latitude</key>
+		<real>19.33362469966558</real>
+		<key>longitude</key>
+		<real>-99.18690888626099</real>
+		<key>name</key>
+		<string>Bicipuma Filosofia</string>
+	</dict>
+	<key>New item - 61</key>
+	<dict>
+		<key>category</key>
+		<integer>10</integer>
+		<key>id</key>
+		<integer>57</integer>
+		<key>latitude</key>
+		<real>19.32788946461992</real>
+		<key>longitude</key>
+		<real>-99.18293385250092</real>
+		<key>name</key>
+		<string>Bicipuma Anexo de Ingeniería</string>
+	</dict>
+	<key>New item - 62</key>
+	<dict>
+		<key>category</key>
+		<integer>10</integer>
+		<key>id</key>
+		<integer>54</integer>
+		<key>latitude</key>
+		<real>19.33204031682499</real>
+		<key>longitude</key>
+		<real>-99.18444125396729</real>
+		<key>name</key>
+		<string>Bicipuma Ingeniería</string>
+	</dict>
+	<key>New item - 63</key>
+	<dict>
+		<key>category</key>
+		<integer>10</integer>
+		<key>id</key>
+		<integer>59</integer>
+		<key>latitude</key>
+		<real>19.32512048382981</real>
+		<key>longitude</key>
+		<real>-99.1789319966507</real>
+		<key>name</key>
+		<string>Bicipuma Ciencias</string>
+	</dict>
+	<key>New item - 64</key>
+	<dict>
+		<key>category</key>
+		<integer>10</integer>
+		<key>id</key>
+		<integer>56</integer>
+		<key>latitude</key>
+		<real>19.3307039564095</real>
+		<key>longitude</key>
+		<real>-99.1815605614853</real>
+		<key>name</key>
+		<string>Bicipuma Química</string>
+	</dict>
+	<key>New item - 65</key>
+	<dict>
+		<key>category</key>
+		<integer>3</integer>
+		<key>id</key>
+		<integer>32</integer>
+		<key>latitude</key>
+		<real>19.31609945679773</real>
+		<key>longitude</key>
+		<real>-99.18499915344239</real>
+		<key>name</key>
+		<string>Biblioteca Nacional de México</string>
+	</dict>
+	<key>New item - 66</key>
+	<dict>
+		<key>category</key>
+		<integer>7</integer>
+		<key>id</key>
+		<integer>66</integer>
+		<key>latitude</key>
+		<real>19.32454845818322</real>
+		<key>longitude</key>
+		<real>-99.17938797218324</real>
+		<key>name</key>
+		<string>Comedor de Ciencias</string>
+	</dict>
+</dict>
+</plist>

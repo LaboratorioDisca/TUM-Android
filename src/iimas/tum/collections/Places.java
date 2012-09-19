@@ -28,16 +28,10 @@ public class Places {
 		this.places = new ArrayList<Place>();
 		
 		try {
-			NSDictionary rootDict = (NSDictionary) PropertyListParser.parse(ApplicationBase.rawTextStream(R.raw.stations));
-			for(String object : rootDict.allKeys()) {
-				NSDictionary subdict = (NSDictionary) rootDict.objectForKey(object);
-				String name = subdict.objectForKey("name").toString();
-				float lat = Float.parseFloat(subdict.objectForKey("latitude").toString());
-				float lon = Float.parseFloat(subdict.objectForKey("longitude").toString());
-				
-				Place station = new Place(name, new GeoPoint((int) (lat * 1e6), (int) (lon * 1e6)), Place.Category.STOP);
-				this.places.add(station);
-			}
+			NSDictionary stationsDict = (NSDictionary) PropertyListParser.parse(ApplicationBase.rawTextStream(R.raw.stations));
+			this.addPlacesFromDictionary(stationsDict);
+			NSDictionary placesDict = (NSDictionary) PropertyListParser.parse(ApplicationBase.rawTextStream(R.raw.places));
+			this.addPlacesFromDictionary(placesDict);
 		} catch (Exception e) {	e.printStackTrace(); }
 		
 		Collections.sort(places, new Comparator<Place>() {
@@ -46,5 +40,21 @@ public class Places {
 	        }
 	    });
 
+	}
+	
+	public void addPlacesFromDictionary(NSDictionary dictionary) {
+		for(String object : dictionary.allKeys()) {
+			NSDictionary subdict = (NSDictionary) dictionary.objectForKey(object);
+			String name = subdict.objectForKey("name").toString();
+			float lat = Float.parseFloat(subdict.objectForKey("latitude").toString());
+			float lon = Float.parseFloat(subdict.objectForKey("longitude").toString());
+			
+			int category = 9;
+			if(subdict.objectForKey("category") != null)
+				category = Integer.parseInt(subdict.objectForKey("category").toString());
+			
+			Place station = new Place(name, new GeoPoint((int) (lat * 1e6), (int) (lon * 1e6)), category);
+			this.places.add(station);
+		}
 	}
 }

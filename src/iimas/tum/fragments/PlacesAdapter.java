@@ -49,7 +49,7 @@ public class PlacesAdapter extends ArrayAdapter<Place> implements Filterable {
         
         Place place = this.filteringPlacesSet.get(position);
         placeHolder.title.setText(place.name);
-        placeHolder.kind.setText(context.getResources().getString(place.getResourceId()));
+        placeHolder.kind.setText(context.getResources().getString(place.getResourceId()).toUpperCase());
         return view;
     }
     

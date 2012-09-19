@@ -53,4 +53,17 @@
 	<string name="accept">Accept</string>
 	<string name="none"></string>
 	
+	<string name="school">School</string>
+	<string name="faculty">Faculty</string>
+	<string name="institute">Institute</string>
+	<string name="library">Library</string>
+	<string name="museum">Cultural Building</string>
+	<string name="sportCenter">Sports Building</string>
+	<string name="foodStore">Grocery Store</string>
+	<string name="restaurant">Restaurant</string>
+	<string name="laboratory">Laboratory</string>
+	<string name="pumabusStop">Pumabús Stop</string>
+	<string name="bicipumaStation">Bicipuma Station</string>
+	<string name="otherBuilding">Other</string>
+	<string name="openSpace">Open Space</string>
 </resources>

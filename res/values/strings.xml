@@ -50,11 +50,19 @@
 	<string name="connectivity_problem_title">Aviso</string>
 	<string name="connectivity_problem">No ha sido posible contactar con el servidor de datos. Por favor, revisa tu conexión a internet.</string>
 	
-	<string name="stop">Parada del Pumabús</string>
+	<string name="school">Escuela</string>
 	<string name="faculty">Facultad</string>
 	<string name="institute">Instituto</string>
 	<string name="library">Biblioteca</string>
-	<string name="store">Tiendita</string>
+	<string name="museum">Edificio Cultural</string>
+	<string name="sportCenter">Espacio Deportivo</string>
+	<string name="foodStore">Tiendita</string>
+	<string name="restaurant">Restaurante</string>
+	<string name="laboratory">Laboratorio</string>
+	<string name="pumabusStop">Parada del Pumabús</string>
+	<string name="bicipumaStation">Estación Bicipuma</string>
+	<string name="otherBuilding">Otro</string>
+	<string name="openSpace">Espacio Abierto</string>
 	
 	<string name="search">Búsqueda</string>
 	
