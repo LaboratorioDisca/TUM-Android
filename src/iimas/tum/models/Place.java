@@ -2,15 +2,29 @@ package iimas.tum.models;
 
 import iimas.tum.R;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.google.android.maps.GeoPoint;
 
-public class Place {
+/*
+ * Implementing parceable for passing the selected object between activities
+ * NOTE: the FIFO "serialization" and "deserialization" ocurring at write and read operations
+ * order has to be mantained.
+ */
+public class Place implements Parcelable {
 	
 	public String name;
 	public GeoPoint coordinate;
 	public int resourceCategory;
 	
-	public Place(String name, GeoPoint coordinate, int category){
+    private Place(Parcel in) {
+    	resourceCategory = in.readInt();
+    	name = in.readString();
+    	coordinate = new GeoPoint(in.readInt(), in.readInt());
+    }
+    
+	public Place(String name, GeoPoint coordinate, int category)  {
 		this.name = name;
 		this.coordinate = coordinate;
 		switch(category) {
@@ -64,5 +78,27 @@ public class Place {
 	public int getResourceId() {
         return this.resourceCategory;
 	}
+
+	public int describeContents() {
+		return 0;
+	}
+
+	public void writeToParcel(Parcel dest, int flags) {
+		dest.writeInt(resourceCategory);
+		dest.writeString(name);
+		dest.writeInt(coordinate.getLatitudeE6());
+		dest.writeInt(coordinate.getLongitudeE6());
+	}
+	
+	public static final Parcelable.Creator<Place> CREATOR = new Parcelable.Creator<Place>() {
+        public Place createFromParcel(Parcel in) {
+            return new Place(in);
+        }
+
+        public Place[] newArray(int size) {
+            return new Place[size];
+        }
+    };
+
 	
 }

@@ -12,7 +12,6 @@ import iimas.tum.activities.AboutViewActivity;
 import iimas.tum.activities.LandingViewActivity;
 import iimas.tum.activities.TimeTableViewActivity;
 import iimas.tum.fragments.MenuEntryAdapter;
-import android.graphics.drawable.TransitionDrawable;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ListView;

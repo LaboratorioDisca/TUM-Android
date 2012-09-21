@@ -21,7 +21,6 @@ import android.widget.ImageView;
 public class SearchPlacesActivity extends ListActivity {
 
 	protected PlacesAdapter adapter;
-	public static Place lastSelected;
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -31,12 +30,17 @@ public class SearchPlacesActivity extends ListActivity {
 		this.getListView().setTextFilterEnabled(true);
 		
 	    loadAdapter();
+	    
+	    // Defines the actions to be fired upon a place selection from the list
 	    this.getListView().setOnItemClickListener(new OnItemClickListener() {
 			public void onItemClick(AdapterView<?> adapter, View arg1, int pos, long id) {
-				lastSelected = (Place) adapter.getItemAtPosition(pos);
 				Intent intentActivity = new Intent(ApplicationBase.currentActivity, MapViewActivity.class);
+				// pass the last selected place with popup window set
+				Places.last = (Place) adapter.getItemAtPosition(pos);
+				intentActivity.putExtra("launchPopup", true);
+				
 				ApplicationBase.currentActivity.startActivity(intentActivity);
-		        overridePendingTransition(R.anim.slide_up, R.anim.slide_down);
+		        overridePendingTransition(R.anim.slide_up, R.anim.slide_down);		        
 			}
         });
 	    

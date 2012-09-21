@@ -7,6 +7,7 @@ import java.util.TimerTask;
 import org.json.JSONArray;
 import iimas.tum.R;
 import iimas.tum.collections.Instants;
+import iimas.tum.collections.Places;
 import iimas.tum.collections.Vehicles;
 import iimas.tum.models.Instant;
 import iimas.tum.models.Place;
@@ -28,9 +29,7 @@ import com.slidingmenu.lib.app.SlidingMapActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
-import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
-import android.graphics.drawable.TransitionDrawable;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
@@ -38,7 +37,6 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.ContextMenu;
 import android.view.ContextMenu.ContextMenuInfo;
-import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -51,7 +49,6 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.PopupWindow;
 import android.widget.TextView;
-import android.widget.Toast;
 
 public class MapViewActivity extends SlidingMapActivity implements LocationListener {
 	
@@ -62,7 +59,7 @@ public class MapViewActivity extends SlidingMapActivity implements LocationListe
 	private GeoPoint lastLocation;
 	
 	private OverlayItemForInstant overlayItem;
-	private PopupWindow activePopup;
+	public PopupWindow upperPopupWindow;
 	
 	private VehiclesOverlay vehiclesOverlay;
 	private HashMap<Integer, RouteOverlay> routesOverlay;
@@ -112,11 +109,21 @@ public class MapViewActivity extends SlidingMapActivity implements LocationListe
 
 		this.compassEnabler(true);
 
+	    // Rescue the passed object (if any) when transferring from SearchPlacesActivity
+		Boolean showPopup = false;
+		if(this.getIntent().hasExtra("launchPopup")) {
+		    showPopup = this.getIntent().getExtras().getBoolean("launchPopup");
+		}
+	    if(Places.last != null) {
+	    	this.setPlaceOnMapWithPopup(Places.last, showPopup);
+	    }
+	    
 		Vehicles.fetchVehicles();
    		ApplicationBase.globalTimer().scheduleAtFixedRate(newInstantFetcherCall(), 0, 10000);
-		this.setPlaceOnMap(SearchPlacesActivity.lastSelected);
 		this.clearOverlays();
 		this.drawPlaces();
+		
+		
 		
 	    locationUpdaterButton = (ImageView) findViewById(R.id.location_updater);
 	    
@@ -263,7 +270,7 @@ public class MapViewActivity extends SlidingMapActivity implements LocationListe
     					
     					OverlayItemForInstant overlayItem = new OverlayItemForInstant(vehicleInstant, route, vehicle); 
     					if(this.overlayItem != null && this.overlayItem.instant.vehicleId == vehicleInstant.vehicleId) {
-    						this.unsetCurrentOverlayItem(false);
+    						this.unsetCurrentOverlayItemCenteringMapOnLastZoom(false);
     						this.setCurrentOverlayItem(overlayItem);
     						selectedVehicleIsDraw = true;
     					}
@@ -283,7 +290,7 @@ public class MapViewActivity extends SlidingMapActivity implements LocationListe
     	}
     	
     	if(!selectedVehicleIsDraw && overlayItem != null) {
-    		this.unsetCurrentOverlayItem(true);
+    		this.unsetCurrentOverlayItemCenteringMapOnLastZoom(true);
     	}
     	
    }
@@ -312,9 +319,9 @@ public class MapViewActivity extends SlidingMapActivity implements LocationListe
     
     
     public void showPopupFor(OverlayItemForInstant item) {
+		// Retrieve the extended vehicle layout and fill field values
 		View layout = this.getLayoutInflater().inflate(R.layout.vehicle_extended_info, null, true);
 		
-    	//get the LayoutInflater and inflate the custom_toast layout
 	    View ribbon = (View) layout.findViewById(R.id.mini_ribbon);
 	    ribbon.setBackgroundColor(Color.parseColor(item.route.color));
 	    TextView title = (TextView) layout.findViewById(R.id.route_title);
@@ -329,25 +336,19 @@ public class MapViewActivity extends SlidingMapActivity implements LocationListe
 	    TextView speed = (TextView) layout.findViewById(R.id.instant_speed);
 	    speed.setText(this.getResources().getString(R.string.speed) +" "+item.getSpeed()+" km/h");
 
-		activePopup = new PopupWindow(layout,  LayoutParams.WRAP_CONTENT,  LayoutParams.WRAP_CONTENT,    true);
-		activePopup.setFocusable(false);
-		activePopup.setBackgroundDrawable(new BitmapDrawable());
-		activePopup.setAnimationStyle(android.R.style.Animation_Toast);
-
 	    ImageButton button = (ImageButton) layout.findViewById(R.id.close_button);
 	    button.setOnClickListener(new OnClickListener() {
 	    	
 			public void onClick(View arg0) {
-				((MapViewActivity) ApplicationBase.currentActivity).unsetCurrentOverlayItem(true);
+				((MapViewActivity) ApplicationBase.currentActivity).unsetCurrentOverlayItemCenteringMapOnLastZoom(true);
 			}
  
 		});
 	    
-	    View header = (View) findViewById(R.id.map_title);
-	    
-	    activePopup.showAsDropDown(header);
 	    this.mapView.getController().animateTo(item.getPoint());
 	    this.mapView.getController().setZoom(18);
+	    // Finally attach the view to the PopupWindow
+	    attachPopupWindow(layout);
     }
 	
 	public void setCurrentOverlayItem(OverlayItemForInstant item) {
@@ -356,7 +357,7 @@ public class MapViewActivity extends SlidingMapActivity implements LocationListe
 		this.overlayItem.setSelected();
 	}
 	
-	public void unsetCurrentOverlayItem(boolean centerOnLastZoom) {
+	public void unsetCurrentOverlayItemCenteringMapOnLastZoom(boolean centerOnLastZoom) {
 		if(this.overlayItem != null) {
 			this.overlayItem.setDeselected();
 			this.overlayItem = null;
@@ -365,8 +366,10 @@ public class MapViewActivity extends SlidingMapActivity implements LocationListe
 		if(centerOnLastZoom)
 			this.resetMapToDefaultZoomAndCenter();
 		
-		if(activePopup != null)
-			activePopup.dismiss();
+		if(upperPopupWindow != null) {
+			upperPopupWindow.dismiss();
+			upperPopupWindow = null;
+		}
 	}
 	
 	public OverlayItemForInstant getCurrentOverlayItem() {
@@ -388,31 +391,39 @@ public class MapViewActivity extends SlidingMapActivity implements LocationListe
 		
 	}
 	
-	public void setPlaceOnMap(Place place) {
+	public void setPlaceOnMapWithPopup(Place place, boolean withPopup) {
 		if(place != null) {
 			this.activePlace = place;
-			this.unsetCurrentOverlayItem(false);
-			this.setLocation(place.coordinate);
-			this.resetMapToLastCenterWithZoom(18);
 			
-			View toastView = getLayoutInflater().inflate(R.layout.place_overlay, null);
-			
-			TextView name = (TextView) toastView.findViewById(R.id.place_name);
-			name.setText(activePlace.name);
-			
-			TextView type = (TextView) toastView.findViewById(R.id.place_type);
-			type.setText(this.getResources().getString(activePlace.getResourceId()));
-			
-			Toast toast = new Toast(this);
-			toast.setView(toastView);
-			toast.setGravity(Gravity.BOTTOM, 0, 0);
-			toast.setDuration(Toast.LENGTH_LONG);
-			toast.show();
+			if(withPopup) {
+				this.unsetCurrentOverlayItemCenteringMapOnLastZoom(false);
+				this.setLocation(place.coordinate);
+				this.resetMapToLastCenterWithZoom(18);
+				
+				View placeView = getLayoutInflater().inflate(R.layout.place_overlay, null);
+				
+				TextView name = (TextView) placeView.findViewById(R.id.place_name);
+				name.setText(activePlace.name);
+				
+				TextView type = (TextView) placeView.findViewById(R.id.place_type);
+				type.setText(this.getResources().getString(activePlace.getResourceId()));
+				
+				ImageButton button = (ImageButton) placeView.findViewById(R.id.close_button);
+			    button.setOnClickListener(new OnClickListener() {
+			    	
+					public void onClick(View arg0) {
+						((MapViewActivity) ApplicationBase.currentActivity).unsetCurrentOverlayItemCenteringMapOnLastZoom(true);
+					}
+		 
+				});
+			    // Finally attach the view to a PopupWindow
+			    attachPopupWindow(placeView);
+			}
 		}
 	}
 	
 	public void resetPlaceOnMap() {
-		this.setPlaceOnMap(activePlace);
+		this.setPlaceOnMapWithPopup(activePlace, true);
 	}
 	
 	@Override
@@ -437,4 +448,16 @@ public class MapViewActivity extends SlidingMapActivity implements LocationListe
         overridePendingTransition(R.anim.slide_up, R.anim.slide_down);
         return true;
     }
+	
+	private void attachPopupWindow(View contentView) {
+		upperPopupWindow = new PopupWindow(contentView,  LayoutParams.WRAP_CONTENT,  LayoutParams.WRAP_CONTENT,    true);
+		upperPopupWindow.setFocusable(false);
+		upperPopupWindow.setAnimationStyle(android.R.style.Animation_Toast);
+		
+		findViewById(R.id.map_title).post(new Runnable() {
+	    	   public void run() {
+	    		   upperPopupWindow.showAsDropDown((View) findViewById(R.id.map_title));
+	    	   }
+	    });
+	}
 }

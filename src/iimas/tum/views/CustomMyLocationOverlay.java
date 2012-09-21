@@ -16,7 +16,7 @@ public class CustomMyLocationOverlay extends MyLocationOverlay {
 	protected void drawCompass(Canvas canvas, float bearing) {
 		if(ApplicationBase.currentActivity != null && ApplicationBase.currentActivity instanceof MapViewActivity) {
 			MapViewActivity activity = (MapViewActivity) ApplicationBase.currentActivity;
-			if(activity.getCurrentOverlayItem() != null) {
+			if(activity.upperPopupWindow != null) {
 				canvas.translate(0, 170);
 				super.drawCompass(canvas, bearing);
 			} else {

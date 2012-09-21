@@ -24,4 +24,15 @@
            android:layout_marginTop="25dp"
        	   android:textColor="#fff"
            android:textSize="12sp" />
+	<ImageButton
+                android:id="@+id/close_button"
+                android:contentDescription="@string/none"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="5dp"
+                android:layout_marginTop="8dip"
+                android:background="#00000000"
+                android:src="@drawable/close" />
 </RelativeLayout>

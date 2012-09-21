@@ -14,6 +14,7 @@ import iimas.tum.models.Place;
 import iimas.tum.utils.ApplicationBase;
 
 public class Places {
+	public static Place last;
 	protected static Places singleton;
 	public ArrayList<Place> places;
 

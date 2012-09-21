@@ -44,7 +44,7 @@ public class VehiclesOverlay extends ItemizedOverlay<OverlayItem> {
 		
 		if(item != null && ApplicationBase.currentActivity instanceof MapViewActivity) {
 			MapViewActivity mapView = (MapViewActivity) ApplicationBase.currentActivity;
-			mapView.unsetCurrentOverlayItem(false);
+			mapView.unsetCurrentOverlayItemCenteringMapOnLastZoom(false);
 			mapView.setCurrentOverlayItem(item);
 		}
 		return true;
