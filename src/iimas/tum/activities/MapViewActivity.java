@@ -21,10 +21,12 @@ import iimas.tum.views.PlacesOverlay;
 import iimas.tum.views.RouteOverlay;
 import iimas.tum.views.VehiclesOverlay;
 import com.google.android.maps.GeoPoint;
-import com.google.android.maps.MapActivity;
 import com.google.android.maps.Overlay;
 import com.google.android.maps.OverlayItem;
+import com.slidingmenu.lib.app.SlidingMapActivity;
+
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
@@ -33,9 +35,9 @@ import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.ContextMenu;
+import android.view.ContextMenu.ContextMenuInfo;
 import android.view.Gravity;
-import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -45,11 +47,12 @@ import android.view.animation.Animation;
 import android.view.animation.LinearInterpolator;
 import android.view.animation.RotateAnimation;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class MapViewActivity extends MapActivity implements LocationListener {
+public class MapViewActivity extends SlidingMapActivity implements LocationListener {
 	
 	public PinchableMapView mapView;
 	private CustomMyLocationOverlay locationOverlay;
@@ -65,7 +68,7 @@ public class MapViewActivity extends MapActivity implements LocationListener {
 	
 	private Place activePlace;
 	
-	private ImageButton locationUpdaterButton;
+	private ImageView locationUpdaterButton;
 	
     /** Called when the activity is first created. */
     @Override
@@ -73,7 +76,26 @@ public class MapViewActivity extends MapActivity implements LocationListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
         ApplicationBase.currentActivity = this;
+        
+        /* Setting up the sliding menu characteristics */
+        
+		ImageView menuTriggerIcon= (ImageView) findViewById(R.id.menu_trigger_icon);
+		MenuList.prepareMenuElementsForActivity(this, menuTriggerIcon);
+		
+		final ImageView extraOptionsIcon = (ImageView) findViewById(R.id.extra_options_icon);
+        
+		extraOptionsIcon.setOnClickListener(new OnClickListener() {
 
+			public void onClick(View arg0) {
+				 openContextMenu(extraOptionsIcon);
+			}
+	    	
+	    });
+		
+		/* sliding menu characteristics set */
+        
+		registerForContextMenu(extraOptionsIcon);
+		
         this.setDefaultLocation();
         
         mapView = (PinchableMapView) findViewById(R.id.mapview);
@@ -95,7 +117,7 @@ public class MapViewActivity extends MapActivity implements LocationListener {
 		this.clearOverlays();
 		this.drawPlaces();
 		
-	    locationUpdaterButton = (ImageButton) findViewById(R.id.location_updater);
+	    locationUpdaterButton = (ImageView) findViewById(R.id.location_updater);
 	    
 	    final AlphaAnimation animation=new AlphaAnimation(1, 0.2f);
 	    animation.setDuration(1200);
@@ -265,20 +287,6 @@ public class MapViewActivity extends MapActivity implements LocationListener {
     	
    }
     
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.map_menu, menu);
-        return true;
-    }
-    
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        if(!MenuList.onSelectedMenuItem(item, this, R.id.mapview)) 
-        	return super.onOptionsItemSelected(item);
-        return true;
-    }
-    
     public void resetMapToDefaultZoomAndCenter() {
     	this.setDefaultLocation();
     	this.resetMapToLastZoomAndCenter();
@@ -406,4 +414,26 @@ public class MapViewActivity extends MapActivity implements LocationListener {
 		this.setPlaceOnMap(activePlace);
 	}
 	
+	@Override
+    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenuInfo menuInfo) {
+        super.onCreateContextMenu(menu, v, menuInfo);
+        getMenuInflater().inflate(R.menu.map_actions , menu);
+    }
+	
+	@Override
+    public boolean onContextItemSelected(MenuItem item) {
+		Intent intentActivity = null;
+		
+        switch(item.getItemId()){
+            case R.id.routes_selected:
+            	intentActivity = new Intent(ApplicationBase.currentActivity, RoutesListActivity.class);
+                break;
+            case R.id.places_selected:
+            	intentActivity = new Intent(ApplicationBase.currentActivity, SearchPlacesActivity.class);
+                break;
+        }
+		ApplicationBase.currentActivity.startActivity(intentActivity);
+        overridePendingTransition(R.anim.slide_up, R.anim.slide_down);
+        return true;
+    }
 }

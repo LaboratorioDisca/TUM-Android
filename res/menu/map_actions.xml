@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+    <item
+        android:id="@+id/routes_selected"
+        android:title="@string/menu_routes"/>
+ 
+    <item
+        android:id="@+id/places_selected"
+        android:title="@string/menu_places"/>
+</menu>

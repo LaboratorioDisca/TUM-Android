@@ -4,8 +4,6 @@ import iimas.tum.R;
 import iimas.tum.fragments.RoutesListAdapter;
 import iimas.tum.models.Route;
 import iimas.tum.utils.ApplicationBase;
-import iimas.tum.utils.MenuList;
-
 import java.util.HashMap;
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -14,11 +12,10 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.KeyEvent;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.AdapterView;
+import android.widget.ImageView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 
@@ -63,6 +60,17 @@ public class RoutesListActivity extends Activity {
         
         ApplicationBase.currentActivity = this;
         
+        final ImageView closeMoreIcon = (ImageView) findViewById(R.id.close_more_icon);
+        closeMoreIcon.setOnClickListener(new OnClickListener() {
+
+			public void onClick(View arg0) {
+				Intent intentActivity = new Intent(ApplicationBase.currentActivity, MapViewActivity.class);
+				ApplicationBase.currentActivity.startActivity(intentActivity);
+		        overridePendingTransition(R.anim.slide_up, R.anim.slide_down);
+			}
+	    	
+	    });
+        
         if(routes != null) {
         	drawRoutesList();
         } else {        
@@ -88,21 +96,7 @@ public class RoutesListActivity extends Activity {
 			}
         });
     }
-    
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.map_menu, menu);
-        return true;
-    }
-    
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        if(!MenuList.onSelectedMenuItem(item, this, R.id.routes)) 
-        	return super.onOptionsItemSelected(item);
-        return true;
-    }
-    
+
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK) {

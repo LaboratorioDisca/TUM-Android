@@ -8,44 +8,57 @@
 
     <RelativeLayout
         android:id="@+id/title"
-        android:layout_width="wrap_content"
-        android:layout_height="45dp"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentTop="true"
-        android:background="@drawable/pattern_headers" >
+        android:layout_width="match_parent"
+        android:layout_height="55dip"
+        android:orientation="vertical"
+        android:background="#214B69" >
+		
 
+        <ImageView 
+            android:id="@+id/menu_trigger_icon"
+            android:src="@drawable/menu_navbar"
+            android:padding="10dp"
+            android:layout_width="55dp"
+        	android:layout_height="55dp"
+            android:contentDescription="@string/none" />
+
+        <View
+            android:layout_height="fill_parent" 
+            android:layout_width="0.2dp"
+            android:layout_alignRight="@+id/menu_trigger_icon"
+            android:layout_marginLeft="20dp"
+            android:background="#163245"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="left"
-            android:layout_marginLeft="25dp"
-            android:paddingTop="10dip"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true"
+            android:gravity="center"
             android:shadowColor="#000"
             android:shadowDx="1.5"
             android:shadowDy="1.5"
             android:shadowRadius="1.3"
-            android:text="@string/about_title"
+            android:text="@string/map_title"
             android:textColor="#fff"
-            android:textSize="19sp"
+            android:textSize="22sp"
             android:textStyle="bold" />
         
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-			<ImageView
-			    android:id="@+id/more_info_icon"
-			    android:layout_width="wrap_content"
-			    android:layout_height="wrap_content"
-			    android:contentDescription="@string/none"
-			    android:layout_alignParentRight="true"
-			    android:layout_alignParentTop="true"
-			    android:layout_marginTop="5dp"
-			    android:layout_marginRight="10dp"
-			    android:src="@drawable/info_navbar" />
-
-        </RelativeLayout>
+        <View
+            android:layout_height="fill_parent" 
+            android:layout_width="0.2dp"
+            android:layout_alignLeft="@+id/more_info_icon"
+            android:layout_marginRight="25dp"
+            android:background="#163245"/>
+        
+		<ImageView
+            android:id="@+id/more_info_icon"
+            android:padding="10dp"
+            android:layout_width="55dp"
+        	android:layout_height="55dp"
+            android:contentDescription="@string/none"
+            android:layout_alignParentRight="true"
+            android:src="@drawable/info_navbar"
+            android:background="#00ffffff" />
     </RelativeLayout>
 
     <TextView

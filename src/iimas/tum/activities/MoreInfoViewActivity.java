@@ -11,7 +11,7 @@ import android.view.WindowManager;
 import android.view.View.OnClickListener;
 import android.widget.ImageView;
 
-public class MoreInfoActivity extends Activity {
+public class MoreInfoViewActivity extends Activity {
 
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);

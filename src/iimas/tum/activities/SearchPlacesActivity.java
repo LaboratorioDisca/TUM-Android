@@ -5,15 +5,11 @@ import iimas.tum.collections.Places;
 import iimas.tum.fragments.PlacesAdapter;
 import iimas.tum.models.Place;
 import iimas.tum.utils.ApplicationBase;
-import iimas.tum.utils.MenuList;
 import android.app.ListActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
@@ -39,6 +35,7 @@ public class SearchPlacesActivity extends ListActivity {
 				lastSelected = (Place) adapter.getItemAtPosition(pos);
 				Intent intentActivity = new Intent(ApplicationBase.currentActivity, MapViewActivity.class);
 				ApplicationBase.currentActivity.startActivity(intentActivity);
+		        overridePendingTransition(R.anim.slide_up, R.anim.slide_down);
 			}
         });
 	    
@@ -47,6 +44,18 @@ public class SearchPlacesActivity extends ListActivity {
 	    final ImageView searchImage = (ImageView) findViewById(R.id.search_icon);
 	    final EditText filterEditText = (EditText) findViewById(R.id.search_field);
 
+        final ImageView closeIcon= (ImageView) findViewById(R.id.close_list);
+        closeIcon.setOnClickListener(new OnClickListener() {
+
+			public void onClick(View arg0) {
+				Intent intentActivity = new Intent(ApplicationBase.currentActivity, MapViewActivity.class);
+				ApplicationBase.currentActivity.startActivity(intentActivity);
+		        overridePendingTransition(R.anim.slide_up, R.anim.slide_down);
+			}
+	    	
+	    });
+	    
+	    
 	    searchArea.setVisibility(View.GONE);
 
 	    searchImage.setOnClickListener(new OnClickListener() {
@@ -90,17 +99,4 @@ public class SearchPlacesActivity extends ListActivity {
 		}
 	}
 	
-	@Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.map_menu, menu);
-        return true;
-    }
-    
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        if(!MenuList.onSelectedMenuItem(item, this, R.id.routes)) 
-        	return super.onOptionsItemSelected(item);
-        return true;
-    }
 }

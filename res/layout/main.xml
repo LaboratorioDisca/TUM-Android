@@ -14,43 +14,83 @@
     	android:clickable="true"
     	android:apiKey="0Sp8gbE2A7huBHKWXFaSnv0zQ4sNzPzWzqj9zcQ"  >
 	</iimas.tum.views.PinchableMapView>
-	
+
     <RelativeLayout
         android:id="@+id/map_title"
-        android:layout_width="wrap_content"
-        android:layout_height="45dp"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentTop="true"
-        android:background="@drawable/pattern_headers" >
+        android:layout_width="match_parent"
+        android:layout_height="55dip"
+        android:background="#214B69"
+        android:orientation="vertical" >
+
+        <ImageView
+            android:id="@+id/menu_trigger_icon"
+            android:layout_width="55dp"
+            android:layout_height="55dp"
+            android:contentDescription="@string/none"
+            android:padding="10dp"
+            android:src="@drawable/menu_navbar" />
+
+        <View
+            android:layout_width="0.2dp"
+            android:layout_height="fill_parent"
+            android:layout_alignRight="@+id/menu_trigger_icon"
+            android:layout_marginLeft="20dp"
+            android:background="#163245" />
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:gravity="left"
-            android:layout_marginLeft="25dp"
-            android:paddingTop="10dip"
-            android:text="@string/map_title"
-            android:textColor="#fff"
-            android:textSize="19sp"
-            android:textStyle="bold"
-            android:shadowColor="#000"  
-        	android:shadowRadius="1.3"  
-        	android:shadowDx="1.5"  
-        	android:shadowDy="1.5" />
-
-        <ImageButton
-            android:id="@+id/location_updater"
+            android:id="@+id/textView1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:gravity="center"
+            android:shadowColor="#000"
+            android:shadowDx="1.5"
+            android:shadowDy="1.5"
+            android:shadowRadius="1.3"
+            android:text="@string/map_title"
+            android:textColor="#fff"
+            android:textSize="22sp"
+            android:textStyle="bold" />
+
+        <View
+            android:id="@+id/extra_options_separator"
+            android:layout_width="0.2dp"
+            android:layout_height="fill_parent"
+            android:layout_alignLeft="@+id/extra_options_icon"
+            android:layout_marginRight="15dp"
+            android:background="#163245" />
+
+        <ImageView
+            android:id="@+id/extra_options_icon"
+            android:layout_width="55dp"
+            android:layout_height="55dp"
             android:layout_alignParentRight="true"
-            android:layout_alignParentTop="true"
-            android:layout_marginTop="8dip"
-            android:layout_marginRight="10dip"
-            android:src="@drawable/wayfinder"
-            android:background="#00ffffff" />
+            android:background="#00ffffff"
+            android:contentDescription="@string/none"
+            android:padding="10dp"
+            android:src="@drawable/pin_navbar" />
+
+        <ImageView
+            android:id="@+id/location_updater"
+            android:layout_width="55dp"
+            android:layout_height="55dp"
+            android:layout_marginTop="2dp"
+            android:layout_toLeftOf="@+id/extra_options_icon"
+            android:background="#00ffffff"
+            android:contentDescription="@string/none"
+            android:padding="10dp"
+            android:src="@drawable/compass_navbar" />
+        <View
+            android:layout_width="0.2dp"
+            android:layout_height="fill_parent"
+            android:layout_toLeftOf="@+id/location_updater"
+            android:background="#163245" />
     </RelativeLayout>
+
 </RelativeLayout>
+
+
 
 
    <!-- android:apiKey="0f3XaTLUN3WCqzxXOsj1CgOIn4fj3r25Hm_Nqag"  -->

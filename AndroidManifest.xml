@@ -4,7 +4,7 @@
     android:versionCode="1"
     android:versionName="1.0" >
 
-    <uses-sdk android:minSdkVersion="10" />
+    <uses-sdk android:minSdkVersion="10" android:targetSdkVersion="15" />
     
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
@@ -12,7 +12,7 @@
     
     <application
         android:icon="@drawable/pumabus8"
-        android:label="@string/app_name" >
+        android:label="@string/app_name">
         <uses-library android:name="com.google.android.maps" />
           
         <activity
@@ -69,6 +69,16 @@
         <activity
             android:name=".activities.SearchPlacesActivity"
             android:label="@string/menu_places"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.NoTitleBar" >
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".activities.MoreInfoViewActivity"
+            android:label="@string/menu_more_info"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.NoTitleBar" >
             <intent-filter>

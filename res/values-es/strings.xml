@@ -11,8 +11,8 @@
     
 	<string name="menu_more">Más</string>
 		
-	<string name="map_title">Mapa del Campus</string>
-	<string name="routes_title">Rutas del Pumabus</string>
+	<string name="map_title">Mapa</string>
+	<string name="routes_title">Rutas</string>
 	
 	<string name="more_info_title">Más información</string>
 	<string name="more_info_text_intro">Esta aplicación y la infraestructura de telecomunicaciones incorporada a cada Pumabús están en proceso de mejora:</string>

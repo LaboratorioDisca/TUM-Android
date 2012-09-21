@@ -1,26 +1,23 @@
 package iimas.tum.activities;
 
+import com.slidingmenu.lib.app.SlidingActivity;
 import com.viewpagerindicator.CirclePageIndicator;
 
 import iimas.tum.R;
 import iimas.tum.fragments.LogoFragmentAdapter;
 import iimas.tum.utils.ApplicationBase;
 import iimas.tum.utils.MenuList;
-import android.app.Activity;
 import android.content.Intent;
 import android.graphics.PixelFormat;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.view.KeyEvent;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
 import android.view.View.OnClickListener;
 import android.widget.ImageView;
 
-public class AboutViewActivity extends Activity {
+public class AboutViewActivity extends SlidingActivity {
 	
 	private LogoFragmentAdapter adapterForLogos;
 	private ViewPager logoPager;
@@ -35,6 +32,9 @@ public class AboutViewActivity extends Activity {
 
         this.setContentView(R.layout.about);
         
+        ImageView menuTriggerIcon= (ImageView) findViewById(R.id.menu_trigger_icon);
+		MenuList.prepareMenuElementsForActivity(this, menuTriggerIcon);
+        
         adapterForLogos = new LogoFragmentAdapter(this.getApplicationContext());
         logoPager = (ViewPager) findViewById(R.id.logoPager);
         logoPager.setAdapter(adapterForLogos);
@@ -46,26 +46,12 @@ public class AboutViewActivity extends Activity {
 	    moreInfoIcon.setOnClickListener(new OnClickListener() {
 
 			public void onClick(View arg0) {
-				Intent intentActivity = new Intent(ApplicationBase.currentActivity, MoreInfoActivity.class);
+				Intent intentActivity = new Intent(ApplicationBase.currentActivity, MoreInfoViewActivity.class);
 				ApplicationBase.currentActivity.startActivity(intentActivity);
 		        overridePendingTransition(R.anim.slide_up, R.anim.slide_down);
 			}
 	    	
 	    });
-    }
-	
-	@Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.map_menu, menu);
-        return true;
-    }
-    
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        if(!MenuList.onSelectedMenuItem(item, this, R.id.help)) 
-        	return super.onOptionsItemSelected(item);
-        return true;
     }
     
     @Override

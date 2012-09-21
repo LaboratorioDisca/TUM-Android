@@ -9,8 +9,8 @@
     <string name="menu_places">Lugares</string>
 	<string name="menu_more_info">Más información</string>
     
-	<string name="map_title">Mapa del Campus</string>
-	<string name="routes_title">Rutas del Pumabus</string>
+	<string name="map_title">Mapa</string>
+	<string name="routes_title">Rutas</string>
 	
 	<string name="menu_more">Más</string>
 	<string name="about_title">Acerca de</string>

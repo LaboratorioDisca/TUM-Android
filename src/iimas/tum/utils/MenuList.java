@@ -2,76 +2,80 @@ package iimas.tum.utils;
 
 import java.util.ArrayList;
 
+import com.slidingmenu.lib.SlidingMenu;
+import com.slidingmenu.lib.app.SlidingActivity;
+import com.slidingmenu.lib.app.SlidingMapActivity;
+
 import iimas.tum.R;
-import iimas.tum.activities.SearchPlacesActivity;
 import iimas.tum.activities.MapViewActivity;
 import iimas.tum.activities.AboutViewActivity;
 import iimas.tum.activities.LandingViewActivity;
-import iimas.tum.activities.RoutesListActivity;
 import iimas.tum.activities.TimeTableViewActivity;
-import android.app.Activity;
-import android.content.Intent;
-import android.view.MenuItem;
+import iimas.tum.fragments.MenuEntryAdapter;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.ListView;
 
 public class MenuList {
+	
+	public static void prepareMenuElementsForActivity(final SlidingActivity activity, View menuTrigger) {
+	    menuTrigger.setOnClickListener(new OnClickListener() {
 
-	public static boolean onSelectedMenuItem(MenuItem item, Activity activity, int activityMenuLink) {
-    	Intent intentActivity;
-    	
-    	if(item.getItemId() == R.id.main) {
-    		if(activityMenuLink != R.id.main) {
-        		intentActivity = new Intent(activity, LandingViewActivity.class);
-        		activity.startActivity(intentActivity);
-        		return true;
+			public void onClick(View arg0) {
+				activity.toggle();
+			}
+	    	
+	    });
+	    
+	    activity.setBehindContentView(R.layout.menu_list);
+        MenuEntryAdapter adapter = new MenuEntryAdapter(activity);
+        for(MenuEntry me : MenuList.menuEntries()) {
+			adapter.add(me);
+		}
+        ListView mainList = (ListView) activity.findViewById(R.id.menu_list_view);
 
-        	}
-    	} else if(item.getItemId() == R.id.mapview) {
-    		if(activityMenuLink != R.id.mapview) {
-        		intentActivity = new Intent(activity, MapViewActivity.class);
-        		activity.startActivity(intentActivity);
-        		return true;
+        mainList.setAdapter(adapter);
 
-        	}
-    	} else if(item.getItemId() == R.id.routes) {
-    		if(activityMenuLink != R.id.routes) {
-        		intentActivity = new Intent(activity, RoutesListActivity.class);
-        		activity.startActivity(intentActivity);
-        		return true;
+		// customize the SlidingMenu
+		SlidingMenu slidingMenu = activity.getSlidingMenu();
+		slidingMenu.setShadowWidthRes(R.dimen.shadow_width);
+		slidingMenu.setShadowDrawable(R.drawable.shadow);
+		slidingMenu.setBehindOffsetRes(R.dimen.actionbar_home_width);
+	}
+	
+	public static void prepareMenuElementsForActivity(final SlidingMapActivity activity, View menuTrigger) {
+	    menuTrigger.setOnClickListener(new OnClickListener() {
 
-        	}
-    	} else if(item.getItemId() == R.id.help) {
-    		if(activityMenuLink != R.id.help) {
-        		intentActivity = new Intent(activity, AboutViewActivity.class);
-        		activity.startActivity(intentActivity);
-        		return true;
+			public void onClick(View arg0) {
+				activity.toggle();
+			}
+	    	
+	    });
+	    
+		activity.setBehindContentView(R.layout.menu_list);
+        MenuEntryAdapter adapter = new MenuEntryAdapter(activity);
+        for(MenuEntry me : MenuList.menuEntries()) {
+			adapter.add(me);
+		}
+        ListView mainList = (ListView) activity.findViewById(R.id.menu_list_view);
 
-        	}
-    	} else if(item.getItemId() == R.id.timetables) {
-    		if(activityMenuLink != R.id.timetables) {
-        		intentActivity = new Intent(activity, TimeTableViewActivity.class);
-        		activity.startActivity(intentActivity);
-        		return true;
+        mainList.setAdapter(adapter);
 
-        	}
-    	} else if(item.getItemId() == R.id.places) {
-    		if(activityMenuLink != R.id.places) {
-        		intentActivity = new Intent(activity, SearchPlacesActivity.class);
-        		activity.startActivity(intentActivity);
-        		return true;
-
-        	}
-    	} 
-		return false;
+		// customize the SlidingMenu
+        activity.getSlidingMenu().setBehindScrollScale(0.5f);
+        activity.getSlidingMenu().setShadowWidthRes(R.dimen.shadow_width);
+        activity.getSlidingMenu().setShadowDrawable(R.drawable.shadow);
+        activity.getSlidingMenu().setBehindOffsetRes(R.dimen.actionbar_home_width);
 	}
 	
 	public static ArrayList<MenuEntry> menuEntries() {
 		ArrayList<MenuEntry> menuEntries = new ArrayList<MenuEntry>();
 		menuEntries.add(new MenuEntry(R.string.menu_main, R.drawable.home_menu, LandingViewActivity.class));
 		menuEntries.add(new MenuEntry(R.string.menu_map, R.drawable.map_menu, MapViewActivity.class));
-		menuEntries.add(new MenuEntry(R.string.menu_routes, R.drawable.routes_menu, RoutesListActivity.class));
-		menuEntries.add(new MenuEntry(R.string.menu_places, R.drawable.places_menu, SearchPlacesActivity.class));
 		menuEntries.add(new MenuEntry(R.string.menu_timetables, R.drawable.timetables_menu, TimeTableViewActivity.class));
 		menuEntries.add(new MenuEntry(R.string.menu_about, R.drawable.about_menu, AboutViewActivity.class));
 		return menuEntries;
 	}
+
+
 }
