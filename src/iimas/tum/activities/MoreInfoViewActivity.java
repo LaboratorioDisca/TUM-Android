@@ -5,6 +5,7 @@ import iimas.tum.utils.ApplicationBase;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.PixelFormat;
+import android.graphics.drawable.TransitionDrawable;
 import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
@@ -25,6 +26,9 @@ public class MoreInfoViewActivity extends Activity {
         closeMoreIcon.setOnClickListener(new OnClickListener() {
 
 			public void onClick(View arg0) {
+				TransitionDrawable transition = (TransitionDrawable) closeMoreIcon.getBackground();
+				transition.startTransition(200);
+				transition.setCrossFadeEnabled(true);
 				Intent intentActivity = new Intent(ApplicationBase.currentActivity, AboutViewActivity.class);
 				ApplicationBase.currentActivity.startActivity(intentActivity);
 		        overridePendingTransition(R.anim.slide_up, R.anim.slide_down);

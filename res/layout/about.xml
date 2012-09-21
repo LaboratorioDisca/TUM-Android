@@ -13,14 +13,14 @@
         android:orientation="vertical"
         android:background="#214B69" >
 		
-
         <ImageView 
             android:id="@+id/menu_trigger_icon"
             android:src="@drawable/menu_navbar"
             android:padding="10dp"
             android:layout_width="55dp"
         	android:layout_height="55dp"
-            android:contentDescription="@string/none" />
+            android:contentDescription="@string/none"
+            android:background="@drawable/highlight_effect" />
 
         <View
             android:layout_height="fill_parent" 
@@ -58,7 +58,7 @@
             android:contentDescription="@string/none"
             android:layout_alignParentRight="true"
             android:src="@drawable/info_navbar"
-            android:background="#00ffffff" />
+            android:background="@drawable/highlight_effect" />
     </RelativeLayout>
 
     <TextView

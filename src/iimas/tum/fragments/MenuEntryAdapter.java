@@ -23,7 +23,6 @@ public class MenuEntryAdapter extends ArrayAdapter<MenuEntry> {
 	public View getView(int position, View convertView, ViewGroup parent) {
 		if (convertView == null) {
 			convertView = LayoutInflater.from(getContext()).inflate(R.layout.menu_row, null);
-			convertView.setBackgroundResource(R.drawable.highlight_row);
 		}
 		
 		final MenuEntry menuEntry = (MenuEntry) this.getItem(position);

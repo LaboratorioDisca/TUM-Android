@@ -10,6 +10,7 @@ import org.json.JSONException;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.graphics.drawable.TransitionDrawable;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
@@ -64,6 +65,9 @@ public class RoutesListActivity extends Activity {
         closeMoreIcon.setOnClickListener(new OnClickListener() {
 
 			public void onClick(View arg0) {
+				TransitionDrawable transition = (TransitionDrawable) closeMoreIcon.getBackground();
+				transition.startTransition(200);
+				transition.setCrossFadeEnabled(true);
 				Intent intentActivity = new Intent(ApplicationBase.currentActivity, MapViewActivity.class);
 				ApplicationBase.currentActivity.startActivity(intentActivity);
 		        overridePendingTransition(R.anim.slide_up, R.anim.slide_down);

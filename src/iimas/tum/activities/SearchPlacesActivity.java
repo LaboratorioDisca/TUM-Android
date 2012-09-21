@@ -7,6 +7,7 @@ import iimas.tum.models.Place;
 import iimas.tum.utils.ApplicationBase;
 import android.app.ListActivity;
 import android.content.Intent;
+import android.graphics.drawable.TransitionDrawable;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -48,6 +49,9 @@ public class SearchPlacesActivity extends ListActivity {
         closeIcon.setOnClickListener(new OnClickListener() {
 
 			public void onClick(View arg0) {
+				TransitionDrawable transition = (TransitionDrawable) closeIcon.getBackground();
+				transition.startTransition(200);
+				transition.setCrossFadeEnabled(true);
 				Intent intentActivity = new Intent(ApplicationBase.currentActivity, MapViewActivity.class);
 				ApplicationBase.currentActivity.startActivity(intentActivity);
 		        overridePendingTransition(R.anim.slide_up, R.anim.slide_down);
@@ -61,6 +65,9 @@ public class SearchPlacesActivity extends ListActivity {
 	    searchImage.setOnClickListener(new OnClickListener() {
 
 			public void onClick(View arg0) {
+				TransitionDrawable transition = (TransitionDrawable) searchImageCancel.getBackground();
+				transition.startTransition(100);
+				transition.setCrossFadeEnabled(true);
 				searchArea.setVisibility(View.VISIBLE);
 				searchImageCancel.setVisibility(View.VISIBLE);
 				searchImage.setVisibility(View.GONE);

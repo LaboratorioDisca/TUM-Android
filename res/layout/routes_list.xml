@@ -42,7 +42,7 @@
             android:contentDescription="@string/none"
             android:layout_alignParentRight="true"
             android:src="@drawable/close_navbar"
-            android:background="#00ffffff" />
+            android:background="@drawable/highlight_effect" />
     </RelativeLayout>
 
     <ListView

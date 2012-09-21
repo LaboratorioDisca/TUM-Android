@@ -17,7 +17,8 @@
             android:layout_height="55dp"
             android:contentDescription="@string/none"
             android:padding="10dp"
-            android:src="@drawable/close_navbar" />
+            android:src="@drawable/close_navbar"
+            android:background="@drawable/highlight_effect" />
 
         <View
             android:layout_width="0.2dp"
@@ -48,7 +49,7 @@
             android:layout_height="55dp"
             android:layout_marginTop="2dp"
             android:layout_alignParentRight="true"
-            android:background="#00ffffff"
+            android:background="@drawable/highlight_effect"
             android:contentDescription="@string/none"
             android:padding="10dp"
             android:src="@drawable/search_navbar" />
@@ -64,7 +65,7 @@
             android:layout_height="55dp"
             android:layout_marginTop="2dp"
             android:layout_toLeftOf="@+id/close_list"
-            android:background="#00ffffff"
+            android:background="@drawable/highlight_effect"
 			android:layout_alignParentRight="true"
             android:contentDescription="@string/none"
             android:padding="10dp"

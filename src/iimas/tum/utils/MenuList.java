@@ -12,16 +12,17 @@ import iimas.tum.activities.AboutViewActivity;
 import iimas.tum.activities.LandingViewActivity;
 import iimas.tum.activities.TimeTableViewActivity;
 import iimas.tum.fragments.MenuEntryAdapter;
+import android.graphics.drawable.TransitionDrawable;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ListView;
 
 public class MenuList {
 	
-	public static void prepareMenuElementsForActivity(final SlidingActivity activity, View menuTrigger) {
+	public static void prepareMenuElementsForActivity(final SlidingActivity activity, final View menuTrigger) {
 	    menuTrigger.setOnClickListener(new OnClickListener() {
 
-			public void onClick(View arg0) {
+			public void onClick(View arg0) {				
 				activity.toggle();
 			}
 	    	
@@ -43,7 +44,7 @@ public class MenuList {
 		slidingMenu.setBehindOffsetRes(R.dimen.actionbar_home_width);
 	}
 	
-	public static void prepareMenuElementsForActivity(final SlidingMapActivity activity, View menuTrigger) {
+	public static void prepareMenuElementsForActivity(final SlidingMapActivity activity, final View menuTrigger) {
 	    menuTrigger.setOnClickListener(new OnClickListener() {
 
 			public void onClick(View arg0) {

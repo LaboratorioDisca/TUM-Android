@@ -9,6 +9,7 @@ import iimas.tum.utils.ApplicationBase;
 import iimas.tum.utils.MenuList;
 import android.content.Intent;
 import android.graphics.PixelFormat;
+import android.graphics.drawable.TransitionDrawable;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.view.KeyEvent;
@@ -46,6 +47,9 @@ public class AboutViewActivity extends SlidingActivity {
 	    moreInfoIcon.setOnClickListener(new OnClickListener() {
 
 			public void onClick(View arg0) {
+				TransitionDrawable transition = (TransitionDrawable) moreInfoIcon.getBackground();
+				transition.startTransition(200);
+				transition.setCrossFadeEnabled(true);
 				Intent intentActivity = new Intent(ApplicationBase.currentActivity, MoreInfoViewActivity.class);
 				ApplicationBase.currentActivity.startActivity(intentActivity);
 		        overridePendingTransition(R.anim.slide_up, R.anim.slide_down);
