@@ -4,7 +4,7 @@ import iimas.tum.R;
 import iimas.tum.fragments.RoutesListAdapter;
 import iimas.tum.models.Route;
 import iimas.tum.utils.ApplicationBase;
-import iimas.tum.utils.MenuSwitcher;
+import iimas.tum.utils.MenuList;
 
 import java.util.HashMap;
 import org.json.JSONArray;
@@ -98,7 +98,7 @@ public class RoutesListActivity extends Activity {
     
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if(!MenuSwitcher.onSelectedMenuItem(item, this, R.id.routes)) 
+        if(!MenuList.onSelectedMenuItem(item, this, R.id.routes)) 
         	return super.onOptionsItemSelected(item);
         return true;
     }

@@ -13,7 +13,7 @@ import iimas.tum.models.Place;
 import iimas.tum.models.Route;
 import iimas.tum.models.Vehicle;
 import iimas.tum.utils.ApplicationBase;
-import iimas.tum.utils.MenuSwitcher;
+import iimas.tum.utils.MenuList;
 import iimas.tum.views.PinchableMapView;
 import iimas.tum.views.CustomMyLocationOverlay;
 import iimas.tum.views.OverlayItemForInstant;
@@ -274,7 +274,7 @@ public class MapViewActivity extends MapActivity implements LocationListener {
     
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if(!MenuSwitcher.onSelectedMenuItem(item, this, R.id.mapview)) 
+        if(!MenuList.onSelectedMenuItem(item, this, R.id.mapview)) 
         	return super.onOptionsItemSelected(item);
         return true;
     }

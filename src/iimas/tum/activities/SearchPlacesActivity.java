@@ -5,7 +5,7 @@ import iimas.tum.collections.Places;
 import iimas.tum.fragments.PlacesAdapter;
 import iimas.tum.models.Place;
 import iimas.tum.utils.ApplicationBase;
-import iimas.tum.utils.MenuSwitcher;
+import iimas.tum.utils.MenuList;
 import android.app.ListActivity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -99,7 +99,7 @@ public class SearchPlacesActivity extends ListActivity {
     
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if(!MenuSwitcher.onSelectedMenuItem(item, this, R.id.routes)) 
+        if(!MenuList.onSelectedMenuItem(item, this, R.id.routes)) 
         	return super.onOptionsItemSelected(item);
         return true;
     }

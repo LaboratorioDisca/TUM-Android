@@ -2,7 +2,7 @@ package iimas.tum.activities;
 
 import iimas.tum.R;
 import iimas.tum.utils.ApplicationBase;
-import iimas.tum.utils.MenuSwitcher;
+import iimas.tum.utils.MenuList;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.PixelFormat;
@@ -34,7 +34,7 @@ public class TimeTableViewActivity extends Activity {
     
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if(!MenuSwitcher.onSelectedMenuItem(item, this, R.id.timetables)) 
+        if(!MenuList.onSelectedMenuItem(item, this, R.id.timetables)) 
         	return super.onOptionsItemSelected(item);
         return true;
     }

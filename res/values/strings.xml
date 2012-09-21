@@ -31,7 +31,8 @@
 	<string name="timetables_saturdays_routes_two">Rutas 3 y 10 de 6:00 a 23:00 hrs</string>
 	<string name="timetables_sundays_routes">Rutas 3 y 10 de 6:00 a 23:00 hrs</string>
 	
-	<string name="service_status_legend">Estado del Servicio:</string>
+	<string name="menu_trigger_legend">Menú</string>
+	<string name="service_status_legend">Servicio:</string>
 	<string name="service_status_updating">Actualizando &#8230;</string>
 	
 	<string name="service_status_normal">Normal</string>

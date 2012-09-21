@@ -15,12 +15,16 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="left"
-            android:paddingLeft="10dip"
-            android:paddingTop="7dip"
+            android:layout_marginLeft="25dp"
+            android:paddingTop="10dip"
             android:text="@string/routes_title"
             android:textColor="#fff"
-            android:textSize="21dip"
-            android:textStyle="bold" />
+            android:textSize="19sp"
+            android:textStyle="bold"
+            android:shadowColor="#000"  
+        	android:shadowRadius="1.3"  
+        	android:shadowDx="1.5"  
+        	android:shadowDy="1.5" />
 
     </LinearLayout>
 

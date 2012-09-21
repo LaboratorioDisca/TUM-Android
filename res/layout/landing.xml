@@ -5,49 +5,93 @@
     android:background="@drawable/gradient_front"
     android:orientation="vertical" >
 
-    <RelativeLayout
-        android:id="@+id/service_box"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentRight="true"
-        android:layout_marginBottom="69dp"
-        android:background="#88FFFFFF"
-        android:gravity="center"
-        android:padding="15dip" >
-
-        <TextView
-            android:id="@+id/service_legend"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="@string/service_status_legend"
-            android:textColor="#fff"
-            android:textSize="13dip"
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/service_status"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="8dip"
-            android:layout_toRightOf="@+id/service_legend"
-            android:text="@string/service_status_updating"
-            android:textColor="#000"
-            android:textSize="13dip"
-            android:textStyle="bold" />
-    </RelativeLayout>
-
     <ImageView
         android:id="@+id/logo"
-        android:contentDescription="@string/none"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/service_box"
+        android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="99dp"
+        android:layout_marginTop="91dp"
+        android:contentDescription="@string/none"
         android:drawingCacheQuality="high"
         android:src="@drawable/logo" />
+
+    <RelativeLayout 
+        android:id="@+id/main_menu_box"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:layout_below="@+id/logo"
+        android:layout_marginTop="76dp"
+        >
+
+        <RelativeLayout
+            android:id="@+id/service_box"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_alignParentRight="true"
+            android:background="#88FFFFFF"
+            android:gravity="right"
+            android:padding="15dip" >
+
+	        <TextView
+	            android:id="@+id/service_legend"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:gravity="center"
+	            android:paddingLeft="10dp"	            
+	            android:paddingRight="15dp"
+	            android:text="@string/service_status_legend"
+	            android:textColor="#fff"
+	            android:textSize="13dip"
+	            android:textStyle="bold" />
+	
+	        <TextView
+	            android:id="@+id/service_status"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:layout_marginLeft="2dip"
+	            android:layout_toRightOf="@+id/service_legend"
+	            android:text="@string/service_status_updating"
+	            android:textColor="#000"
+	            android:textSize="13dip"
+	            android:textStyle="bold" />
+    	</RelativeLayout>
+    	
+    	<RelativeLayout
+        	android:id="@+id/menu_trigger_button"
+        	android:layout_width="wrap_content"
+        	android:layout_height="fill_parent"
+        	android:layout_alignParentLeft="true"
+        	android:layout_alignTop="@+id/service_box"
+        	android:layout_toLeftOf="@+id/service_box"
+        	android:background="#000000" >
+    	    <ImageView
+    	    android:id="@+id/menu_trigger_icon"
+    	    android:contentDescription="@string/none"
+    	    android:layout_width="wrap_content"
+    	    android:layout_height="wrap_content"
+    	    android:layout_marginLeft="20dp"
+    	    android:layout_centerVertical="true"
+    	    android:src="@drawable/start" />
+
+			<TextView
+		    android:id="@+id/menu_trigger_legend"
+		    android:layout_width="wrap_content"
+		    android:layout_height="wrap_content"
+		    android:layout_alignLeft="@+id/menu_trigger_icon"
+		    android:layout_marginLeft="40dp"
+		    android:layout_centerVertical="true"
+		    android:text="@string/menu_trigger_legend"
+		    android:textColor="#fff"
+		    android:textSize="18dip"
+		    android:textStyle="bold" />
+    	</RelativeLayout>
+
+
+
+    </RelativeLayout>
+    
+
+
 
 </RelativeLayout>

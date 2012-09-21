@@ -5,7 +5,7 @@ import com.viewpagerindicator.CirclePageIndicator;
 import iimas.tum.R;
 import iimas.tum.fragments.LogoFragmentAdapter;
 import iimas.tum.utils.ApplicationBase;
-import iimas.tum.utils.MenuSwitcher;
+import iimas.tum.utils.MenuList;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.PixelFormat;
@@ -63,7 +63,7 @@ public class AboutViewActivity extends Activity {
     
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if(!MenuSwitcher.onSelectedMenuItem(item, this, R.id.help)) 
+        if(!MenuList.onSelectedMenuItem(item, this, R.id.help)) 
         	return super.onOptionsItemSelected(item);
         return true;
     }
