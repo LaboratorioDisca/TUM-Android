@@ -2,37 +2,50 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
-    android:orientation="horizontal"
-    android:background="#99000000"
-    android:paddingTop="10dp"
-	android:paddingBottom="10dp"
-    android:paddingLeft="20dp" >
+    android:background="#EE000000" >
+    
+    <View
+        android:id="@+id/mini_ribbon"
+        android:layout_width="fill_parent"
+        android:layout_height="5dip"
+        android:background="#FFFFFF" >
+    </View>
     
 	<TextView
-	    android:id="@+id/place_name"
-	    android:layout_width="fill_parent"
-	    android:layout_height="wrap_content"
-	    android:layout_alignParentLeft="true"
-	    android:textColor="#fff"
-	    android:textSize="15sp"
-	    android:textStyle="bold" />
-
+            android:id="@+id/place_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+        	android:textColor="#fff"
+        	android:paddingTop="5dp"
+        	android:layout_marginTop="10dp"
+        	android:layout_marginLeft="20dp"
+        	android:layout_marginRight="40dp"
+        	android:paddingRight="20dp"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:typeface="sans" />
 	<TextView
            android:id="@+id/place_type"
            android:layout_width="fill_parent"
            android:layout_height="wrap_content"
-           android:layout_marginTop="25dp"
+           android:layout_below="@+id/place_name"
        	   android:textColor="#fff"
-           android:textSize="12sp" />
-	<ImageButton
-                android:id="@+id/close_button"
-                android:contentDescription="@string/none"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentRight="true"
-                android:layout_marginRight="5dp"
-                android:layout_marginTop="8dip"
-                android:background="#00000000"
-                android:src="@drawable/close" />
+       	   android:layout_marginTop="0dp"
+           android:layout_marginBottom="10dp"
+           android:layout_marginLeft="20dp"
+           android:layout_marginRight="40dp"
+           android:paddingBottom="15dp"
+           android:textSize="12sp"
+           android:typeface="sans" />
+
+	<ImageView
+	    android:id="@+id/close_button"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:layout_alignParentRight="true"
+	    android:layout_centerVertical="true"
+	    android:paddingRight="10dp"
+	    android:contentDescription="@string/none"
+	    android:src="@drawable/close" />
+
 </RelativeLayout>

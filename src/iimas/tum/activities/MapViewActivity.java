@@ -406,9 +406,9 @@ public class MapViewActivity extends SlidingMapActivity implements LocationListe
 				name.setText(activePlace.name);
 				
 				TextView type = (TextView) placeView.findViewById(R.id.place_type);
-				type.setText(this.getResources().getString(activePlace.getResourceId()));
+				type.setText(this.getResources().getString(activePlace.getResourceId()).toUpperCase());
 				
-				ImageButton button = (ImageButton) placeView.findViewById(R.id.close_button);
+				ImageView button = (ImageView) placeView.findViewById(R.id.close_button);
 			    button.setOnClickListener(new OnClickListener() {
 			    	
 					public void onClick(View arg0) {
