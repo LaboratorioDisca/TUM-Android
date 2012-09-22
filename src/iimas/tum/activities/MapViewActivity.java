@@ -128,22 +128,15 @@ public class MapViewActivity extends SlidingMapActivity implements LocationListe
 	    locationUpdaterButton = (ImageView) findViewById(R.id.location_updater);
 	    
 	    final AlphaAnimation animation=new AlphaAnimation(1, 0.2f);
-	    animation.setDuration(1200);
+	    animation.setDuration(1000);
 	    animation.setInterpolator(new LinearInterpolator());
 	    animation.setRepeatCount(Animation.INFINITE);
 	    animation.setRepeatMode(Animation.REVERSE);
-	    
-	    final RotateAnimation rotation = new RotateAnimation(40, -20, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
-	    rotation.setDuration(1000);
-		rotation.setInterpolator(new LinearInterpolator());
-		rotation.setRepeatCount(Animation.INFINITE);
-		rotation.setRepeatMode(Animation.REVERSE);
 
 	    locationUpdaterButton.setOnClickListener(new OnClickListener() {
 	    	
 			public void onClick(View arg0) {
 				locationUpdaterButton.startAnimation(animation);
-				locationUpdaterButton.startAnimation(rotation);
 				
 				locationOverlay.runOnFirstFix(new Runnable() {
 					public void run() {
@@ -162,6 +155,7 @@ public class MapViewActivity extends SlidingMapActivity implements LocationListe
 			 public void run() {		    
 		       	JSONArray jsonArray = ApplicationBase.fetchResourceAsArray("instants");
 		       	if(jsonArray != null) {
+		       		Vehicles.fetchVehicles();
 		       		Log.e("Timer", "Fetching time");
 		       		Instants.buildFromJSON(jsonArray);
 		       		runOnUiThread(new Runnable() {
@@ -169,7 +163,15 @@ public class MapViewActivity extends SlidingMapActivity implements LocationListe
 		       		    	drawMainOverlays();
 		       		    }
 		       		});
-		       	} 
+		       	} else {
+		       		// Draw without instants then
+		       		runOnUiThread(new Runnable() {
+		       		    public void run() {
+		       		    	drawMainOverlays();
+		       		    }
+		       		});
+
+		       	}
 			 }
 		};
    		return currentInstantCall;
@@ -203,7 +205,7 @@ public class MapViewActivity extends SlidingMapActivity implements LocationListe
     		this.clearOverlays();
         	this.drawPaths();
         	this.drawPlaces();
-    	}
+    	} 
     }
     
     public void onLocationChanged(Location location) {
@@ -249,7 +251,7 @@ public class MapViewActivity extends SlidingMapActivity implements LocationListe
     
     private void drawPaths() {
     	List<Overlay> overlays = mapView.getOverlays();
-    	
+
     	boolean selectedVehicleIsDraw = false;
     	for (Route route : RoutesListActivity.routes.values()) {
     		if(route.isVisibleOnMap()) {
