@@ -78,7 +78,18 @@ public class MapViewActivity extends SlidingMapActivity implements LocationListe
         /* Setting up the sliding menu characteristics */
         
 		ImageView menuTriggerIcon= (ImageView) findViewById(R.id.menu_trigger_icon);
-		MenuList.prepareMenuElementsForActivity(this, menuTriggerIcon);
+		MenuList.prepareMenuElementsForActivity(this);
+		
+		menuTriggerIcon.setOnClickListener(new OnClickListener() {
+
+			public void onClick(View arg0) {
+				((MapViewActivity) ApplicationBase.currentActivity).toggle();
+				if(upperPopupWindow != null) {
+					upperPopupWindow.dismiss();
+				}
+			}
+	    	
+	    });
 		
 		final ImageView extraOptionsIcon = (ImageView) findViewById(R.id.extra_options_icon);
         
@@ -122,8 +133,6 @@ public class MapViewActivity extends SlidingMapActivity implements LocationListe
    		ApplicationBase.globalTimer().scheduleAtFixedRate(newInstantFetcherCall(), 0, 10000);
 		this.clearOverlays();
 		this.drawPlaces();
-		
-		
 		
 	    locationUpdaterButton = (ImageView) findViewById(R.id.location_updater);
 	    
@@ -454,7 +463,7 @@ public class MapViewActivity extends SlidingMapActivity implements LocationListe
 	private void attachPopupWindow(View contentView) {
 		upperPopupWindow = new PopupWindow(contentView,  LayoutParams.WRAP_CONTENT,  LayoutParams.WRAP_CONTENT,    true);
 		upperPopupWindow.setFocusable(false);
-		upperPopupWindow.setAnimationStyle(android.R.style.Animation_Toast);
+		upperPopupWindow.setAnimationStyle(android.R.style.Animation_Activity);
 		
 		findViewById(R.id.map_title).post(new Runnable() {
 	    	   public void run() {

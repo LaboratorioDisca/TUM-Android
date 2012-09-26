@@ -43,14 +43,7 @@ public class MenuList {
 		slidingMenu.setBehindOffsetRes(R.dimen.actionbar_home_width);
 	}
 	
-	public static void prepareMenuElementsForActivity(final SlidingMapActivity activity, final View menuTrigger) {
-	    menuTrigger.setOnClickListener(new OnClickListener() {
-
-			public void onClick(View arg0) {
-				activity.toggle();
-			}
-	    	
-	    });
+	public static void prepareMenuElementsForActivity(final SlidingMapActivity activity) {
 	    
 		activity.setBehindContentView(R.layout.menu_list);
         MenuEntryAdapter adapter = new MenuEntryAdapter(activity);
